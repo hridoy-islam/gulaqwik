@@ -1,21 +1,34 @@
-import { component$, useStyles$, useResource$, Resource } from '@builder.io/qwik';
+import { component$, useStyles$, Resource } from '@builder.io/qwik';
 // import { useLocation } from '@builder.io/qwik-city';
 import { searchWorkerUsers } from '~/api/workeruser';
 import CatalogueCard from '~/components/catalogue-card/catalogue-card';
+import { routeLoader$ } from '@builder.io/qwik-city';
 // import Search from '~/components/search/search';
 
 import styles from './sex.scss?inline';
 
-
-export default component$(() => {
-  useStyles$(styles);
+export const useWorkerUsers = routeLoader$(async () => {
+  // This code runs only on the server, after every navigation
   const search = {
     billingType: "Elite",
     sex: "female",
     skip: 0,
     limit: 40
   }
-  const workerUsers = useResource$(() => searchWorkerUsers(search));
+  return await searchWorkerUsers(search);
+});
+
+
+export default component$(() => {
+  useStyles$(styles);
+  // const search = {
+  //   billingType: "Elite",
+  //   sex: "female",
+  //   skip: 0,
+  //   limit: 40
+  // }
+  // const workerUsers = useResource$(() => searchWorkerUsers(search));
+  const workerUsers = useWorkerUsers();
 
   // const loc = useLocation();
   return <div class="catalogue_section">
