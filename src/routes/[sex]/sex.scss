@@ -1,0 +1,352 @@
+@import "../../main.scss";
+
+$search_width: getRelative(260);
+$search_width_min: getRelative(230);
+$header_height: getRelative(40);
+$line_height: getRelative(5);
+$tab_output_header: calc(calc(#{$header_height} + #{$line_height}));
+$content_padding_top: getRelative(80);
+$content_padding_lateral: 5%;
+
+$first_breakpoint: 1300px;
+$second_breakpoint: 860px;
+
+$full_height: calc(100% - #{$search_width});
+$full_height-min: calc(100% - #{$search_width_min});
+
+.catalogue_section {
+  display: grid;
+  grid-template-columns: $search_width $full_height;
+  padding: $content_padding_top $content_padding_lateral 0;
+  box-sizing: border-box;
+  width: 100vw;
+  background: black;
+
+  .subtitles_container {
+    text-align: center;
+    color: white;
+    h2 {
+      margin: getRelative(15) 0 getRelative(15) 0;
+      font-size: 16px;
+    }
+    details {
+      margin-bottom: 10px;
+    }
+    details:last-child {
+      margin-bottom: getRelative(60);
+    }
+    .links_container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      a {
+        width: 35%;
+        min-width: 220px;
+        margin: getRelative(15);
+      }
+    }
+
+  }
+
+  .button {
+    @include fillButton(14, getRelative(10, 14) getRelative(15, 14), map-get($map: $primary, $key: 100), map-get($map: $primary, $key: 100-contrast));
+    text-transform: initial;
+    outline: none;
+  }
+
+  h1, h2, h3, p, a {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .aside_container,
+  .catalogue_output {
+    width: $search_width;
+    // height: calc(100vh - #{$content_padding_top});
+    overflow-y: auto;
+
+    .aside_fixed {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: calc(#{$content_padding_top} / 2);
+      padding-right: getRelative(5);
+      box-sizing: border-box;
+
+      gula-advertising {
+        display: block;
+        margin-top: getRelative(30);
+      }
+    }
+  }
+
+  .aside_container {
+    overflow-x: hidden;
+    scrollbar-width: thin !important;
+    scrollbar-color: map-get($map: $primary, $key: 200) map-get($map: $overlay, $key: 200);
+
+    &::-webkit-scrollbar {
+      width: getRelative(8);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: map-get($map: $overlay, $key: 200);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: getRelative(5);
+      background: rgb(233 233 233 / 50%);
+
+      &:hover {
+        background: rgb(175 175 175 / 50%);
+      }
+    }
+  }
+
+  .catalogue_output {
+    // display: grid;
+    grid-template-rows: $tab_output_header calc(100% - #{$tab_output_header});
+    width: calc(100% - #{$header_height});
+    padding-left: $header_height;
+
+    &::-webkit-scrollbar {
+      width: getRelative(8);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: map-get($map: $overlay, $key: 200);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: getRelative(5);
+      background: rgb(233 233 233 / 50%);
+
+      &:hover {
+        background: rgb(175 175 175 / 50%);
+      }
+    }
+  }
+}
+
+.card_output {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  width: 100%;
+//   height: 100%;
+  padding-top: getRelative(20);
+  margin: 0 auto;
+
+  .card {
+    margin: getRelative(5);
+  }
+}
+
+.empty_catalogue_label {
+  $context: 20;
+  margin-top: getRelative(40, $context);
+  font-size: getRelative($context);
+  text-align: center;
+  color: map-get($map: $primary, $key: A100-contrast);
+}
+
+.loader {
+  display: flex;
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+  img {
+    width: 50%;
+    height: 100%;
+    margin: auto;
+  }
+}
+
+.elite_card {
+  width: calc(95% / 3);
+  height: getRelative(300);
+  flex-grow: 5;
+}
+
+.vip_card {
+  width: calc(88% / 7);
+  height: getRelative(290);
+  flex-grow: 2;
+}
+
+.premium_card {
+  width: calc(88% / 8);
+  height: getRelative(170);
+  flex-grow: 2;
+}
+
+@media screen and (max-width: 1660px) {
+  .elite_card {
+    width: calc(93% / 3) !important;
+  }
+
+  .vip_card {
+    width: calc(100% / 7) !important;
+  }
+
+  .premium_card {
+    width: calc(115% / 8) !important;
+  }
+}
+
+@media screen and (max-width: 1245px) {
+  .elite_card {
+    width: calc(90% / 3) !important;
+  }
+
+  .vip_card {
+    width: calc(120% / 7) !important;
+  }
+
+  .premium_card {
+    width: calc(140% / 8) !important;
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  .elite_card {
+    width: calc(90% / 2) !important;
+  }
+
+  .vip_card {
+    width: calc(150% / 7) !important;
+  }
+
+  .premium_card {
+    width: calc(174% / 8) !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .empty_catalogue_label {
+    margin-top: getRelative(20, 18);
+    font-size: getRelative(18);
+  }
+
+  .elite_card {
+    width: 100% !important;
+  }
+
+  .vip_card,
+  .premium_card {
+    width: calc(90% / 2) !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  $first_card: getRelative(40);
+
+  .card_output {
+    height: fit-content;
+    padding-bottom: $first_card;
+  }
+
+  .move_cards {
+    margin-top: calc(#{$first_card} / 2 * -1) !important;
+  }
+
+  .vip_card:first-child {
+    margin-top: $first_card !important;
+  }
+
+  .vip_card:nth-child(2) {
+    margin-top: calc(#{$first_card} / 4) !important;
+  }
+
+  .vip_card,
+  .premium_card {
+    width: calc(88% / 2) !important;
+  }
+}
+
+
+.search_mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: -webkit-fill-available;
+  z-index: -10;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  .container {
+    @include flexAlign(vertical);
+    width: 100vw;
+    padding: getRelative(100) 0;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: all 200ms ease-in;
+    background: map-get($map: $primary, $key: A100);
+
+    .search_translator {
+      margin: 0 auto;
+      transform: translateY(100vh);
+      transition: all 400ms ease-in;
+    }
+
+    .translate_top {
+      transform: translateY(0);
+      transition: all 400ms ease-in;
+    }
+  }
+
+  .container_opacity {
+    opacity: 1;
+    transition: all 200ms ease-in;
+  }
+}
+
+@-moz-document url-prefix() {
+  .search_mobile {
+    position: absolute !important;
+  }
+}
+
+.content_background {
+  background: map-get($map: $primary, $key: 100);
+}
+
+.not_show_when_search_mobile_is_open {
+  display: none;
+}
+
+@media screen and (max-width: $first_breakpoint) {
+  .catalogue_section {
+    grid-template-columns: $search_width_min $full_height-min;
+
+    .aside_container {
+      width: $search_width_min;
+    }
+  }
+  .subtitles_container {
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: $second_breakpoint) {
+  .catalogue_section {
+    grid-template-columns: 100%;
+
+    .aside_container {
+      display: none;
+    }
+
+    .catalogue_output {
+      width: 100%;
+      padding-left: 0;
+    }
+  }
+  .subtitles_container {
+    margin-bottom: 50px;
+    details:last-child {
+      margin-bottom: getRelative(155) !important;
+    }
+  }
+}

@@ -1,0 +1,250 @@
+$primary: (
+  100: #161616,
+  200: #292929,
+  300: #f5f5f5,
+  A100: #000000,
+  A200: #0c0c0c,
+  A300: #1b1b1b,
+  A400: #454545,
+  100-contrast: #f5f5f5,
+  200-contrast: #f5f5f5,
+  300-contrast: #161616,
+  A100-contrast: #ffffff,
+  A200-contrast: #ffffff,
+  A300-contrast: #ffffff,
+  A400-contrast: #ffffff,
+);
+
+$secondary: (
+  100: #665935,
+  200: #cbb16a,
+  300: #e8d6a3,
+  400: #0080ff,
+  500: #ff5858,
+);
+
+$overlay: (
+  100: #00000080,
+  200: #00000047,
+  300: #000000cf,
+  400: #00000026,
+  500: #000000db,
+  600: #cdcdcd12,
+  700: #000000f0,
+  800: #44444480,
+);
+
+// Variables
+$font-size: 14;
+$font-family: "Raleway", sans-serif;
+
+@function getRelative($pixels, $relativeTo: $font_size) {
+  @return calc((#{$pixels} / #{$relativeTo}) * 1em);
+}
+
+@mixin deleteButtonStyles {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@mixin flexAlign($position) {
+  display: flex;
+
+  @if ($position==vertical) {
+    align-items: center;
+  } @else if ($position==horizontal) {
+    justify-content: center;
+  } @else if ($position==center) {
+    align-items: center;
+    justify-content: center;
+  } @else {
+    @error 'Unknown direction #{$position}.';
+  }
+}
+
+@mixin fullScreen() {
+  width: 100vw;
+  height: 100vh;
+}
+
+$delay: 100ms;
+
+@mixin fillButton(
+  $size,
+  $padding: getRelative(15, $size) getRelative(40, $size),
+  $background: map-get($map: $primary, $key: 100-contrast),
+  $color: map-get($map: $primary, $key: 100)
+) {
+  @include buttonCommon($size, $padding);
+  background: $background;
+  border: solid 1px $background;
+  color: $color;
+}
+
+@mixin borderButton(
+  $size,
+  $padding: getRelative(15, $size) getRelative(40, $size),
+  $border: map-get($map: $primary, $key: 100-contrast),
+  $color: map-get($map: $primary, $key: 100-contrast)
+) {
+  @include buttonCommon($size, $padding);
+  background: map-get($map: $overlay, $key: 200);
+  border: solid 1px $border;
+  color: $color;
+  transition: all 200ms ease-in;
+
+  &:active {
+    @include fillButton($size, $padding);
+    transition: all 200ms ease-in;
+  }
+}
+
+@mixin buttonCommon($size, $padding) {
+  @include deleteButtonStyles();
+  border-radius: getRelative(5, $size);
+  padding: $padding;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: getRelative($size);
+}
+
+// Input component
+
+@mixin inputCommon($size: $font-size, $color: map-get($map: $primary, $key: 300)) {
+  position: relative;
+
+  input {
+    @include formElementCommon($size, $color);
+    padding: 0 getRelative(25, $size) getRelative(5, $size) getRelative(10, $size);
+    box-sizing: border-box;
+    font-size: getRelative($size);
+    font-weight: 400;
+    background: none;
+    border: none;
+    border-bottom: solid 1px $color;
+    color: $color;
+    transition: all $delay ease-in;
+    outline: none;
+    opacity: 0.5;
+
+    &:focus {
+      opacity: 1;
+      transition: all $delay ease-in;
+      border-bottom: solid 2px $color;
+    }
+
+    &::placeholder {
+      visibility: hidden;
+    }
+  }
+
+  .placeholder {
+    position: absolute;
+    bottom: getRelative(5, $size);
+    left: 0;
+    font-size: getRelative($size);
+    font-weight: 400;
+    color: $color;
+    pointer-events: none;
+    transition: all $delay ease-in;
+    opacity: 0.5;
+  }
+
+  .icon {
+    position: absolute;
+    right: 0;
+    bottom: getRelative(10, $size);
+    height: getRelative(15, $size);
+  }
+
+  input:focus ~ .placeholder,
+  input:not(:placeholder-shown) ~ .placeholder {
+    font-size: getRelative($size - 3);
+    bottom: getRelative($size * 2);
+    transition: all $delay ease-in;
+  }
+}
+
+@mixin borderInput($size: $font-size, $padding: getRelative(10, $size), $color: map-get($map: $primary, $key: 300)) {
+  padding: $padding;
+  box-sizing: border-box;
+  color: $color;
+  font-size: getRelative($size);
+  background: none;
+  border: solid 1px $color;
+
+  &::placeholder {
+    font-size: $size;
+    color: $color;
+    opacity: 0.5;
+  }
+}
+
+@mixin formElementCommon($size: $font-size, $color: map-get($map: $primary, $key: 300)) {
+  width: 100%;
+  margin-top: getRelative($size);
+  font-size: getRelative($size);
+  font-weight: 400;
+  background: none;
+  border: none;
+  border-bottom: solid 1px $color;
+  color: $color;
+  transition: all $delay ease-in;
+  outline: none;
+  opacity: 0.5;
+
+  &:focus {
+    opacity: 1;
+    transition: all $delay ease-in;
+  }
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family;
+  font-size: #{$font-size}px;
+  -webkit-touch-callout: none;
+}
+
+@media print {
+  html, body {
+     display: none;
+  }
+}
+
+body {
+  overflow-x: hidden;
+  font-size: 14px;
+  background: black;
+
+  &::-webkit-scrollbar {
+    width: getRelative(8);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: getRelative(5);
+    background: rgb(233 233 233 / 50%);
+
+    &:hover {
+      background: rgb(175 175 175 / 50%);
+    }
+  }
+
+}
+
+input,
+select,
+textarea {
+  font-size: 100%;
+}
+
+.sentry-error-embed-wrapper{
+  display: none !important;
+}
