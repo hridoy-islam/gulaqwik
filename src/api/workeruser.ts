@@ -1,60 +1,61 @@
-import axios from 'axios';
+// import axios from 'axios';
 import type { User, BillingType } from './authentication';
 
 const base = 'https://gula-api-test-2i55x.ondigitalocean.app/workeruser/';
 
-export const searchWorkerUsers = async (search: any) => {
-    return (await axios.post<WorkerUserPaginated>(base + 'search', search)).data;
+export const searchWorkerUsers = async (search: any): Promise<WorkerUserPaginated> => {
+  // return (await axios.post<WorkerUserPaginated>(base + 'search', search)).data;
+  return await (await fetch(base + 'search', { method: 'POST', body: JSON.stringify(search), headers: {'Content-type': 'application/json; charset=UTF-8'} })).json();
 }
 
 
 
 export interface WorkerUser extends User {
-    phoneIsWhatsapp: boolean;
-    slug: string;
-    skin: string;
-    hairColor: string;
-    eyeColor: string;
-    height: number;
-    weight: number;
-    averageScore: number;
-    billingType: BillingType;
-    activeProfile: boolean;
-    visitorCounter: number;
-    privatePlace: boolean;
-    rankings?: IRating[];
-    goHome: boolean;
-    hotel: boolean;
-    monday: boolean;
-    tuesday: boolean;
-    wednesday: boolean;
-    thursday: boolean;
-    friday: boolean;
-    saturday: boolean;
-    sunday: boolean;
-    hourlyRate: string;
-    scheduleMin: string;
-    scheduleMax: string;
-    shortDescription: string;
-    description: string;
-    categories?: [];
-    mediaForValidate?: string[];
-    media?: string[];
-    mediaVIP?: string[];
-    instagram?: string;
-    // states: StateWorkerUser[];
-    verifiedProfile: boolean;
-    price: number;
-    acceptCard: boolean;
-    publishedProfileByWorkerUser: boolean;
-    coverPageMobile: string;
-    coverPagePC: string;
-    favoriteOfWorkerUser?: WorkerUser[];
-    favoriteOfCustomer?: User[];
-    alarm?: any;
-    prevSlug: string;
-    phonePrev: string;
-  }
+  phoneIsWhatsapp: boolean;
+  slug: string;
+  skin: string;
+  hairColor: string;
+  eyeColor: string;
+  height: number;
+  weight: number;
+  averageScore: number;
+  billingType: BillingType;
+  activeProfile: boolean;
+  visitorCounter: number;
+  privatePlace: boolean;
+  rankings?: IRating[];
+  goHome: boolean;
+  hotel: boolean;
+  monday: boolean;
+  tuesday: boolean;
+  wednesday: boolean;
+  thursday: boolean;
+  friday: boolean;
+  saturday: boolean;
+  sunday: boolean;
+  hourlyRate: string;
+  scheduleMin: string;
+  scheduleMax: string;
+  shortDescription: string;
+  description: string;
+  categories?: [];
+  mediaForValidate?: string[];
+  media?: string[];
+  mediaVIP?: string[];
+  instagram?: string;
+  // states: StateWorkerUser[];
+  verifiedProfile: boolean;
+  price: number;
+  acceptCard: boolean;
+  publishedProfileByWorkerUser: boolean;
+  coverPageMobile: string;
+  coverPagePC: string;
+  favoriteOfWorkerUser?: WorkerUser[];
+  favoriteOfCustomer?: User[];
+  alarm?: any;
+  prevSlug: string;
+  phonePrev: string;
+}
 
 export interface WorkerUserPaginated {
   totalCount: number;
