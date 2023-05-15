@@ -1,4 +1,4 @@
-import { component$, useSignal, $, useStyles$ } from '@builder.io/qwik';
+import { component$, useStyles$ } from '@builder.io/qwik';
 import type { WorkerUser } from '~/api/workeruser';
 import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
 import styles from './catalogue-card.scss?inline';

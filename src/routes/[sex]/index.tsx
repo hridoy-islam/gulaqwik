@@ -1,8 +1,8 @@
 import { component$, useStyles$, useResource$, Resource } from '@builder.io/qwik';
-import { useLocation } from '@builder.io/qwik-city';
+// import { useLocation } from '@builder.io/qwik-city';
 import { searchWorkerUsers } from '~/api/workeruser';
 import CatalogueCard from '~/components/catalogue-card/catalogue-card';
-import Search from '~/components/search/search';
+// import Search from '~/components/search/search';
 
 import styles from './sex.scss?inline';
 
@@ -17,7 +17,7 @@ export default component$(() => {
   }
   const workerUsers = useResource$(() => searchWorkerUsers(search));
 
-  const loc = useLocation();
+  // const loc = useLocation();
   return <div class="catalogue_section">
     {/* <Search /> */}
     <div>Search</div>

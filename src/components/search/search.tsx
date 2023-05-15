@@ -1,16 +1,16 @@
-import { component$, useSignal, $, useStyles$ } from '@builder.io/qwik';
+import { component$, useStyles$ } from '@builder.io/qwik';
 import styles from './search.scss?inline';
 
 export default component$(() => {
   useStyles$(styles);
-  const count = useSignal(70);
+  // const count = useSignal(70);
 
-  const setCount = $((newValue: number) => {
-    if (newValue < 0 || newValue > 100) {
-      return;
-    }
-    count.value = newValue;
-  });
+  // const setCount = $((newValue: number) => {
+  //   if (newValue < 0 || newValue > 100) {
+  //     return;
+  //   }
+  //   count.value = newValue;
+  // });
 
   return (
     <div class="search_aside">
