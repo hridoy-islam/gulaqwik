@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "include": [
+    "/*",
+    "/mujeres"
+  ],
+  "exclude": [
+    "/build/*",
+    "/assets/*"
+  ]
+}
