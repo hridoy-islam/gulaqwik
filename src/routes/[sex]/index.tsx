@@ -1,6 +1,6 @@
 import { component$, useStyles$, Resource, useResource$ } from '@builder.io/qwik';
 // import { useLocation } from '@builder.io/qwik-city';
-import { searchWorkerUsers, WorkerUser } from '~/api/workeruser';
+import { searchWorkerUsers } from '~/api/workeruser';
 import CatalogueCard from '~/components/catalogue-card/catalogue-card';
 // import { routeLoader$ } from '@builder.io/qwik-city';
 // import Search from '~/components/search/search';
@@ -43,7 +43,7 @@ export default component$(() => {
       <div class="card_output">
         <section class="card_output">
           <Resource value={workerUsers} onResolved={(response): any => {
-            return response.results?.map((workeruser : WorkerUser, i: number) => {
+            return response.results?.map((workeruser, i: number) => {
               return <CatalogueCard key={i} workeruser={workeruser} />;
             });
           }}
