@@ -1,18 +1,23 @@
 import { component$ } from '@builder.io/qwik';
-import { useServerTimeLoader } from '~/routes/layout';
-import styles from './footer.module.css';
 
 export default component$(() => {
-  const serverTime = useServerTimeLoader();
+  //const serverTime = useServerTimeLoader();
 
   return (
-    <footer>
-      <div class="container">
-        <a href="https://www.builder.io/" target="_blank" class={styles.anchor}>
-          <span>Made with ♡ by Builder.io</span>
-          <span class={styles.spacer}>|</span>
-          <span>{serverTime.value.date}</span>
-        </a>
+    <footer class="main_footer w-full py-14 m-auto text-center">
+      <div class="logo_container">
+        <img class="d-block m-auto" src="/assets/logos/gula-logo-w.svg" alt="Gula" />
+      </div>
+      <p class="my-5">© 2023 Gula Escorts Uruguay. Todos los derechos reservados. V1.0.21-dev</p>
+      <div class="navigation">
+        <a class="anchor" href="/escorts">Mujeres</a>
+        <a class="anchor" href="/escorts/trans-travestis">Trans</a>
+        <a class="anchor" href="/escorts/hombres">Hombres</a>
+        <a rel="nofollow" class="anchor" href="/contact">Contacto</a>
+        <a rel="nofollow" class="anchor" href="/terms">Términos de uso</a>
+      </div>
+      <div class="social_networks_container">
+
       </div>
     </footer>
   );

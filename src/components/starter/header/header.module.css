@@ -32,6 +32,10 @@
   padding: 0;
   text-decoration: none;
 }
+.header li a img{
+  width: 18px;
+  height: 18px;
+}
 
 .header li a:hover {
   color: var(--qwik-light-blue);

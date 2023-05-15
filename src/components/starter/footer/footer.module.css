@@ -1,10 +1,47 @@
+.main_footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  padding: calc((50 / 14) * 1em) 0;
+  box-sizing: border-box;
+  background: #000000;
+}
+
+.copyright_label {
+  margin: 1.25em 0;
+  font-size: calc((12 / 14) * 1em);
+  font-weight: 300;
+  text-align: center;
+  color: #fff;
+  opacity: .5;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.nav_item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 10px;
+  font-size: calc((16 / 14) * 1em);
+  font-weight: 300;
+  color: #fff;
+  text-decoration: underline;
+}
+
 .anchor {
   color: white !important;
   display: block;
   font-size: 0.8rem;
   text-align: center;
-  text-decoration: none;
+  text-decoration: underline;
   line-height: 1.5;
+  margin: 0 10px;
 }
 
 .anchor span:not(.spacer) {
