@@ -2,21 +2,21 @@ import { component$, useStyles$, Resource, useResource$ } from '@builder.io/qwik
 // import { useLocation } from '@builder.io/qwik-city';
 import { searchWorkerUsers } from '~/api/workeruser';
 import CatalogueCard from '~/components/catalogue-card/catalogue-card';
-import { routeLoader$ } from '@builder.io/qwik-city';
+// import { routeLoader$ } from '@builder.io/qwik-city';
 // import Search from '~/components/search/search';
 
 import styles from './sex.scss?inline';
 
-export const useWorkerUsers = routeLoader$(async () => {
-  // This code runs only on the server, after every navigation
-  const search = {
-    billingType: "Elite",
-    sex: "female",
-    skip: 0,
-    limit: 40
-  }
-  return await searchWorkerUsers(search);
-});
+// export const useWorkerUsers = routeLoader$(async () => {
+//   // This code runs only on the server, after every navigation
+//   const search = {
+//     billingType: "Elite",
+//     sex: "female",
+//     skip: 0,
+//     limit: 40
+//   }
+//   return await searchWorkerUsers(search);
+// });
 
 
 export default component$(() => {
