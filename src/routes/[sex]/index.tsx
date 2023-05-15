@@ -29,11 +29,12 @@ export default component$(() => {
 
       <div class="card_output">
         <section class="card_output">
-          <Resource value={workerUsers} onResolved={(response) => {
+          <Resource value={workerUsers} onResolved={(response): any => {
             return response.results?.map((workeruser, i: number) => {
               return <CatalogueCard key={i} workeruser={workeruser} />;
             });
-          }} onPending={() => {
+          }}
+          onPending={() => {
             return <span>Loading</span>
           }} />
 
