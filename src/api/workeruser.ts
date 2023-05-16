@@ -5,9 +5,12 @@ const base = 'https://gula-api-test-2i55x.ondigitalocean.app/workeruser/';
 
 export const searchWorkerUsers = async (search: any): Promise<WorkerUserPaginated> => {
   // return (await axios.post<WorkerUserPaginated>(base + 'search', search)).data;
-  return await (await fetch(base + 'search', { method: 'POST', body: JSON.stringify(search), headers: {'Content-type': 'application/json; charset=UTF-8'} })).json();
+  return await (await fetch(base + 'search', { method: 'POST', body: JSON.stringify(search), headers: { 'Content-type': 'application/json; charset=UTF-8' } })).json();
 }
 
+export const gethWorkerUserByIdOrSlug = async (idOrSlug: string): Promise<WorkerUser> => {
+  return await (await fetch(base + idOrSlug)).json();
+}
 
 
 export interface WorkerUser extends User {

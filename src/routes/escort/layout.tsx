@@ -1,21 +1,29 @@
 import { component$, useStyles$ } from '@builder.io/qwik';
+import { routeLoader$ } from '@builder.io/qwik-city';
+import { gethWorkerUserByIdOrSlug } from '~/api/workeruser';
 import EscortMainProfile from '~/components/escort-main-profile/escort-main-profile';
 import EscortTabGallery from '~/components/escort-tab-gallery/escort-tab-gallery';
 import EscortTabInfo from '~/components/escort-tab-info/escort-tab-info';
 import styles from './escort.scss?inline';
 
+export const useWorkerUser = routeLoader$(async (requestEvent) => {
+  const idOrSlug = requestEvent.params.slug;
+  return gethWorkerUserByIdOrSlug(idOrSlug);
+});
+
 export default component$(() => {
   useStyles$(styles);
+  const workerUser = useWorkerUser();
   return (
     <><section class="profile_section">
       <div class="background_image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-89682c09-605f-452f-af8e-a3c4106442a0663981-preview.png&quot;);"></div>
       <div class="profile_content">
-        <EscortMainProfile />
+        <EscortMainProfile workeruser={workerUser.value} />
 
 
         <div id="tab_container" class="tab_container" style="padding-bottom: 65px;">
           <div class="escort_tab_output">
-            <gula-escort-tab  ><div class="tab active">
+            <gula-escort-tab> <div class="tab active">
               <img alt="TabIcon" class="icon" src="/assets/icons/gallery_w.svg" />
             </div>
             </gula-escort-tab><gula-escort-tab  ><div class="tab">
@@ -29,10 +37,10 @@ export default component$(() => {
             </span>
           </div>
           <div class="tab_content">
-            <EscortTabInfo />
-            <EscortTabGallery />
+            <EscortTabInfo workeruser={workerUser.value} />
+            <EscortTabGallery workeruser={workerUser.value} />
 
-            
+
 
             <gula-tab-reviews style="display: none;"><div class="reviews_container">
               <div class="aligner">

@@ -5,17 +5,16 @@ import type { WorkerUser } from '~/api/workeruser';
 import styles from './escort-tab-info.scss?inline';
 
 interface EscortTabInfoProps {
-    workeruser?: WorkerUser;
+    workeruser: WorkerUser;
 }
 
 export default component$((props: EscortTabInfoProps) => {
     useStyles$(styles);
     const { workeruser } = props;
-    console.log(workeruser)
 
     return <div class="tab_info">
         <div class="info_container">
-            <div class="title_container"><h2 class="title">Tamara Escort en Centro</h2></div>
+            <div class="title_container"><h2 class="title">{workeruser.name} Escort en Centro</h2></div>
             <div class="description_container">
                 <p class="description">Hola bienvenido a mi perfil  mi nombre es Tamara. Tengo 20 años soy una chica con mucha sensualidad, divertida y bonita. Me encanta ver como disfrutas el rato que estas conmigo, soy muy atenta!.Con mi servicio busco que quedes satisfecho en todos los sentidos no solo sexualmente. En la cama soy una bomba me amoldo ah la manera en la que te guste hacerlo o como me lo pidas. Puedo ser desde lo más pervertida o puedo llegar a darte ternura, soy un 50 y un 50 soy lo que tu quieras 😉 hablame y te paso info❤</p>
             </div>

@@ -1,50 +1,84 @@
-import { component$, useStyles$ } from '@builder.io/qwik';
+import { $, component$, useSignal, useStyles$, useTask$, useVisibleTask$ } from '@builder.io/qwik';
 // import { Link } from '@builder.io/qwik-city';
 import type { WorkerUser } from '~/api/workeruser';
+import { FileIsValidVideo, GetUrlPreview } from '~/utils';
 // import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
 import styles from './escort-tab-gallery.scss?inline';
 
 interface EscortTabInfoProps {
-    workeruser?: WorkerUser;
+    workeruser: WorkerUser;
+}
+
+export interface IViewerMediaItem {
+    video?: string;
+    image?: string;
 }
 
 export default component$((props: EscortTabInfoProps) => {
     useStyles$(styles);
     const { workeruser } = props;
-    console.log(workeruser)
-
-    return <div class="tab_gallery" style="display: grid;">
-        <div class="image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-ed556e98-c747-452e-992e-5f47ce6f9cdb785870-preview.png&quot;);">
+    const media = useSignal<IViewerMediaItem[]>([]);
+    const notShowImage = useSignal(false);
 
 
-        </div><div class="image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-1e5ea5a5-f173-4520-bb48-dc53af1ee143254891-preview.png&quot;);">
 
+    useTask$(() => {
+        if (workeruser.media?.length) {
+            for (const m of workeruser.media) {
+                if (!FileIsValidVideo(m) && !media.value.includes({ image: m })) {
+                    media.value.push({ image: GetUrlPreview(m) });
+                } else if (!media.value.includes({ video: m })) {
+                    media.value.push({ video: m });
+                }
+            }
+        }
 
-        </div><div class="image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-b9f54283-8354-47cb-bc3d-04d68e1c4a86412441-preview.png&quot;);">
+        //   this._viewerService.closeViewer();
+        //   this._viewerService.registerMediaItems(media);
+    })
 
+    const onMediaContentSelected = $((content: IViewerMediaItem): void => {
+        let miliseconds = 500;
+        for (const m of media.value.filter(m => m.image)) {
+            setTimeout(() => {
+                const lazyLoad = new Image();
+                lazyLoad.src = GetUrlPreview(m.image as string);
+            }, miliseconds);
+            miliseconds += 500;
+        }
+        console.log(content)
+        // this._viewerService.openViewer(content);
+        // this.showViewer = true;
+    })
 
-        </div><div class="image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-f053573e-f8f3-46fc-9558-dd4fc0b9290f693370-preview.png&quot;);">
+    return <div class="tab_gallery" style={{ display: media?.value?.length ? 'grid' : 'flex' }}>
+        {
+            media?.value?.map((m, i) => {
+                return <div key={i} class="image" onClick$={() => onMediaContentSelected(m)}
+                    style={{ background: notShowImage.value ? undefined : (m.image ? "url('" + GetUrlPreview(m.image) + "')" : 'initial') }}>
+                    {
+                        m.video && !notShowImage.value &&
+                        <>
+                            <img alt="Play" class='video-play' src="/assets/images/play.png" />
+                            <video class="video" preload="metadata" poster={GetUrlPreview(m.video)}>
+                                <source src="media.video + '#t=0.1'" type="video/webm" />
+                                <source src="media.video + '#t=0.1'" type="video/ogg" />
+                                <source src="media.video + '#t=0.1'" type="video/mp4" />
+                                <source src="media.video + '#t=0.1'" type="video/3gp" />
+                            </video>
+                        </>
+                    }
+                </div>
+            })
+        }
+        {
+            !workeruser.media?.length &&
+            <div class="empty_gallery">
+                <p class="label" >Profile.Gallery.Empty</p>
+            </div>
+        }
 
+    </div >
 
-        </div><div class="image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-9cc31783-b1ba-46f0-834a-95b089bee5f0631571-preview.png&quot;);">
-
-
-        </div><div class="image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-59629b2d-1e0b-4c93-9cf1-e84f52aed6b8202023-preview.png&quot;);">
-
-
-        </div><div class="image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-08e601b7-b781-45eb-bfff-6738deff8749797892-preview.png&quot;);">
-
-
-        </div><div class="image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-fcc2be59-e7ff-41f7-a45d-754624a881df680753-preview.png&quot;);">
-
-
-        </div><div class="image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-c53c907f-c0eb-4bc7-b251-dae7fd79deca650841-preview.png&quot;);">
-
-
-        </div><div class="image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-04846909-3709-4c83-b01b-669b9949669a433625-preview.png&quot;);">
-
-
-        </div>
-
-    </div>
+    // <app * ngIf="showViewer" ></app - viewer >
 });

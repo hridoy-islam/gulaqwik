@@ -5,13 +5,12 @@ import type { WorkerUser } from '~/api/workeruser';
 import styles from './escort-main-profile.scss?inline';
 
 interface EscortMainProfileProps {
-    workeruser?: WorkerUser;
+    workeruser: WorkerUser;
 }
 
 export default component$((props: EscortMainProfileProps) => {
     useStyles$(styles);
     const { workeruser } = props;
-    console.log(workeruser)
 
     return <div class="main_profile">
         <div class="go_back_arrow_container">
@@ -26,7 +25,7 @@ export default component$((props: EscortMainProfileProps) => {
                 <button class="button">Ver estados</button>
             </div>
             <div class="profile_image_container">
-                <div class="image profile_image_pointer" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-19290e33-89d3-47fa-bcf2-812b195d2de2113592-preview.png&quot;);">
+                <div class="image profile_image_pointer" style={{backround: "url('"+workeruser.profileImg+"')"}}>
                 </div>
             </div>
             <div class="top_info">
