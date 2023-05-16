@@ -38,8 +38,5 @@
     "vite": "4.3.3",
     "vite-tsconfig-paths": "4.2.0",
     "wrangler": "^2.20.0"
-  },
-  "dependencies": {
-    "axios": "^1.4.0"
   }
 }

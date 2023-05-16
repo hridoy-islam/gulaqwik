@@ -55,7 +55,7 @@ $full_height-min: calc(100% - #{$search_width_min});
     outline: none;
   }
 
-  h1, h2, h3, p, a {
+  h1, h2, h3, a {
     color: white;
     text-align: center;
     text-decoration: none;
@@ -182,7 +182,7 @@ $full_height-min: calc(100% - #{$search_width_min});
   flex-grow: 2;
 }
 
-@media screen and (max-width: 1660px) {
+@media screen and (max-width: 9999px) {
   .elite_card {
     width: calc(93% / 3) !important;
   }
