@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="109.143" height="26" viewBox="0 0 109.143 26">
+  <g id="Group_58" data-name="Group 58" transform="translate(0.067 0.337)">
+    <g id="Group_57" data-name="Group 57" transform="translate(80.196 4.481)">
+      <path id="Path_53" data-name="Path 53" d="M596.812,263.819a1.207,1.207,0,1,1,1.207-1.207h0a1.207,1.207,0,0,1-1.207,1.207m-13.29,0a1.207,1.207,0,1,1,1.207-1.207h0a1.207,1.207,0,0,1-1.207,1.207m13.717-7.242,2.414-4.162a.5.5,0,1,0-.865-.494l0,0-2.439,4.212a14.735,14.735,0,0,0-6.173-1.333,14.982,14.982,0,0,0-6.186,1.32l-2.452-4.212a.5.5,0,0,0-.87.487l0,0,2.4,4.162A14.221,14.221,0,0,0,575.7,267.93h28.88a14.164,14.164,0,0,0-7.343-11.353" transform="translate(-575.702 -251.657)" fill="#e4e4e4"/>
+    </g>
+    <text id="android" transform="translate(38.933 20.663)" fill="#e4e4e4" font-size="22" font-family="Raleway-Regular, Raleway"><tspan x="-38.61" y="0">android</tspan></text>
+  </g>
+</svg>

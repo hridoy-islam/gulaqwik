@@ -1,4 +1,12 @@
 /**
+ * Tailwind CSS imports
+ * View the full documentation at https://tailwindcss.com
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
  * WHAT IS THIS FILE?
  *
  * Globally applied styles. No matter which components are in the page or matching route,
@@ -12,8 +20,9 @@
   --qwik-light-purple: #ac7ff4;
   --qwik-dark-purple: #713fc2;
   --qwik-dirty-black: #1d2033;
-  --qwik-dark-background: #151934;
-  --qwik-dark-text: #ffffff;
+  --qwik-dark-background: rgba(0, 0, 0);
+  --qwik-dark-text: #f5f5f5;
+  ;
 }
 
 html {
@@ -53,4 +62,68 @@ html {
 body {
   padding: 0;
   line-height: inherit;
+}
+
+
+.about_section {
+  box-sizing: border-box;
+  background: url(/assets/images/about-desktop.png) no-repeat center center / 100% 100%;
+}
+
+.slider_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: url(/assets/slides/01.webp);
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+.slider_section .title {
+  font-size: 40px;
+  font-weight: 300;
+  color: #f5f5f5;
+}
+
+.slider_button {
+  margin-top: 40px;
+}
+
+.slider_button a {
+  color: #fff;
+}
+
+.slider_button a:active {
+  background: #f5f5f5;
+  border: solid 1px #f5f5f5;
+  color: #161616;
+
+  transition: all .2s ease-in;
+}
+
+@media (max-width: 650px) {
+  .slider_section .title {
+    font-size: 24px;
+    font-weight: 300;
+    color: #f5f5f5;
+    margin-top: 60px;
+  }
+
+  .slider_button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  .slider_button a {
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
 }
