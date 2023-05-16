@@ -1,17 +1,19 @@
 import { component$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
+import styles from './login.module.css';
 
 export default component$(() => {
     return (
-        <div class="main_section">
-            <div class="content w-80 m-auto">
+        <div class={styles.main_section}>
+            <div class="content w-80 mx-auto">
                 <div class="form_container">
                     <div class="logo_container ">
-                        <img class="d-block m-auto" src="/assets/logos/gula-logo-w.svg" alt="" />
-                        <p class="text-lg my-5 text-center">El mejor sitio de Escorts de Uruguay</p>
+                        <img class={styles.logo} src="/assets/logos/gula-logo-w.svg" alt="gula" />
+                        <p class={styles.subtitle}>El mejor sitio de Escorts de Uruguay</p>
                     </div>
 
-                    <form>
+                    <div>
+                    <form >
                         <div>
                             <input type="text" class="w-full my-5 border-b bg-transparent" placeholder="Teléfono Celular" required name="emailOrPhone" />
                         </div>
@@ -19,9 +21,9 @@ export default component$(() => {
                             <input type="text" class="w-full my-5 border-b bg-transparent" placeholder='Contraseña' required name="emailOrPhone" />
                         </div>
                         <div>
-                            <p class="text-sm underline my-5"><Link href="/auth/recover-account">¿Olvidaste tu contraseña?</Link></p>
+                            <p class="text-sm underline my-5 text-[#f5f5f5] hover:white"><Link href="/auth/recover-account">¿Olvidaste tu contraseña?</Link></p>
                         </div>
-                        <div class="my-5">
+                        <div class=" flex justify-left items-center">
                             <input type="checkbox" id="remember" />
                             <label class="text-sm ml-2" for="remember">Recordar mis datos de inicio de sesión</label>
                         </div>
@@ -30,6 +32,7 @@ export default component$(() => {
                         </div>
                         <p class="text-sm my-5">¿Aún no estás registrado? <Link class="underline" href="/auth/signin">¡Regístrate gratis!</Link></p>
                     </form>
+                    </div>
                 </div >
             </div >
         </div >
