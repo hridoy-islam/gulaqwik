@@ -7,7 +7,7 @@ export default component$(() => {
     scrolled: false
   })
   return (
-    <header class={"fixed top-0 left-0 w-full p-0 text-white text-xl sm:text-4xl sm:p-8 " + (store.scrolled ? 'bg-[#070707]' : 'bg-transparent')}
+    <header class={"fixed top-0 left-0 w-full p-4 z-10 text-white text-xl sm:text-4xl " + (store.scrolled ? 'bg-[#070707]' : 'bg-transparent')}
     document:onScroll$={() => {
       if(window.scrollY > 0){
         store.scrolled = true
@@ -15,7 +15,7 @@ export default component$(() => {
         store.scrolled = false
       }
     }}>
-    <div class='flex justify-between items-center p-3'>
+    <div class='flex justify-between items-center'>
       <ul class='flex mx-4 items-center'>
             <li class={styles}>
               <Link href="">
