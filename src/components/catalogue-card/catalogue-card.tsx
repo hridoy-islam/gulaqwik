@@ -1,4 +1,5 @@
 import { component$, useStyles$ } from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
 import type { WorkerUser } from '~/api/workeruser';
 import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
 import styles from './catalogue-card.scss?inline';
@@ -10,15 +11,6 @@ interface CatalogueCardProps {
 export default component$((props: CatalogueCardProps) => {
   useStyles$(styles);
   const { workeruser } = props;
-  // const count = useSignal(70);
-
-  // const setCount = $((newValue: number) => {
-  //   if (newValue < 0 || newValue > 100) {
-  //     return;
-  //   }
-  //   count.value = newValue;
-  // });
-
   const cardType = (String(workeruser.billingType)?.toLocaleLowerCase() ?? 'elite') + '_card'; 
 
   const description = (workeruser.currentNeighborhood ? workeruser.currentNeighborhood : workeruser.currentProvince) +
@@ -27,8 +19,8 @@ export default component$((props: CatalogueCardProps) => {
   (workeruser.shortDescription && workeruser.billingType !== 'Premium' ? ' - ' + Capitalize(workeruser.shortDescription) : '');
 
   return <div class={"card catalogue_card " + cardType} title={workeruser.name} style={"background: url(\"" + workeruser.profileImg + "\");"} >
-    <a class="card_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</a>
-    <a class="right_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</a>
+    <Link class="card_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</Link>
+    <Link class="right_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</Link>
     <div class="card_bottom">
       <p class="name_label">{workeruser.name}</p>
       <p class="description">{description}</p>

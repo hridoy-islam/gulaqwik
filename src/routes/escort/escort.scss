@@ -1,0 +1,183 @@
+@import "../../main.scss";
+
+$tab_height: getRelative(45);
+$tab_active_color: #ffffff3b;
+$tab_underline_size: 5;
+
+.profile_section {
+    @include flexAlign(horizontal);
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+    padding-top: getRelative(80);
+    box-sizing: border-box;
+
+    .background_image {
+        @include fullScreen();
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        z-index: -1;
+    }
+
+    .profile_content {
+        // position: absolute;
+        top: getRelative(100);
+        left: 0;
+        right: 0;
+
+        .tab_container {
+            display: grid;
+            grid-template-rows: $tab_height auto;
+            max-width: getRelative(1100);
+            width: 100%;
+            margin: getRelative(45) auto 0;
+            box-sizing: border-box;
+
+            .tab_content {
+                width: 100%;
+                max-width: inherit;
+                height: fit-content;
+            }
+        }
+    }
+}
+
+.related_profiles {
+    font-size: getRelative(22);
+    color: white;
+    background: map-get($map: $overlay, $key: 300);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card_output {
+    @include flexAlign(vertical);
+    justify-content: flex-start;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 60px;
+    padding-bottom: getRelative(5);
+    box-sizing: border-box;
+    overflow-x: auto;
+    z-index: 2;
+    scrollbar-width: thin !important;
+    scrollbar-color: map-get($map: $primary, $key: 200) map-get($map: $overlay, $key: 200);
+
+    &::-webkit-scrollbar {
+        height: getRelative(10);
+    }
+
+    &::-webkit-scrollbar-track {
+        background: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: getRelative(5);
+        background: map-get($map: $overlay, $key: 200);
+
+        &:hover {
+            background: map-get($map: $overlay, $key: 300);
+        }
+    }
+
+    app-featured-card {
+        margin-right: getRelative(40);
+        z-index: 3;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.bottom_section {
+    padding: getRelative(40);
+    box-sizing: border-box;
+    background: map-get($map: $overlay, $key: 300);
+    text-align: center;
+    color: white;
+    margin-bottom: getRelative(30);
+
+    h2 {
+        margin: getRelative(20) 0 getRelative(20) 0;
+        font-size: 16px;
+    }
+
+    .links_container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    a {
+        width: 35%;
+        min-width: 220px;
+        margin: getRelative(15) auto;
+        text-decoration: none;
+    }
+
+    .button {
+        @include fillButton(14, getRelative(10, 14) getRelative(15, 14), map-get($map: $primary, $key: 100), map-get($map: $primary, $key: 100-contrast));
+        text-transform: initial;
+        outline: none;
+    }
+}
+
+.escort_tab_output {
+    @include flexAlign(vertical);
+    position: relative;
+    width: 100%;
+    height: $tab_height;
+
+    .underline {
+        position: absolute;
+        display: block;
+        bottom: 0;
+        left: 0;
+        height: getRelative($tab_underline_size);
+        background: map-get($map: $primary, $key: 300);
+        transition: all 200ms ease-in;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .escort_tab_output {
+        max-width: 100vh;
+    }
+
+    .escort_tab_output .underline {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 1200px) and (min-width: 650px) {
+    .profile_section .profile_content .tab_container {
+        width: 90%;
+        max-width: 100vh;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .profile_section .profile_content .tab_container {
+        margin-top: 0;
+        max-width: 100vh;
+    }
+
+    .card_output {
+        width: 85%;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        app-featured-card {
+            margin-right: getRelative(15);
+        }
+    }
+}

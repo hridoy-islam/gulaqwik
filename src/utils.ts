@@ -368,11 +368,11 @@ export const Capitalize = (s: string, restInLowerCase = true): string => {
     return s.charAt(0).toUpperCase() + (restInLowerCase ? s.slice(1).toLowerCase() : s.slice(1));
 }
 
-export const recursiveMerge = (obj1: any, obj2: any) => {
+export const RecursiveMerge = (obj1: any, obj2: any) => {
     const result = obj1;
     for (const i in obj1) {      // for every property in obj1
         if ((i in obj2) && (typeof obj1[i] === "object") && (i !== null)) {
-            result[i] = recursiveMerge(obj1[i], obj2[i]); // if it's an object, merge
+            result[i] = RecursiveMerge(obj1[i], obj2[i]); // if it's an object, merge
         } else {
             result[i] = obj1[i]; // add it to result
         }
