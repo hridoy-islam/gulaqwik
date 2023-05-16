@@ -37,7 +37,7 @@ export default component$(() => {
 
           <li>
             <Link href="/">
-              <img class={styles} src="/public/assets/icons/bookmark_fill_w2.svg" alt='bookmark_fill_w2' />
+              <img class={styles} src="/assets/icons/bookmark_fill_w2.svg" alt='bookmark_fill_w2' />
             </Link>
           </li>
 
@@ -61,7 +61,7 @@ export default component$(() => {
         </ul>
         <div class={['pr-3', styles.logo]}>
           <a href="/">
-            <img class={styles.logo} src="/public/assets/logos/gula-logo-w.svg" alt="gula-logo" />
+            <img class={styles.logo} src="/assets/logos/gula-logo-w.svg" alt="gula-logo" />
           </a>
         </div>
       </div>
