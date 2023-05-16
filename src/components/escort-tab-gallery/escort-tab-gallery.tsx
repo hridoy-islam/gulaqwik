@@ -1,4 +1,4 @@
-import { $, component$, useSignal, useStyles$, useTask$, useVisibleTask$ } from '@builder.io/qwik';
+import { $, component$, useSignal, useStyles$, useTask$ } from '@builder.io/qwik';
 // import { Link } from '@builder.io/qwik-city';
 import type { WorkerUser } from '~/api/workeruser';
 import { FileIsValidVideo, GetUrlPreview } from '~/utils';
