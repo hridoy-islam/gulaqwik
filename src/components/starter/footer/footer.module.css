@@ -11,7 +11,7 @@
 
 .copyright_label {
   margin: 1.25em 0;
-  font-size: calc((12 / 14) * 1em);
+  font-size: 14px;
   font-weight: 300;
   text-align: center;
   color: #fff;
@@ -21,6 +21,7 @@
 .navigation {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .nav_item {
@@ -37,11 +38,17 @@
 .anchor {
   color: white !important;
   display: block;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   text-align: center;
   text-decoration: underline;
   line-height: 1.5;
   margin: 0 10px;
+}
+.social_networks_container button{
+ opacity: 0.5;
+}
+.social_networks_container a:hover{
+  opacity: 1;
 }
 
 .anchor span:not(.spacer) {
