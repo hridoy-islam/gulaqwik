@@ -1,7 +1,7 @@
 import { component$, useStyles$ } from '@builder.io/qwik';
-import { Link } from '@builder.io/qwik-city';
+// import { Link } from '@builder.io/qwik-city';
 import type { WorkerUser } from '~/api/workeruser';
-import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
+// import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
 import styles from './escort-tab-info.scss?inline';
 
 interface EscortTabInfoProps {
@@ -11,6 +11,7 @@ interface EscortTabInfoProps {
 export default component$((props: EscortTabInfoProps) => {
     useStyles$(styles);
     const { workeruser } = props;
+    console.log(workeruser)
 
     return <div class="tab_info">
         <div class="info_container">

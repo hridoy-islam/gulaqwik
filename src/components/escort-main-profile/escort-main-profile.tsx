@@ -1,7 +1,7 @@
 import { component$, useStyles$ } from '@builder.io/qwik';
-import { Link } from '@builder.io/qwik-city';
+// import { Link } from '@builder.io/qwik-city';
 import type { WorkerUser } from '~/api/workeruser';
-import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
+// import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
 import styles from './escort-main-profile.scss?inline';
 
 interface EscortMainProfileProps {
@@ -11,6 +11,7 @@ interface EscortMainProfileProps {
 export default component$((props: EscortMainProfileProps) => {
     useStyles$(styles);
     const { workeruser } = props;
+    console.log(workeruser)
 
     return <div class="main_profile">
         <div class="go_back_arrow_container">

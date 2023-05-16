@@ -1,7 +1,7 @@
 import { component$, useStyles$ } from '@builder.io/qwik';
-import { Link } from '@builder.io/qwik-city';
+// import { Link } from '@builder.io/qwik-city';
 import type { WorkerUser } from '~/api/workeruser';
-import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
+// import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
 import styles from './escort-tab-gallery.scss?inline';
 
 interface EscortTabInfoProps {
@@ -11,6 +11,7 @@ interface EscortTabInfoProps {
 export default component$((props: EscortTabInfoProps) => {
     useStyles$(styles);
     const { workeruser } = props;
+    console.log(workeruser)
 
     return <div class="tab_gallery" style="display: grid;">
         <div class="image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-ed556e98-c747-452e-992e-5f47ce6f9cdb785870-preview.png&quot;);">
