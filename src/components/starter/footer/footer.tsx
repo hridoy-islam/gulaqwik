@@ -7,7 +7,7 @@ export default component$(() => {
     <footer class={styles.main_footer}>
       <div class="w-28">
         <a href="/">
-        <img class="w-28" src="assets/logos/gula-logo-w.svg" alt="gula-logo" />
+        <img class="w-28" src="/assets/logos/gula-logo-w.svg" alt="gula-logo" />
         </a>
       </div>
       <p class={styles.copyright_label }>© 2023 Gula Escorts Uruguay. Todos los derechos reservados. V1.0.21-dev</p>
