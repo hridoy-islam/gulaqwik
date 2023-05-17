@@ -1,5 +1,5 @@
 import { component$, useSignal, useStyles$, useVisibleTask$ } from '@builder.io/qwik';
-import { routeLoader$ } from '@builder.io/qwik-city';
+import { DocumentHead, routeLoader$ } from '@builder.io/qwik-city';
 import { gethWorkerUserByIdOrSlug, searchWorkerUsers } from '~/api/workeruser';
 import type { ICarouselCard } from '~/components/carousel/carousel';
 import Carousel from '~/components/carousel/carousel';
@@ -23,6 +23,22 @@ export const useWorkerUser = routeLoader$(async (requestEvent) => {
     relatedWorkerUsers: (await searchWorkerUsers(search).catch()).results?.filter(w => w.id !== workerUser.id)
   };
 });
+
+export const head: DocumentHead = ({ resolveValue }) => {
+  const serverData = resolveValue(useWorkerUser);
+  const title = serverData.workerUser ? 'Escort ' + serverData.workerUser.name + ' ' + serverData.workerUser.phone + ' ' +
+    serverData.workerUser.currentProvince + ' ' + serverData.workerUser.currentNeighborhood : 'Escort no encontrado';
+  const description = serverData.workerUser ? serverData.workerUser.description.substring(0, 300) : '';
+  return {
+    title,
+    meta: [
+      {
+        name: 'description',
+        content: description,
+      },
+    ],
+  };
+};
 
 export default component$(() => {
   useStyles$(styles);
@@ -53,7 +69,7 @@ export default component$(() => {
 
   return (
     <><section class="profile_section">
-      <div class="background_image" style={{background: "url('" + backgroundImg.value + "')" }}></div>
+      <div class="background_image" style={{ background: "url('" + backgroundImg.value + "')" }}></div>
       <div class="profile_content">
         <EscortMainProfile workeruser={workerUser} />
 
