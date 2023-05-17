@@ -19,11 +19,11 @@ export default component$(() => {
         <a rel="nofollow" class={styles.anchor} href="/terms">Términos de uso</a>
       </div>
       <div class="social_networks_container transition ease-in-out delay-150 opacity-50 hover:opacity-100 w-8 mx-auto mt-6">
-        <button class="w-6">
-          <a href="https://twitter.com/gulaescortuy" target="_blank">
-            <img class="w-6" src="/assets/icons/twitter-w.svg" alt="twitter" />
-          </a>
-        </button>
+
+        <a href="https://twitter.com/gulaescortuy" target="_blank">
+          <img class="w-6" src="/assets/icons/twitter-w.svg" alt="twitter" />
+        </a>
+
       </div>
     </footer>
   );
