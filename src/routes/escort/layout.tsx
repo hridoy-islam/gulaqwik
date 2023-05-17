@@ -1,6 +1,8 @@
 import { component$, useStyles$ } from '@builder.io/qwik';
 import { routeLoader$ } from '@builder.io/qwik-city';
-import { gethWorkerUserByIdOrSlug } from '~/api/workeruser';
+import { gethWorkerUserByIdOrSlug, searchWorkerUsers } from '~/api/workeruser';
+import type { ICarouselCard } from '~/components/carousel/carousel';
+import Carousel from '~/components/carousel/carousel';
 import EscortMainProfile from '~/components/escort-main-profile/escort-main-profile';
 import EscortTabGallery from '~/components/escort-tab-gallery/escort-tab-gallery';
 import EscortTabInfo from '~/components/escort-tab-info/escort-tab-info';
@@ -8,17 +10,38 @@ import styles from './escort.scss?inline';
 
 export const useWorkerUser = routeLoader$(async (requestEvent) => {
   const idOrSlug = requestEvent.params.slug;
-  return gethWorkerUserByIdOrSlug(idOrSlug);
+  const workerUser = await gethWorkerUserByIdOrSlug(idOrSlug);
+  const search = {
+    billingType: "Elite",
+    sex: workerUser.sex,
+    skip: 0,
+    limit: 6
+  }
+  return {
+    workerUser,
+    relatedWorkerUsers: (await searchWorkerUsers(search).catch()).results?.filter(w => w.id !== workerUser.id)
+  };
 });
 
 export default component$(() => {
   useStyles$(styles);
-  const workerUser = useWorkerUser();
+  const serverData = useWorkerUser();
+  const relatedWorkerUsers: ICarouselCard[] = serverData.value.relatedWorkerUsers.map((w) => ({
+    id: w.id,
+    name: w.name,
+    image: w.profileImg,
+    slug: w.slug,
+    description: w.description,
+    type: w.billingType,
+    route: '/escort/' + w.slug
+  }));
+
+
   return (
     <><section class="profile_section">
       <div class="background_image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-89682c09-605f-452f-af8e-a3c4106442a0663981-preview.png&quot;);"></div>
       <div class="profile_content">
-        <EscortMainProfile workeruser={workerUser.value} />
+        <EscortMainProfile workeruser={serverData.value.workerUser} />
 
 
         <div id="tab_container" class="tab_container" style="padding-bottom: 65px;">
@@ -37,8 +60,8 @@ export default component$(() => {
             </span>
           </div>
           <div class="tab_content">
-            <EscortTabInfo workeruser={workerUser.value} />
-            <EscortTabGallery workeruser={workerUser.value} />
+            <EscortTabInfo workeruser={serverData.value.workerUser} />
+            <EscortTabGallery workeruser={serverData.value.workerUser} />
 
 
 
@@ -72,7 +95,7 @@ export default component$(() => {
                     </div>
 
                     <div class="data_container">
-                      <img alt="ProfileImage" class="profile_img" src="./assets/images/default_user_profile.png" />
+                      <img alt="ProfileImage" class="profile_img" src="/assets/images/default_user_profile.png" />
                       <div class="text_container">
                         <div class="username_container">
                           <p class="username">Timonero128</p>
@@ -98,7 +121,7 @@ export default component$(() => {
                     </div>
 
                     <div class="data_container">
-                      <img alt="ProfileImage" class="profile_img" src="./assets/images/default_user_profile.png" />
+                      <img alt="ProfileImage" class="profile_img" src="/assets/images/default_user_profile.png" />
                       <div class="text_container">
                         <div class="username_container">
                           <p class="username">Cerati siempre</p>
@@ -129,57 +152,7 @@ export default component$(() => {
       <h3 class="related_profiles">
         Escorts relacionados
       </h3>
-      <div class="card_output">
-        <app-featured-card ><div class="featured_card" style="background: url(&quot;https://produy.gula-media.com/60c037dc872a8140f0f036c1-bf73d698-ced7-4e23-9a53-b84351f7b743926499-preview.png&quot;);">
-          <div class="type_container">
-            <p class="type_label">Elite</p>
-          </div>
-          <a class="card_name" href="/escort/britneyfit092817235">Britney Fit </a>
-          <p class="card_description"></p>
-
-        </div>
-        </app-featured-card><app-featured-card ><div class="featured_card" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-19290e33-89d3-47fa-bcf2-812b195d2de2113592-preview.png&quot;);">
-          <div class="type_container">
-            <p class="type_label">Elite</p>
-          </div>
-          <a class="card_name" href="/escort/tamara094180596">Tamara</a>
-          <p class="card_description"></p>
-
-        </div>
-        </app-featured-card><app-featured-card ><div class="featured_card" style="background: url(&quot;https://produy.gula-media.com/608692b616cfc1139e790e66-ada304f3f72d77afdf07226a27246758936544-preview.png&quot;);">
-          <div class="type_container">
-            <p class="type_label">Elite</p>
-          </div>
-          <a class="card_name" href="/escort/vanessa093592458">Vanessa</a>
-          <p class="card_description"></p>
-
-        </div>
-        </app-featured-card><app-featured-card ><div class="featured_card" style="background: url(&quot;https://produy.gula-media.com/62ae154ea2fd62562bea3adb-ad6ede14-5505-4c27-96f0-c6415eeb4dc8875225-preview.png&quot;);">
-          <div class="type_container">
-            <p class="type_label">Elite</p>
-          </div>
-          <a class="card_name" href="/escort/mahia096828430">Mahia</a>
-          <p class="card_description"></p>
-
-        </div>
-        </app-featured-card><app-featured-card ><div class="featured_card" style="background: url(&quot;https://produy.gula-media.com/638e3a16fbacc6228600d079-fa48105e-c09f-47d6-86d2-2fe96e6ab090915275-preview.png&quot;);">
-          <div class="type_container">
-            <p class="type_label">Elite</p>
-          </div>
-          <a class="card_name" href="/escort/Olivia092349287">Olivia</a>
-          <p class="card_description"></p>
-
-        </div>
-        </app-featured-card><app-featured-card ><div class="featured_card" style="background: url(&quot;https://produy.gula-media.com/6186503d8f62bf138e2817dc-8448b0fa7371c7f080cfc424d141a471232965-preview.png&quot;);">
-          <div class="type_container">
-            <p class="type_label">Elite</p>
-          </div>
-          <a class="card_name" href="/escort/mia092565879">Mía</a>
-          <p class="card_description"></p>
-
-        </div>
-        </app-featured-card>
-      </div>
+      <Carousel cards={relatedWorkerUsers} />
       <div class="bottom_section">
         <h3 >Encuentra escorts en Uruguay cerca de ti</h3>
         <div class="links_container">
