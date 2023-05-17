@@ -1,6 +1,7 @@
 import { component$, useStyles$ } from '@builder.io/qwik';
 // import { Link } from '@builder.io/qwik-city';
 import type { WorkerUser } from '~/api/workeruser';
+import { GetAgeFromDateStr, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
 // import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
 import styles from './escort-tab-info.scss?inline';
 
@@ -12,75 +13,105 @@ export default component$((props: EscortTabInfoProps) => {
     useStyles$(styles);
     const { workeruser } = props;
 
+    const getWorkplacesDescription = (user: WorkerUser) => {
+        let description = '';
+        if (user.privatePlace) {
+            description = 'Lugar Propio';
+        }
+        if (user.goHome) {
+            const goHome = 'Domicilio';
+            description += description.length ? (', ' + goHome) : goHome;
+        }
+        if (user.hotel) {
+            const hotel = 'Hotel';
+            description += description.length ? (', ' + hotel) : hotel;
+        }
+        return description;
+    }
+
+    const details = [
+        {
+            icon: '/assets/icons/location.svg',
+            type: 'Ubicación',
+            description: workeruser.currentNeighborhood
+                ? workeruser.currentNeighborhood + ', ' + workeruser.currentProvince
+                : workeruser.currentProvince,
+        },
+        workeruser.dob ?
+            {
+                icon: '/assets/icons/user_w.svg',
+                type: 'Edad',
+                description: String(GetAgeFromDateStr(workeruser.dob)),
+            } : undefined,
+        {
+            icon: '/assets/icons/mobile_w.svg',
+            type: 'Teléfono',
+            description: workeruser.phone,
+        },
+        {
+            icon: '/assets/images/calendar.webp',
+            type: 'Disponibilidad',
+            description: GetWorkdaysDescription(workeruser),
+        },
+        GetScheduleDescription(workeruser) ?
+            {
+                icon: '/assets/icons/clock_w.svg',
+                type: 'Horario de atención',
+                description: GetScheduleDescription(workeruser),
+            } : undefined,
+        {
+            icon: '/assets/icons/home_w.svg',
+            type: 'Lugar de atención',
+            description: getWorkplacesDescription(workeruser),
+        },
+        workeruser.hourlyRate && workeruser.hourlyRate !== '0' ?
+            {
+                icon: '/assets/images/money.webp',
+                type: 'Tarifa',
+                description: workeruser.hourlyRate,
+            } : undefined,
+        {
+            icon: '/assets/images/credit-card-icon.webp',
+            type: 'Acepta tarjetas',
+            description: workeruser.acceptCard ? 'Si' : 'No',
+        },
+        {
+            type: 'Altura (cm)',
+            description: String(workeruser.height),
+        },
+        {
+            type: 'Peso (kg)',
+            description: String(workeruser.weight),
+        },
+        {
+            type: 'Piel',
+            description: `Profile.Info.Skins.${workeruser.skin}`,
+        },
+        {
+            type: 'Pelo',
+            description: `Profile.Info.Hairs.${workeruser.hairColor}`,
+        },
+        {
+            type: 'Ojos',
+            description: `Profile.Info.Eyes.${workeruser.eyeColor}`,
+        },
+    ].filter(d => d)
+
     return <div class="tab_info">
         <div class="info_container">
-            <div class="title_container"><h2 class="title">{workeruser.name} Escort en Centro</h2></div>
+            <div class="title_container"><h2 class="title">{workeruser.name} Escort en {workeruser.currentNeighborhood ?? workeruser.currentProvince}</h2></div>
             <div class="description_container">
-                <p class="description">Hola bienvenido a mi perfil  mi nombre es Tamara. Tengo 20 años soy una chica con mucha sensualidad, divertida y bonita. Me encanta ver como disfrutas el rato que estas conmigo, soy muy atenta!.Con mi servicio busco que quedes satisfecho en todos los sentidos no solo sexualmente. En la cama soy una bomba me amoldo ah la manera en la que te guste hacerlo o como me lo pidas. Puedo ser desde lo más pervertida o puedo llegar a darte ternura, soy un 50 y un 50 soy lo que tu quieras 😉 hablame y te paso info❤</p>
+                <p class="description">{workeruser.description}</p>
             </div>
 
             <div class="info_data">
-                <gula-data-item  ><div class="data_item item_has_icon">
-                    <img alt="DataItem" class="icon" src="/assets/icons/location.svg" />
-                    <div class="title_container"><p class="title">Ubicación:</p></div>
-                    <div class="description_container"><p class="description">Centro, Montevideo</p></div>
-                </div>
-                </gula-data-item><gula-data-item  ><div class="data_item item_has_icon">
-                    <img alt="DataItem" class="icon" src="/assets/icons/user_w.svg" />
-                    <div class="title_container"><p class="title">Edad:</p></div>
-                    <div class="description_container"><p class="description">21</p></div>
-                </div>
-                </gula-data-item><gula-data-item  ><div class="data_item item_has_icon">
-                    <img alt="DataItem" class="icon" src="/assets/icons/mobile_w.svg" />
-                    <div class="title_container"><p class="title">Teléfono:</p></div>
-                    <div class="description_container"><p class="description">094180596</p></div>
-                </div>
-                </gula-data-item><gula-data-item  ><div class="data_item item_has_icon">
-                    <img alt="DataItem" class="icon" src="/assets/images/calendar.webp" />
-                    <div class="title_container"><p class="title">Disponibilidad:</p></div>
-                    <div class="description_container"><p class="description">Lun a Vie</p></div>
-                </div>
-                </gula-data-item><gula-data-item  ><div class="data_item item_has_icon">
-                    <img alt="DataItem" class="icon" src="/assets/icons/clock_w.svg" />
-                    <div class="title_container"><p class="title">Horario de atención:</p></div>
-                    <div class="description_container"><p class="description">13hs a 20hs</p></div>
-                </div>
-                </gula-data-item><gula-data-item  ><div class="data_item item_has_icon">
-                    <img alt="DataItem" class="icon" src="/assets/icons/home_w.svg" />
-                    <div class="title_container"><p class="title">Lugar de atención:</p></div>
-                    <div class="description_container"><p class="description">Domicilio, Hotel</p></div>
-                </div>
-                </gula-data-item><gula-data-item  ><div class="data_item item_has_icon">
-                    <img alt="DataItem" class="icon" src="/assets/images/credit-card-icon.webp" />
-                    <div class="title_container"><p class="title">Acepta tarjetas:</p></div>
-                    <div class="description_container"><p class="description">No</p></div>
-                </div>
-                </gula-data-item><gula-data-item  ><div class="data_item">
-
-                    <div class="title_container"><p class="title">Altura (cm):</p></div>
-                    <div class="description_container"><p class="description">160</p></div>
-                </div>
-                </gula-data-item><gula-data-item  ><div class="data_item">
-
-                    <div class="title_container"><p class="title">Peso (kg):</p></div>
-                    <div class="description_container"><p class="description">70</p></div>
-                </div>
-                </gula-data-item><gula-data-item  ><div class="data_item">
-
-                    <div class="title_container"><p class="title">Piel:</p></div>
-                    <div class="description_container"><p class="description">Clara</p></div>
-                </div>
-                </gula-data-item><gula-data-item  ><div class="data_item">
-
-                    <div class="title_container"><p class="title">Pelo:</p></div>
-                    <div class="description_container"><p class="description">Morocho</p></div>
-                </div>
-                </gula-data-item><gula-data-item  ><div class="data_item">
-
-                    <div class="title_container"><p class="title">Ojos:</p></div>
-                    <div class="description_container"><p class="description">Marrones</p></div>
-                </div>
-                </gula-data-item>
+                {
+                    details.map((d, i) => <div key={i} class="data_item item_has_icon">
+                        <img alt="DataItem" class="icon" src={d?.icon} />
+                        <div class="title_container"><p class="title">{d?.type}</p></div>
+                        <div class="description_container"><p class="description">{d?.description}</p></div>
+                    </div>)
+                }
             </div>
 
             <div class="services_container">

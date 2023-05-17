@@ -67,8 +67,16 @@ $image_size: calc(100% / 4);
   }
 }
 
-.viewer img {
-  width: 100%;
+img.img-viewer {
+  width: initial;
+  max-width: 90% !important;
+  max-height: 90% !important;
+}
+
+video.video-viewer {
+  width: initial;
+  max-width: 95%;
+  max-height: 95%;
 }
 
 @media screen and (max-width: 1200px) {

@@ -47,7 +47,7 @@
       margin-top: getRelative(30);
       overflow: hidden;
 
-      gula-data-item {
+      > div {
         display: block;
         margin-bottom: getRelative(10);
 
@@ -55,6 +55,46 @@
           margin-bottom: 0;
         }
       }
+
+      .data_item {
+        display: grid;
+        grid-template-columns: max-content auto;
+        grid-template-rows: auto;
+        width: 100%;
+      
+        .icon {
+          height: getRelative(12);
+          margin-right: getRelative(10);
+          width: 12px;
+        }
+      
+        .title_container {
+          width: 100%;
+          margin-right: getRelative(10);
+          overflow: hidden;
+      
+          .title {
+            font-size: getRelative(13);
+            font-weight: 700;
+            color: map-get($map: $primary, $key: 300);
+          }
+        }
+      
+        .description_container {
+          width: 100%;
+          overflow: hidden;
+      
+          .description {
+            font-size: getRelative(12);
+            color: map-get($map: $primary, $key: 300);
+          }
+        }
+      }
+      
+      .item_has_icon {
+        grid-template-columns: max-content max-content auto;
+      }
+
     }
 
     .services_container {

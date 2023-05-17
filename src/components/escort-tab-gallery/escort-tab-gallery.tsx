@@ -86,7 +86,7 @@ export default component$((props: EscortTabInfoProps) => {
                     {
                         url: m.image ?? m.video,
                         type: m.image ? 'photo' : 'video',
-                        poster: GetUrlPreview('')
+                        poster: GetUrlPreview(m.video as string)
                     }
                 ))}
                 startIndex={media.value.findIndex(m => m === selectedMediaItem.value)}
@@ -96,5 +96,4 @@ export default component$((props: EscortTabInfoProps) => {
         }
 
     </>
-    // <app * ngIf="showViewer" ></app - viewer >
 });
