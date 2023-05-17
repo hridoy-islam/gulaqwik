@@ -67,6 +67,10 @@ $image_size: calc(100% / 4);
   }
 }
 
+.viewer img {
+  width: 100%;
+}
+
 @media screen and (max-width: 1200px) {
   .tab_gallery .image {
     height: 28vh;

@@ -1,9 +1,13 @@
 import { $, component$, useSignal, useStyles$, useTask$ } from '@builder.io/qwik';
+import { qwikify$ } from '@builder.io/qwik-react';
 // import { Link } from '@builder.io/qwik-city';
 import type { WorkerUser } from '~/api/workeruser';
 import { FileIsValidVideo, GetUrlPreview } from '~/utils';
 // import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
 import styles from './escort-tab-gallery.scss?inline';
+import ReactImageVideoLightbox from 'react-image-video-viewer';
+
+const QwikReactImageVideoLightbox = qwikify$(ReactImageVideoLightbox as any) as any;
 
 interface EscortTabInfoProps {
     workeruser: WorkerUser;
@@ -19,7 +23,7 @@ export default component$((props: EscortTabInfoProps) => {
     const { workeruser } = props;
     const media = useSignal<IViewerMediaItem[]>([]);
     const notShowImage = useSignal(false);
-
+    const selectedMediaItem = useSignal<IViewerMediaItem>();
 
 
     useTask$(() => {
@@ -32,9 +36,6 @@ export default component$((props: EscortTabInfoProps) => {
                 }
             }
         }
-
-        //   this._viewerService.closeViewer();
-        //   this._viewerService.registerMediaItems(media);
     })
 
     const onMediaContentSelected = $((content: IViewerMediaItem): void => {
@@ -47,11 +48,10 @@ export default component$((props: EscortTabInfoProps) => {
             miliseconds += 500;
         }
         console.log(content)
-        // this._viewerService.openViewer(content);
-        // this.showViewer = true;
+        selectedMediaItem.value = content;
     })
 
-    return <div class="tab_gallery" style={{ display: media?.value?.length ? 'grid' : 'flex' }}>
+    return <> <div class="tab_gallery" style={{ display: media?.value?.length ? 'grid' : 'flex' }}>
         {
             media?.value?.map((m, i) => {
                 return <div key={i} class="image" onClick$={() => onMediaContentSelected(m)}
@@ -79,6 +79,22 @@ export default component$((props: EscortTabInfoProps) => {
         }
 
     </div >
+        {
+            !!selectedMediaItem.value &&
+            <QwikReactImageVideoLightbox
+                data={media.value.map(m => (
+                    {
+                        url: m.image ?? m.video,
+                        type: m.image ? 'photo' : 'video',
+                        poster: GetUrlPreview('')
+                    }
+                ))}
+                startIndex={media.value.findIndex(m => m === selectedMediaItem.value)}
+                showResourceCount={true}
+                onCloseCallback={$(() => selectedMediaItem.value = undefined)}
+            />
+        }
 
+    </>
     // <app * ngIf="showViewer" ></app - viewer >
 });

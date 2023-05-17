@@ -25,9 +25,16 @@
   "devDependencies": {
     "@builder.io/qwik": "1.1.2",
     "@builder.io/qwik-city": "^1.1.2",
+    "@builder.io/qwik-react": "0.5.0",
+    "@emotion/react": "11.11.0",
+    "@emotion/styled": "11.11.0",
+    "@mui/material": "5.12.3",
+    "@mui/x-data-grid": "6.3.1",
     "@netlify/edge-functions": "^2.0.0",
     "@types/eslint": "8.37.0",
     "@types/node": "^18.16.1",
+    "@types/react": "18.2.5",
+    "@types/react-dom": "18.2.4",
     "@typescript-eslint/eslint-plugin": "5.59.1",
     "@typescript-eslint/parser": "5.59.1",
     "autoprefixer": "^10.4.14",
@@ -36,6 +43,8 @@
     "netlify-cli": "^14.2.1",
     "postcss": "^8.4.23",
     "prettier": "2.8.8",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "sass": "^1.62.1",
     "tailwindcss": "^3.3.1",
     "typescript": "5.0.4",
@@ -43,5 +52,8 @@
     "vite": "4.3.3",
     "vite-tsconfig-paths": "4.2.0",
     "wrangler": "^2.20.0"
+  },
+  "dependencies": {
+    "react-image-video-viewer": "^3.0.4"
   }
 }
