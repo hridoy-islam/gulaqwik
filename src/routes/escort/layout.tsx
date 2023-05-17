@@ -28,8 +28,8 @@ export default component$(() => {
   useStyles$(styles);
   const serverData = useWorkerUser();
   const workerUser = serverData.value.workerUser;
-  const defaultBackground = '/assets/images/profile_default.png';
-  const isMobile = useSignal(GetUrlPreview(workerUser?.coverPageMobile) ?? defaultBackground);
+  const defaultBackgroundImg = '/assets/images/profile_default.png';
+  const backgroundImg = useSignal(GetUrlPreview(workerUser?.coverPageMobile) ?? defaultBackgroundImg);
   const relatedWorkerUsers: ICarouselCard[] = serverData.value.relatedWorkerUsers.map((w) => ({
     id: w.id,
     name: w.name,
@@ -41,9 +41,9 @@ export default component$(() => {
   }));
 
   useVisibleTask$(() => {
-    isMobile.value = (workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(workerUser?.coverPageMobile) : GetUrlPreview(workerUser?.coverPagePC) ?? defaultBackground;
+    backgroundImg.value = (workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(workerUser?.coverPageMobile) : workerUser?.coverPagePC ?? defaultBackgroundImg;
     const onResize = () => {
-      isMobile.value = (workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(workerUser?.coverPageMobile) : GetUrlPreview(workerUser?.coverPagePC) ?? defaultBackground;
+      backgroundImg.value = (workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(workerUser?.coverPageMobile) : workerUser?.coverPagePC ?? defaultBackgroundImg;
     }
     window.addEventListener('resize', onResize, true);
     return () => {
@@ -53,7 +53,7 @@ export default component$(() => {
 
   return (
     <><section class="profile_section">
-      <div class="background_image" style={{background: "url('" + isMobile.value + "')" }}></div>
+      <div class="background_image" style={{background: "url('" + backgroundImg.value + "')" }}></div>
       <div class="profile_content">
         <EscortMainProfile workeruser={workerUser} />
 
