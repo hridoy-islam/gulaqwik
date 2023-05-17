@@ -54,6 +54,6 @@
     "wrangler": "^2.20.0"
   },
   "dependencies": {
-    "react-image-video-viewer": "^3.0.4"
+    "react-image-video-viewer": "^3.0.5"
   }
 }
