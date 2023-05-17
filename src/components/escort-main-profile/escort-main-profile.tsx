@@ -1,7 +1,7 @@
 import { component$, useStyles$ } from '@builder.io/qwik';
 // import { Link } from '@builder.io/qwik-city';
 import type { WorkerUser } from '~/api/workeruser';
-import { GetAgeFromDateStr, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
+import { GetAgeFromDateStr, GetScheduleDescription, GetWorkdaysDescription, GetUrlPreview } from '~/utils';
 import styles from './escort-main-profile.scss?inline';
 
 interface EscortMainProfileProps {
@@ -33,7 +33,7 @@ export default component$((props: EscortMainProfileProps) => {
                 <button class="button">Ver estados</button>
             </div>
             <div class="profile_image_container">
-                <div class="image profile_image_pointer" style={{ background: "url('" + workeruser.profileImg + "')" }}>
+                <div class="image profile_image_pointer" style={{ background: "url('" + GetUrlPreview(workeruser.profileImg) + "')" }}>
                 </div>
             </div>
             <div class="top_info">

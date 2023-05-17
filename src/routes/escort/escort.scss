@@ -54,46 +54,6 @@ $tab_underline_size: 5;
     margin-bottom: 20px;
 }
 
-.card_output {
-    @include flexAlign(vertical);
-    justify-content: flex-start;
-    width: 90%;
-    margin: 0 auto;
-    margin-bottom: 60px;
-    padding-bottom: getRelative(5);
-    box-sizing: border-box;
-    overflow-x: auto;
-    z-index: 2;
-    scrollbar-width: thin !important;
-    scrollbar-color: map-get($map: $primary, $key: 200) map-get($map: $overlay, $key: 200);
-
-    &::-webkit-scrollbar {
-        height: getRelative(10);
-    }
-
-    &::-webkit-scrollbar-track {
-        background: none;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        border-radius: getRelative(5);
-        background: map-get($map: $overlay, $key: 200);
-
-        &:hover {
-            background: map-get($map: $overlay, $key: 300);
-        }
-    }
-
-    app-featured-card {
-        margin-right: getRelative(40);
-        z-index: 3;
-
-        &:last-child {
-            margin-right: 0;
-        }
-    }
-}
-
 .bottom_section {
     padding: getRelative(40);
     box-sizing: border-box;

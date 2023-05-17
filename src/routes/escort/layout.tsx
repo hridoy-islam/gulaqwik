@@ -1,4 +1,4 @@
-import { component$, useStyles$ } from '@builder.io/qwik';
+import { component$, useSignal, useStyles$, useVisibleTask$ } from '@builder.io/qwik';
 import { routeLoader$ } from '@builder.io/qwik-city';
 import { gethWorkerUserByIdOrSlug, searchWorkerUsers } from '~/api/workeruser';
 import type { ICarouselCard } from '~/components/carousel/carousel';
@@ -6,6 +6,7 @@ import Carousel from '~/components/carousel/carousel';
 import EscortMainProfile from '~/components/escort-main-profile/escort-main-profile';
 import EscortTabGallery from '~/components/escort-tab-gallery/escort-tab-gallery';
 import EscortTabInfo from '~/components/escort-tab-info/escort-tab-info';
+import { GetUrlPreview } from '~/utils';
 import styles from './escort.scss?inline';
 
 export const useWorkerUser = routeLoader$(async (requestEvent) => {
@@ -26,6 +27,9 @@ export const useWorkerUser = routeLoader$(async (requestEvent) => {
 export default component$(() => {
   useStyles$(styles);
   const serverData = useWorkerUser();
+  const workerUser = serverData.value.workerUser;
+  const defaultBackground = '/assets/images/profile_default.png';
+  const isMobile = useSignal(GetUrlPreview(workerUser?.coverPageMobile) ?? defaultBackground);
   const relatedWorkerUsers: ICarouselCard[] = serverData.value.relatedWorkerUsers.map((w) => ({
     id: w.id,
     name: w.name,
@@ -36,12 +40,22 @@ export default component$(() => {
     route: '/escort/' + w.slug
   }));
 
+  useVisibleTask$(() => {
+    isMobile.value = (workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(workerUser?.coverPageMobile) : GetUrlPreview(workerUser?.coverPagePC) ?? defaultBackground;
+    const onResize = () => {
+      isMobile.value = (workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(workerUser?.coverPageMobile) : GetUrlPreview(workerUser?.coverPagePC) ?? defaultBackground;
+    }
+    window.addEventListener('resize', onResize, true);
+    return () => {
+      window.removeEventListener('resize', onResize, true);
+    }
+  });
 
   return (
     <><section class="profile_section">
-      <div class="background_image" style="background: url(&quot;https://produy.gula-media.com/632a2d3ef9cb2a79d9dada2a-89682c09-605f-452f-af8e-a3c4106442a0663981-preview.png&quot;);"></div>
+      <div class="background_image" style={{background: "url('" + isMobile.value + "')" }}></div>
       <div class="profile_content">
-        <EscortMainProfile workeruser={serverData.value.workerUser} />
+        <EscortMainProfile workeruser={workerUser} />
 
 
         <div id="tab_container" class="tab_container" style="padding-bottom: 65px;">
@@ -60,11 +74,8 @@ export default component$(() => {
             </span>
           </div>
           <div class="tab_content">
-            <EscortTabInfo workeruser={serverData.value.workerUser} />
-            <EscortTabGallery workeruser={serverData.value.workerUser} />
-
-
-
+            <EscortTabInfo workeruser={workerUser} />
+            <EscortTabGallery workeruser={workerUser} />
             <gula-tab-reviews style="display: none;"><div class="reviews_container">
               <div class="aligner">
                 <div class="form_container">

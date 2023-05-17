@@ -75,12 +75,6 @@
     z-index: 1;
   }
 
-  .type_container,
-  .card_name,
-  .card_description {
-    z-index: 2;
-  }
-
   .type_container {
     margin-bottom: getRelative(20);
     padding: getRelative(7) getRelative(14);
