@@ -15,7 +15,7 @@ export default component$(() => {
                         <img class="w-5" src="/assets/icons/whatsapp_w.svg" alt="" />
                     </a>
                 </button>
-                <div class={['mt-11',styles.form_slot]}>
+                <div class={['mt-11', styles.form_slot]}>
                     <form >
                         <div class="flex">
                             <input type="text" class={[styles.form_input, 'mr-5']} placeholder="Nombre*" required name="emailOrPhone" />
@@ -28,7 +28,7 @@ export default component$(() => {
                     </form>
                 </div>
             </div>
-            
+
         </>
     )
 })

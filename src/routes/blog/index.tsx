@@ -20,7 +20,7 @@ interface product {
 
 export const useProductDetails = routeLoader$(async () => {
     // This code runs only on the server, after every navigation
-    const res = await fetch(`https://gula-api-test-2i55x.ondigitalocean.app/blog`);
+    const res = await fetch(`https://gula-api-test-2i55x.ondigitalocean.app/blog?skip=0&limit=40&published=true&sort=createdAt%20DESC`);
     const product = (await res.json()) as product[];
     return product;
 });
