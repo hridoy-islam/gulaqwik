@@ -17,14 +17,6 @@ interface product {
     previewImage: String,
 }
 
-// export const onGet: RequestHandler<BlogData[]> = async () => {
-//     console.log("fetching data")
-
-//     const res = await fetch('https://gula-api-test-2i55x.ondigitalocean.app/blog/')
-//     const data =await res.json()
-
-//     return data
-// }
 
 export const useProductDetails = routeLoader$(async () => {
     // This code runs only on the server, after every navigation
@@ -34,14 +26,15 @@ export const useProductDetails = routeLoader$(async () => {
 });
 export default component$(() => {
     const signal = useProductDetails();
+    const blogs = signal?.value?.results;
 
     return (
         <>
             <div class={styles.states_output}>
-
+                {/* <p>Count - {blogs.title}</p> */}
                 <div class="flex items-center flex-col justify-left">
                     <span class={styles.text}>Categoria</span>
-                    <select class={["select w-1/2", styles.select_element]}>
+                    <select class={["select w-1/4", styles.select_element]}>
                         {/* <option selected disabled>
                             Categoria
                         </option> */}
@@ -62,10 +55,16 @@ export default component$(() => {
                         </option>
                     </select>
                 </div>
-                <div>
-                    <Blogs></Blogs>
+                <div class={styles.blog_scroll}>
+                    <div class="grid grid-cols-3">
+                        {
+                            blogs?.map(blog =>
+                                <Blogs key={blog._id} blog={blog}></Blogs>)
+                        }
+
+                    </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 })
