@@ -37,6 +37,45 @@ $tab_underline_size: 5;
             margin: getRelative(45) auto 0;
             box-sizing: border-box;
 
+            .tab {
+                @include flexAlign(center);
+                display: block;
+                width: 100%;
+                height: $tab_height;
+                width: 100%;
+                height: 100%;
+                background: black;
+                transition: all 200ms ease-in;
+                cursor: pointer;
+                box-shadow: -9px 0 0px -8px #7b7272, 9px 0 0px -8px #7b7272;
+
+                .icon {
+                    height: getRelative(12);
+                    opacity: 0.5;
+                    transition: all 200ms ease-in;
+                }
+            }
+
+            .active {
+                background: black;
+                transition: all 200ms ease-in;
+
+                .icon {
+                    opacity: 1;
+                    transition: all 200ms ease-in;
+                }
+            }
+
+            @media screen and (max-width: 650px) {
+                .tab {
+                    background-color: map-get($map: $primary, $key: A100);
+                }
+
+                .active {
+                    background: black;
+                }
+            }
+
             .tab_content {
                 width: 100%;
                 max-width: inherit;

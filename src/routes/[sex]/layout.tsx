@@ -2,7 +2,7 @@ import { component$, useStyles$, Resource, useVisibleTask$, useSignal } from '@b
 // import { useLocation } from '@builder.io/qwik-city';
 import { searchWorkerUsers } from '~/api/workeruser';
 import CatalogueCard from '~/components/catalogue-card/catalogue-card';
-import { routeLoader$, useLocation } from '@builder.io/qwik-city';
+import { DocumentHead, routeLoader$, useLocation } from '@builder.io/qwik-city';
 import country from '~/uruguay';
 // import Search from '~/components/search/search';
 import { provinces_female } from '~/env/provinces_female';
@@ -34,6 +34,25 @@ export const useWorkerUsers = routeLoader$(async (requestEvent) => {
   return getWorkerUsers(sex, province);
 });
 
+export const head: DocumentHead = ({params}) => {
+  const sex = params.sex;
+  const province = params.province;
+  return {
+    title: `Joke "${sex}"`,
+    meta: [
+      {
+        name: 'description',
+        content: province,
+      },
+    ],
+    link: [
+      {
+        rel: 'canonical',
+        href: 'https://example.com/about',
+      },
+    ],
+  };
+};
 
 export default component$(() => {
   useStyles$(styles);

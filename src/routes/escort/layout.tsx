@@ -1,5 +1,5 @@
 import { component$, useSignal, useStyles$, useVisibleTask$ } from '@builder.io/qwik';
-import type { DocumentHead} from '@builder.io/qwik-city';
+import { DocumentHead, Link } from '@builder.io/qwik-city';
 import { routeLoader$ } from '@builder.io/qwik-city';
 import { gethWorkerUserByIdOrSlug, searchWorkerUsers } from '~/api/workeruser';
 import type { ICarouselCard } from '~/components/carousel/carousel';
@@ -56,6 +56,7 @@ export default component$(() => {
     type: w.billingType,
     route: '/escort/' + w.slug
   }));
+  const cataloguePath = workerUser?.sex === 'male' ? '/hombres/' : workerUser?.sex === 'trans' ? '/trans-travestis/' : '/mujeres/';
 
   useVisibleTask$(() => {
     backgroundImg.value = (workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(workerUser?.coverPageMobile) : workerUser?.coverPagePC ?? defaultBackgroundImg;
@@ -73,20 +74,17 @@ export default component$(() => {
       <div class="background_image" style={{ background: "url('" + backgroundImg.value + "')" }}></div>
       <div class="profile_content">
         <EscortMainProfile workeruser={workerUser} />
-
-
         <div id="tab_container" class="tab_container" style="padding-bottom: 65px;">
           <div class="escort_tab_output">
-            <gula-escort-tab> <div class="tab active">
+            <div class="tab active">
               <img alt="TabIcon" class="icon" src="/assets/icons/gallery_w.svg" />
             </div>
-            </gula-escort-tab><gula-escort-tab  ><div class="tab">
+            <div class="tab">
               <img alt="TabIcon" class="icon" src="/assets/icons/wall_w2.svg" />
             </div>
-            </gula-escort-tab><gula-escort-tab  ><div class="tab">
+            <div class="tab">
               <img alt="TabIcon" class="icon" src="/assets/icons/reviews_w.svg" />
             </div>
-            </gula-escort-tab>
             <span class="underline" style="width: calc(33.3333%); transform: translateX(calc(0%));">
             </span>
           </div>
@@ -184,10 +182,10 @@ export default component$(() => {
       <div class="bottom_section">
         <h3 >Encuentra escorts en Uruguay cerca de ti</h3>
         <div class="links_container">
-          <a class="button" href="/mujeres/montevideo">Montevideo</a>
-          <a class="button" href="/mujeres/punta-del-este">Punta del Este</a>
-          <a class="button" href="/mujeres/maldonado">Maldonado</a>
-          <a class="button" href="/mujeres/canelones">Canelones</a>
+          <Link class="button" href={cataloguePath + "montevideo"}>Montevideo</Link>
+          <a class="button" href={cataloguePath + "punta-del-este"}>Punta del Este</a>
+          <a class="button" href={cataloguePath + "maldonado"}>Maldonado</a>
+          <a class="button" href={cataloguePath + "canelones"}>Canelones</a>
         </div>
         <h3 >Prostitutas en Uruguay</h3>
         <p  >Somos la primera Red Social Erótica de Chicas Escort Uruguay, Gula es un espacio de publicidad donde mujeres, mujeres trans y hombres, ofrecen sus diferentes servicios ( prostitutas, acompañantes, masajistas, gigolo etc).</p>

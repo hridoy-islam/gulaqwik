@@ -75,7 +75,7 @@ export const RemoveFileExtension = (str: string) => {
 }
 
 export const GetUrlPreview = (fileName: string) => {
-    if (!fileName || fileName === './assets/images/default_user_profile.png' || fileName === './assets/images/profile_default.png') {
+    if (!fileName || fileName === '/assets/images/default_user_profile.png' || fileName === '/assets/images/profile_default.png') {
         return fileName;
     }
     if (fileName.endsWith('-preview.png')) {
