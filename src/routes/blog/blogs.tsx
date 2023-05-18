@@ -1,7 +1,11 @@
 import { component$ } from "@builder.io/qwik";
 import styles from './blog.module.css';
 
-export default component$(({ blog }) => {
+interface PostPreviewProps {
+    blog: any;
+  }
+
+export default component$(({ blog }: PostPreviewProps) => {
     return (
         <>
             <div>

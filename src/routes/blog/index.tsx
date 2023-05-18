@@ -3,7 +3,7 @@ import { routeLoader$ } from "@builder.io/qwik-city";
 import styles from './blog.module.css';
 import Blogs from "./blogs";
 
-interface product {
+interface Post {
     createdAt: String,
     updatedAt: String,
     deletedAt: String,
@@ -19,14 +19,13 @@ interface product {
 
 
 export const useProductDetails = routeLoader$(async () => {
-    // This code runs only on the server, after every navigation
-    const res = await fetch(`https://gula-api-test-2i55x.ondigitalocean.app/blog?skip=0&limit=40&published=true&sort=createdAt%20DESC`);
-    const product = (await res.json()) as product[];
+    const res = await fetch(`https://gula-api-test-2i55x.ondigitalocean.app/blog?skip=0&limit=100&published=true&sort=createdAt%20DESC`);
+    const product = (await res.json()).results as Post[];
     return product;
 });
 export default component$(() => {
     const signal = useProductDetails();
-    const blogs = signal?.value?.results;
+    const blogs = signal?.value;
 
     return (
         <>
@@ -58,7 +57,7 @@ export default component$(() => {
                 <div class={styles.blog_scroll}>
                     <div class="grid grid-cols-3">
                         {
-                            blogs?.map(blog =>
+                            blogs?.map((blog: any) =>
                                 <Blogs key={blog._id} blog={blog}></Blogs>)
                         }
 
