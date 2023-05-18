@@ -7,7 +7,7 @@ export default component$(() => {
     scrolled: false
   })
   return (
-    <header class={"fixed top-0 left-0 w-full p-0 text-white text-xl sm:text-4xl sm:p-8 z-10 " + (store.scrolled ? 'bg-[#070707]' : 'bg-transparent')}
+    <header class={"fixed top-0 left-0 w-full p-0 z-10 text-white text-xl sm:text-4xl sm:p-8 z-10 " + (store.scrolled ? 'bg-[#070707]' : 'bg-transparent')}
       document:onScroll$={() => {
         if (window.scrollY > 0) {
           store.scrolled = true
