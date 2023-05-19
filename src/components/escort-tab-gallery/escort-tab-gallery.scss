@@ -1,0 +1,100 @@
+@import "../../main.scss";
+
+$image_size: calc(100% / 4);
+
+.tab_gallery {
+  display: grid;
+  grid-template-columns: $image_size $image_size $image_size $image_size;
+  width: 100%;
+  backdrop-filter: blur(getRelative(40));
+
+  .image {
+    @include flexAlign(center);
+    position: relative;
+    width: 100%;
+    height: getRelative(275);
+    min-height: getRelative(150);
+    overflow: hidden;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    cursor: pointer;
+    transition: all 200ms ease-in;
+
+    .img-gallery {
+      display: contents;
+    }
+
+    .video-play {
+      z-index: 5;
+      width: 100%;
+    }
+
+    .video {
+      position: absolute;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      height: 100%;
+      width: 100%;
+      background: map-get($map: $overlay, $key: 400);
+      transition: all 200ms ease-in;
+    }
+
+    &:hover {
+      &::before {
+        background: none;
+      }
+    }
+  }
+
+  .empty_gallery {
+    @include flexAlign(center);
+    width: 100%;
+    padding: 5% 0;
+    box-sizing: border-box;
+
+    .label {
+      font-size: getRelative(18);
+      color: map-get($map: $primary, $key: 300);
+      text-align: center;
+    }
+  }
+}
+
+img.img-viewer {
+  width: initial;
+  max-width: 90% !important;
+  max-height: 90% !important;
+}
+
+video.video-viewer {
+  width: initial;
+  max-width: 95%;
+  max-height: 95%;
+}
+
+@media screen and (max-width: 1200px) {
+  .tab_gallery .image {
+    height: 28vh;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  $image_size: calc(100% / 3);
+
+  .tab_gallery {
+    grid-template-columns: $image_size $image_size $image_size;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .tab_gallery .image {
+    height: 22vh;
+  }
+}

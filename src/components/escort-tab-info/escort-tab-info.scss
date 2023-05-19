@@ -1,0 +1,146 @@
+@import "../../main.scss";
+
+.tab_info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .info_container {
+    width: 100%;
+    height: auto;
+  }
+
+  .info_container {
+    padding: getRelative(40);
+    box-sizing: border-box;
+    background: map-get($map: $overlay, $key: 300);
+
+    .title_container {
+      width: 100%;
+      margin-bottom: getRelative(30);
+      text-align: center;
+
+      .title {
+        text-transform: capitalize;
+        font-size: getRelative(22);
+        font-weight: 500;
+        color: map-get($map: $primary, $key: 300);
+      }
+    }
+
+    .description_container {
+      width: 100%;
+      text-align: left;
+
+      .description {
+        font-size: getRelative(14);
+        font-weight: 300;
+        color: map-get($map: $primary, $key: 300);
+        white-space: pre-wrap;
+      }
+    }
+
+    .info_data {
+      margin-top: getRelative(30);
+      overflow: hidden;
+
+      > div {
+        display: block;
+        margin-bottom: getRelative(10);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .data_item {
+        display: grid;
+        grid-template-columns: max-content auto;
+        grid-template-rows: auto;
+        width: 100%;
+      
+        .icon {
+          height: getRelative(12);
+          margin-right: getRelative(10);
+          width: 12px;
+        }
+      
+        .title_container {
+          width: 100%;
+          margin-right: getRelative(10);
+          overflow: hidden;
+      
+          .title {
+            font-size: getRelative(13);
+            font-weight: 700;
+            color: map-get($map: $primary, $key: 300);
+          }
+        }
+      
+        .description_container {
+          width: 100%;
+          overflow: hidden;
+      
+          .description {
+            font-size: getRelative(12);
+            color: map-get($map: $primary, $key: 300);
+          }
+        }
+      }
+      
+      .item_has_icon {
+        grid-template-columns: max-content max-content auto;
+      }
+
+    }
+
+    .services_container {
+      margin-top: getRelative(30);
+
+      .title,
+      .description {
+        margin-bottom: getRelative(15, 14);
+        font-size: getRelative(14);
+        font-weight: 700;
+        color: map-get($map: $primary, $key: 300);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .description {
+        margin-bottom: getRelative(10, 14);
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) and (min-width: 650px) {
+  .tab_info {
+    $image_size: 33%;
+
+    .info_container {
+      // width: calc(100% - #{$image_size});
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .tab_info {
+    flex-direction: column;
+
+    .info_container {
+      width: 100%;
+      height: auto;
+    }
+
+    .info_container {
+      padding: getRelative(25);
+    }
+  }
+}

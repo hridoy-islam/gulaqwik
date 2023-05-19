@@ -1,0 +1,336 @@
+@use "sass:math";
+@import "../../main.scss";
+
+$profile_bg: map-get(
+  $map: $overlay,
+  $key: 500,
+);
+$profile_size: getRelative(100);
+$profile_shift: getRelative(8);
+$profile_padding: getRelative(15);
+
+.main_profile {
+  @include flexAlign(vertical);
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  max-width: getRelative(1100);
+  margin: 0 auto;
+
+  .go_back_arrow_container {
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+
+    .button_icon {
+      @include flexAlign(center);
+      @include deleteButtonStyles();
+      outline: none;
+
+      .icon {
+        height: getRelative(80);
+        margin-left: getRelative(-25);
+      }
+    }
+  }
+
+  .main_profile_container {
+    @include flexAlign(center);
+    position: relative;
+    margin-top: getRelative(60);
+    width: getRelative(550);
+    padding: $profile_padding;
+    padding-top: calc(#{$profile_size} / 2);
+    box-sizing: border-box;
+    background: $profile_bg;
+    border-radius: getRelative(8);
+
+    .buttons_container {
+      @include flexAlign(vertical);
+      position: absolute;
+      top: getRelative(-60);
+      width: 100%;
+      justify-content: space-between;
+      margin: getRelative(10) 0;
+
+      .button {
+        @include deleteButtonStyles();
+        padding: getRelative(10, 14) getRelative(30, 14);
+        font-size: getRelative(14);
+        color: map-get($map: $primary, $key: 300);
+        background: $profile_bg;
+        border-radius: getRelative(5);
+        min-width: 126px;
+      }
+    }
+
+    .profile_image_container {
+      @include flexAlign(center);
+      position: absolute;
+      top: calc((#{$profile_size} / 2) * -1);
+      margin: 0 auto;
+      width: calc(#{$profile_size} + #{$profile_shift});
+      height: calc(#{$profile_size} + #{$profile_shift});
+      border-radius: calc((#{$profile_size} + #{$profile_shift}) / 2);
+      background: map-get($map: $secondary, $key: 500);
+      z-index: 2;
+
+      .image {
+        width: $profile_size;
+        height: $profile_size;
+        border-radius: calc(#{$profile_size} / 2);
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+      }
+    }
+
+    .top_info {
+      @include flexAlign(vertical);
+      justify-content: space-between;
+      position: absolute;
+      top: 0;
+      left: $profile_padding;
+      right: $profile_padding;
+
+      .verified_container {
+        @include flexAlign(center);
+        width: getRelative(30);
+        height: getRelative(30);
+        border-radius: getRelative(15);
+        img {
+          width: 33px;
+          margin-left: 15px;
+          margin-top: -15px;
+        }
+      }
+
+      .fav_button {
+        @include deleteButtonStyles();
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: getRelative(-4);
+        outline: none;
+
+        .icon {
+          width: getRelative(30);
+        }
+
+        .rating {
+          $context: 13;
+          position: absolute;
+          margin-bottom: getRelative(4, $context);
+          font-size: getRelative($context);
+          font-weight: 600;
+          color: map-get($map: $secondary, $key: 100);
+          color: map-get($map: $primary, $key: A100-contrast);
+        }
+
+        .ratingFavorite{
+          color: map-get($map: $primary, $key: 300-contrast);
+        }
+      }
+    }
+
+    .content {
+      @include flexAlign(horizontal);
+      width: 100%;
+      flex-direction: column;
+      text-align: center;
+      margin-top: getRelative(20);
+
+      .username_container {
+        $username_size: 25;
+        @include flexAlign(vertical);
+        margin: 0 auto;
+
+        .username {
+          text-transform: uppercase;
+          font-size: getRelative($username_size);
+          font-weight: 600;
+          color: map-get($map: $primary, $key: 300);
+        }
+
+        .icon {
+          height: getRelative($username_size);
+          margin-left: getRelative(10, $username_size);
+        }
+      }
+
+      .description_container {
+        margin: 0 auto;
+
+        .description {
+          margin-top: getRelative(5);
+          max-width: getRelative(280, 18);
+          font-size: getRelative(18);
+          font-weight: 300;
+          color: map-get($map: $primary, $key: 300);
+        }
+      }
+
+      $items_height: 30;
+
+      .items_grid {
+        width: 80%;
+        height: getRelative($items_height);
+        margin: getRelative($items_height) auto getRelative(math.div($items-height, 2));
+
+        .label {
+          display: inline;
+          font-size: getRelative(20);
+          font-weight: 300;
+          color: map-get($map: $primary, $key: 300);
+        }
+
+        .separator {
+          width: getRelative(1);
+          height: getRelative($items_height);
+          background: map-get($map: $primary, $key: 300);
+          opacity: 0.5;
+        }
+      }
+
+      .items_grid_bottom {
+        width: 70%;
+        margin-top: 0;
+        margin-bottom: getRelative($items_height);
+      }
+
+      .buttons_grid {
+        @include flexAlign(center);
+        margin-bottom: $profile_padding;
+
+        a {
+          margin: 0 getRelative(10);
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          .button {
+            @include borderButton(15, getRelative(10, 15) getRelative(40, 15));
+            border: solid 2px map-get($map: $primary, $key: 300);
+
+            .icon {
+              height: getRelative(22);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .profile_image_pointer {
+    cursor: pointer;
+  }
+
+  .empty_profile_iamge {
+    background: map-get($map: $primary, $key: 100);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  $profile_size: getRelative(70);
+  $profile_shift: getRelative(4);
+
+  :host {
+    display: block;
+    width: 100%;
+    padding: 0 8%;
+    box-sizing: border-box;
+  }
+
+  .main_profile {
+    width: 100%;
+
+    .go_back_arrow_container {
+      top: -10%;
+      left: 0;
+      bottom: initial;
+
+      .button_icon .icon {
+        height: getRelative(65);
+        margin-left: getRelative(-20);
+      }
+    }
+
+    .main_profile_container {
+      width: 100%;
+      margin-top: getRelative(90);
+      padding-top: calc(#{$profile_size} / 2);
+      border-radius: getRelative(8, 12) getRelative(8, 12) 0 0;
+
+      .buttons_container .button {
+        font-size: getRelative(12);
+        padding: getRelative(5, 12) getRelative(25, 12);
+      }
+
+      .profile_image_container {
+        top: calc((#{$profile_size} / 2) * -1);
+        width: calc(#{$profile_size} + #{$profile_shift});
+        height: calc(#{$profile_size} + #{$profile_shift});
+        border-radius: calc((#{$profile_size} + #{$profile_shift}) / 2);
+
+        .image {
+          width: $profile_size;
+          height: $profile_size;
+        }
+      }
+
+      .content {
+        .username_container {
+          $username_size: 17;
+
+          .username {
+            font-size: getRelative($username_size);
+          }
+
+          .icon {
+            height: getRelative($username_size);
+            margin-left: getRelative(5, $username_size);
+          }
+        }
+
+        .description_container .description {
+          font-size: getRelative(14);
+          max-width: getRelative(280, 14);
+        }
+
+        .items_grid {
+          font-size: getRelative(10);
+          $items_height: getRelative(13);
+          width: 95%;
+          height: $items_height;
+
+          .separator {
+            width: getRelative(1);
+            height: $items_height;
+          }
+        }
+
+        .items_grid_bottom {
+          width: 75%;
+        }
+
+        .buttons_grid {
+          margin-top: getRelative(10);
+
+          a .button {
+            @include borderButton(15, getRelative(10, 15) getRelative(20, 15));
+
+            &:active {
+              transition: all 200ms ease-in;
+              background: map-get($map: $primary, $key: 100) !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

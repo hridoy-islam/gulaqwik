@@ -1,0 +1,99 @@
+@import "../../main.scss";
+
+$card_padding: 15;
+$fav_button_size: 30;
+
+.catalogue_card {
+  display: grid;
+  grid-template-columns: 1fr getRelative($card_padding * 2 + $fav_button_size);
+  grid-template-rows: getRelative($card_padding * 2 + $fav_button_size) 1fr;
+  position: relative;
+  width: 31%;
+  // height: 100%;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-position: center;
+  border-radius: getRelative(5);
+  overflow: hidden;
+  background: map-get($map: $overlay, $key: 400);
+  box-shadow: 0 getRelative(-45) getRelative(50) 0 inset map-get($map: $overlay, $key: 500);
+
+  .profile {
+    display: contents;
+  }
+
+  .card_clickable {
+    color: transparent;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    cursor: pointer;
+  }
+
+  .right_clickable {
+    color: transparent;
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    cursor: pointer;
+  }
+
+  .description {
+    left: getRelative($card_padding);
+    right: getRelative($card_padding);
+    font-size: getRelative(12);
+    color: white;
+    text-shadow: 0 0 getRelative(15, 15) rgba(map-get($map: $primary, $key: A100), 0.95);
+    bottom: 0;
+  }
+
+  .line_break {
+    line-break: anywhere;
+  }
+
+  .card_bottom {
+    @include flexAlign(vertical);
+    justify-content: space-between;
+    position: absolute;
+    bottom: getRelative($card_padding);
+    left: getRelative($card_padding);
+    right: getRelative($card_padding);
+    width: calc(100% - #{getRelative($card_padding * 2)});
+    overflow: hidden;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .name_label {
+      $context: 15;
+      text-transform: uppercase;
+      font-size: getRelative($context);
+      font-weight: 600;
+      // text-overflow: ellipsis;
+      text-shadow: 0 0 getRelative(15, $context) rgba(map-get($map: $primary, $key: A100), 0.95);
+      overflow: hidden;
+      white-space: nowrap;
+      color: map-get($map: $primary, $key: 300);
+    }
+
+    .small_label {
+      font-size: getRelative(12);
+    }
+  }
+
+  .favorite_button {
+    @include deleteButtonStyles();
+    position: absolute;
+    right: getRelative(calc($card_padding / 2));
+    outline: none;
+
+    .icon {
+      width: getRelative($fav_button_size);
+      height: getRelative($fav_button_size);
+    }
+  }
+}
