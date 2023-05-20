@@ -41,5 +41,8 @@
     "vite": "4.3.3",
     "vite-tsconfig-paths": "4.2.0",
     "wrangler": "latest"
+  },
+  "dependencies": {
+    "daisyui": "^2.51.6"
   }
 }
