@@ -1,8 +1,14 @@
-import { component$, useStore } from '@builder.io/qwik';
+import { $, component$, useContext, useStore } from '@builder.io/qwik';
 import { Link } from '@builder.io/qwik-city';
 import styles from './header.module.css';
+import { GulaContext } from '~/root';
+import HeaderDrawer from './headerDrawer';
+import Notification from '../notification';
 
 export default component$(() => {
+  const state = useContext(GulaContext)
+  const menuToogle = $(() => state.menu = !state.menu);
+  const notiToogle = $(() => state.noti = !state.noti);
   const store = useStore({
     scrolled: false
   })
@@ -15,14 +21,33 @@ export default component$(() => {
           store.scrolled = false
         }
       }}>
-      <div class='flex justify-between items-center'>
-        <ul class='flex mx-4 items-center'>
-          <li class={styles}>
-            <Link href="">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-8 h-8 ml-2 text-white">
+      <div class='flex justify-between items-center nav_item p-2'>
+        <ul class='flex mx-4 items-center ml-10 '>
+          
+          <li class={[styles, '']}>
+          
+            
+            <button onClick$={menuToogle}>
+              {
+                state?.menu ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 ml-2 text-white">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg> : <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-8 h-8 ml-2 text-white">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
               </svg>
-            </Link>
+              }
+              {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-8 h-8 ml-2 text-white">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+              </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 ml-2 text-white">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg> */}
+
+            </button>
+            
+            {
+              state?.menu && <HeaderDrawer></HeaderDrawer>
+            }
+
           </li>
           <li>
             <Link href="/escorts/mujeres">
@@ -48,9 +73,12 @@ export default component$(() => {
           </li>
 
           <li>
-            <Link href="" >
-              <img class={styles} src="/assets/icons/alarm_w_2.svg" alt='alarm_w_2' />
-            </Link>
+              <button onClick$={notiToogle}>
+                <img class={styles} src="/assets/icons/alarm_w_2.svg" alt='alarm_w_2' />
+              </button>
+              {
+              state?.noti && <Notification></Notification>
+            }
           </li>
 
           <li>
@@ -65,14 +93,6 @@ export default component$(() => {
           </a>
         </div>
       </div>
-      {/* <div class={styles.aligner}>
-          
-        <div class={styles.logo}>
-          <a href="/" title="qwik">
-            <img src="/assets/logos/gula-logo-w.svg" height={50} width={143} alt="" />
-          </a>
-        </div>
-      </div> */}
     </header>
   );
 });

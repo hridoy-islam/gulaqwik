@@ -35,7 +35,6 @@ export const useProductDetails = routeLoader$(async () => {
 export default component$(() => {
     const signal = useProductDetails(); 
     const blogs = signal?.value?.results;
-    console.log(blogs)
 
     return (
         <>
@@ -43,6 +42,7 @@ export default component$(() => {
                 {/* <p>Count - {blogs.title}</p> */}
                 <div class="flex items-center flex-col justify-left">
                     <span class={styles.text}>Categoria</span>
+                    <div class={styles.select_icon}>
                     <select class={["select w-1/4", styles.select_element]}>
                         {/* <option selected disabled>
                             Categoria
@@ -63,6 +63,8 @@ export default component$(() => {
                             Sexo
                         </option>
                     </select>
+                    <span class={styles.icon}></span>
+                    </div>
                 </div>
                 <div class={styles.blog_scroll}>
                 <div class="grid grid-cols-3">
