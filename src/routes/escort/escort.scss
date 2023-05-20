@@ -50,9 +50,10 @@ $tab_underline_size: 5;
                 box-shadow: -9px 0 0px -8px #7b7272, 9px 0 0px -8px #7b7272;
 
                 .icon {
-                    height: getRelative(12);
+                    height: 100%;
                     opacity: 0.5;
                     transition: all 200ms ease-in;
+                    margin: auto;
                 }
             }
 

@@ -1,12 +1,14 @@
 import { component$, useSignal, useStyles$, useVisibleTask$ } from '@builder.io/qwik';
 import { DocumentHead, Link } from '@builder.io/qwik-city';
 import { routeLoader$ } from '@builder.io/qwik-city';
+import { IWallState } from '~/api/states';
 import { gethWorkerUserByIdOrSlug, searchWorkerUsers } from '~/api/workeruser';
 import type { ICarouselCard } from '~/components/carousel/carousel';
 import Carousel from '~/components/carousel/carousel';
 import EscortMainProfile from '~/components/escort-main-profile/escort-main-profile';
 import EscortTabGallery from '~/components/escort-tab-gallery/escort-tab-gallery';
 import EscortTabInfo from '~/components/escort-tab-info/escort-tab-info';
+import Wall from '~/components/wall/wall';
 import { GetUrlPreview } from '~/utils';
 import styles from './escort.scss?inline';
 
@@ -47,6 +49,7 @@ export default component$(() => {
   const workerUser = serverData.value.workerUser;
   const defaultBackgroundImg = '/assets/images/profile_default.png';
   const backgroundImg = useSignal(GetUrlPreview(workerUser?.coverPageMobile) ?? defaultBackgroundImg);
+  const selectedTab = useSignal(1);
   const relatedWorkerUsers: ICarouselCard[] = serverData.value.relatedWorkerUsers.map((w) => ({
     id: w.id,
     name: w.name,
@@ -57,6 +60,37 @@ export default component$(() => {
     route: '/escort/' + w.slug
   }));
   const cataloguePath = workerUser?.sex === 'male' ? '/hombres/' : workerUser?.sex === 'trans' ? '/trans-travestis/' : '/mujeres/';
+  const states = workerUser?.states.map((s) => {
+    return {
+      id: s.id,
+      userId: workerUser.id,
+      userType: workerUser.type,
+      userSlug: workerUser.slug,
+      userSex: workerUser.sex,
+      profileImg: workerUser.profileImg,
+      username: workerUser.name,
+      description: s.text,
+      createdAt: s.createdAt,
+      media: s.media,
+      likes: s.likeIt,
+      commentsData: {
+        idState: s.id,
+        cretedById: s.id,
+        customerLogged: false,
+        comments: s.comments.map((c: any) => {
+          return {
+            id: c.id,
+            userId: c.userId,
+            message: c.text,
+            username: c.username,
+            profileImg: c.profileImg,
+            createdAt: c.createdAt,
+            responses: c.responses,
+          };
+        }),
+      },
+    } as IWallState;
+  });
 
   useVisibleTask$(() => {
     backgroundImg.value = (workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(workerUser?.coverPageMobile) : workerUser?.coverPagePC ?? defaultBackgroundImg;
@@ -76,21 +110,35 @@ export default component$(() => {
         <EscortMainProfile workeruser={workerUser} />
         <div id="tab_container" class="tab_container" style="padding-bottom: 65px;">
           <div class="escort_tab_output">
-            <div class="tab active">
-              <img alt="TabIcon" class="icon" src="/assets/icons/gallery_w.svg" />
+            <div class={"tab " + (selectedTab.value === 1 ? "active" : "")}>
+              <img alt="TabIcon" class="icon" src="/assets/icons/gallery_w.svg" onClick$={() => selectedTab.value = 1} />
             </div>
-            <div class="tab">
-              <img alt="TabIcon" class="icon" src="/assets/icons/wall_w2.svg" />
+            <div class={"tab " + (selectedTab.value === 2 ? "active" : "")}>
+              <img alt="TabIcon" class="icon" src="/assets/icons/wall_w2.svg" onClick$={() => selectedTab.value = 2} />
             </div>
-            <div class="tab">
-              <img alt="TabIcon" class="icon" src="/assets/icons/reviews_w.svg" />
+            <div class={"tab " + (selectedTab.value === 3 ? "active" : "")}>
+              <img alt="TabIcon" class="icon" src="/assets/icons/reviews_w.svg" onClick$={() => selectedTab.value = 3} />
             </div>
-            <span class="underline" style="width: calc(33.3333%); transform: translateX(calc(0%));">
+            <span class="underline" style={{width: "calc(33.3333%)", transform: "translateX(calc("+(selectedTab.value === 1 ? 0 : selectedTab.value === 2 ? 100 : 200)+"%))"}}>
             </span>
           </div>
           <div class="tab_content">
-            <EscortTabInfo workeruser={workerUser} />
-            <EscortTabGallery workeruser={workerUser} />
+            {
+              selectedTab.value === 1 &&
+              <EscortTabInfo workeruser={workerUser} />
+            }
+            {
+              selectedTab.value === 1 &&
+              <EscortTabGallery workeruser={workerUser} />
+            }
+            {
+              selectedTab.value === 2 &&
+              <Wall states={states} sex={workerUser?.sex} />
+            }
+            {
+              selectedTab.value === 3 &&
+              <EscortTabInfo workeruser={workerUser} />
+            }
             <gula-tab-reviews style="display: none;"><div class="reviews_container">
               <div class="aligner">
                 <div class="form_container">

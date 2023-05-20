@@ -1,5 +1,6 @@
 // import axios from 'axios';
 import type { User, BillingType } from './authentication';
+import { StateWorkerUser } from './states';
 
 const base = 'https://gula-api-test-2i55x.ondigitalocean.app/workeruser/';
 
@@ -46,7 +47,7 @@ export interface WorkerUser extends User {
   media?: string[];
   mediaVIP?: string[];
   instagram?: string;
-  // states: StateWorkerUser[];
+  states: StateWorkerUser[];
   verifiedProfile: boolean;
   price: number;
   acceptCard: boolean;
