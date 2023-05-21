@@ -7,8 +7,8 @@ export default component$(() => {
       <div class="slider_section">
         <h2 class="title mb-6">GULA, el mejor sitio de Escorts en Uruguay</h2>
         <div class="mt-12 slider_button">
-          <a href="/trans-travestis" class="px-8 py-4 mx-3 font-sm font-bold border rounded uppercase " >Mujeres trans</a>
           <a href="/mujeres" class="px-8 py-4 mx-3 font-sm font-bold border rounded uppercase " >Mujeres</a>
+          <a href="/trans-travestis" class="px-8 py-4 mx-3 font-sm font-bold border rounded uppercase " >Mujeres trans</a>
           <a href="/hombres" class="px-8 py-4 mx-3 font-sm font-bold border rounded uppercase " >Hombres</a>
         </div>
       </div>

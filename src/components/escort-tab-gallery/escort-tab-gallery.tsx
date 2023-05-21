@@ -47,7 +47,6 @@ export default component$((props: EscortTabInfoProps) => {
             }, miliseconds);
             miliseconds += 500;
         }
-        console.log(content)
         selectedMediaItem.value = content;
     })
 

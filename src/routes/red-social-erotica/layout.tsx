@@ -14,9 +14,8 @@ export const useStates = routeLoader$(async (requestEvent) => {
     return { ... await searchStates(sex as any), sex };
 });
 
-export const head: DocumentHead = ({ params, url }) => {
+export const head: DocumentHead = ({ params }) => {
     const sex = params.sex === 'hombres'? 'male' : params.sex === 'trans-travestis' ? 'trans' : 'female';
-    console.log('url', url)
     return {
         title: seoWall[sex].title,
         meta: [

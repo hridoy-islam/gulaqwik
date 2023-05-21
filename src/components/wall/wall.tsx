@@ -9,12 +9,13 @@ import dayjsRelativeTime from 'dayjs/plugin/relativeTime';
 interface WallProps {
   states: IWallState[];
   sex: string;
+  showSeeMoreStatesBtn?: boolean;
 }
 
 export default component$((props: WallProps) => {
   useStyles$(styles);
   const nav = useNavigate();
-  const { states, sex } = props;
+  const { states, sex, showSeeMoreStatesBtn } = props;
   const editionActive = false;
   const canDeleteState = false;
   const likeItAlreadySelected = false;
@@ -192,10 +193,10 @@ export default component$((props: WallProps) => {
                   <hr class="separator" />
                   <div class="actions">
                     <div class="left">
-                      <button class={"action " + + (likeItAlreadySelected ? "like_it_selected" : "")}>
+                      <a class={"action " + + (likeItAlreadySelected ? "like_it_selected" : "")} href='https://auth.gula.com.uy/auth/login'>
                         <p class="label">Me Gusta</p>
-                      </button>
-                      <button class="action" >
+                      </a>
+                      <a class="action" href='https://auth.gula.com.uy/auth/login'>
                         {
                           state?.commentsData.comments.length === 0 &&
                           <p class="label" >Comentar</p>
@@ -209,7 +210,7 @@ export default component$((props: WallProps) => {
                           <p class="label"  >
                             {state?.commentsData.comments.length} comentarios</p >
                         }
-                      </button >
+                      </a >
                     </div >
                   </div >
                 </div >
@@ -217,10 +218,12 @@ export default component$((props: WallProps) => {
             })
 
           }
-
-          <Link class="button_more" href={seeMoreStates()}>
-            Ver más estados
-          </Link >
+          {
+            showSeeMoreStatesBtn &&
+            <Link class="button_more" href={seeMoreStates()}>
+              Ver más estados
+            </Link >
+          }
         </div >
       </div >
     </div >
