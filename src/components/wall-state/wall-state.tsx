@@ -1,4 +1,4 @@
-import { $, component$, useSignal, useStyles$ } from '@builder.io/qwik';
+import { $, component$, useStyles$ } from '@builder.io/qwik';
 import { useNavigate } from '@builder.io/qwik-city';
 import type { IWallState } from '~/api/states';
 import { DateFrom, FileIsValidVideo, GetUrlPreview } from '~/utils';
@@ -8,19 +8,15 @@ import dayjsRelativeTime from 'dayjs/plugin/relativeTime';
 
 interface WallProps {
   state: IWallState;
-  useDefaultImg: boolean;
 }
 
 export default component$((props: WallProps) => {
   useStyles$(styles);
   const nav = useNavigate();
-  const { state, useDefaultImg } = props;
+  const { state } = props;
   const editionActive = false;
   const canDeleteState = false;
   const likeItAlreadySelected = false;
-  console.log(useDefaultImg)
-  const imgSrc = useSignal(GetUrlPreview(state?.media?.[0] as string));
-  const outputRef = useSignal<Element>();
 
   dayjs.extend(dayjsRelativeTime);
   const createdAt = DateFrom(dayjs, state.createdAt);
@@ -30,23 +26,7 @@ export default component$((props: WallProps) => {
     nav(`/escort/${state.userSlug}`);
   })
 
-  // useVisibleTask$(() => {
-  //   let observer: IntersectionObserver;
-  //   if (useDefaultImg && !FileIsValidVideo(state?.media?.[0] as string)) {
-  //     observer = new IntersectionObserver(
-  //       () => {
-  //         const img = new Image()
-  //         img.src = GetUrlPreview(state.media?.[0] as string);
-  //         img.onload = () => imgSrc.value = GetUrlPreview(state.media?.[0] as string);
-  //         observer?.disconnect();
-  //       });
-  //     observer.observe(outputRef?.value as Element);
-  //   }
-
-  //   return () => observer?.disconnect();
-  // });
-
-  return <div ref={outputRef} class="wall_state" id={state.id}>
+  return <div class="wall_state" id={state.id}>
     <div class="header">
       <div class="profile_image" onClick$={() => routeToProfile(state)}
         style={{ background: state?.profileImg ? 'url(' + GetUrlPreview(state.profileImg) + ')' : 'url(assets/images/default_user_profile.png)' }}>
@@ -97,7 +77,7 @@ export default component$((props: WallProps) => {
         <div class="image_container">
           {
             !FileIsValidVideo(state.media[0]) &&
-            <img alt="MediaState" class="image" src={imgSrc.value} />
+            <img alt="MediaState" class="image" src={GetUrlPreview(state?.media[0])} />
           }
           {
             FileIsValidVideo(state.media[0]) &&

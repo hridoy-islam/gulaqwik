@@ -44,6 +44,8 @@
   text-decoration: underline;
   line-height: 1.5;
   margin: 0 10px;
+  min-height: 48px;
+  min-width: 50px;
 }
 .social_networks_container button{
  opacity: 0.5;

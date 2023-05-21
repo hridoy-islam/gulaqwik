@@ -102,7 +102,7 @@ export default component$((props: WallProps) => {
           {
             !!states?.length &&
             states.map((state, i) => {
-              return <WallState key={i} state={state} useDefaultImg={i > 1} />
+              return <WallState key={i} state={state} />
             })
           }
           {

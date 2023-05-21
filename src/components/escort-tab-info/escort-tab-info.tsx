@@ -71,7 +71,7 @@ export default component$((props: EscortTabInfoProps) => {
                 description: workeruser.hourlyRate,
             } : undefined,
         {
-            icon: '/assets/images/credit-card-icon.webp',
+            icon: '/assets/images/credit-card.jpg',
             type: 'Acepta tarjetas',
             description: workeruser.acceptCard ? 'Si' : 'No',
         },
@@ -107,7 +107,10 @@ export default component$((props: EscortTabInfoProps) => {
             <div class="info_data">
                 {
                     details.map((d, i) => <div key={i} class="data_item item_has_icon">
-                        <img alt="DataItem" height={12} width={12} class="icon" src={d?.icon} />
+                        {
+                            d?.icon &&
+                            <img alt="DataItem" height={12} width={12} class="icon" src={d?.icon} />
+                        }
                         <div class="title_container"><p class="title">{d?.type}</p></div>
                         <div class="description_container"><p class="description">{d?.description}</p></div>
                     </div>)
