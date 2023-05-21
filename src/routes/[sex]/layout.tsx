@@ -12,12 +12,12 @@ import { provinces_trans } from '~/env/provinces_trans';
 
 import styles from './sex.scss?inline';
 import { Capitalize, RecursiveMerge } from '~/utils';
-const limit = 400;
+const limit = 500;
 
-const getWorkerUsers = async (sex: string, province: string, skip = 0) => {
+const getWorkerUsers = async (billingType: string | undefined, sex: string, province: string, skip = 0, limit = 50) => {
   const pDelEste = "punta-del-este";
   const search = {
-    // billingType: "Elite",
+    billingType: billingType,
     // eslint-disable-next-line no-prototype-builtins
     province: !country.provinces?.hasOwnProperty(Capitalize(province)) || province === pDelEste ? undefined : Capitalize(province),
     neighborhood: province === pDelEste ? "Punta del Este" : undefined,
@@ -34,7 +34,7 @@ export const useWorkerUsers = routeLoader$(async (requestEvent) => {
   let sex = requestEvent.params.sex;
   const province = requestEvent.params.province;
   sex = sex === 'hombres' ? 'male' : sex === 'trans-travestis' ? 'trans' : 'female';
-  return getWorkerUsers(sex, province);
+  return getWorkerUsers('Elite', sex, province);
 });
 
 export const head: DocumentHead = ({params}) => {
@@ -57,6 +57,7 @@ export default component$(() => {
   const workerUsersLoader = useWorkerUsers();
   const workerUsers = useSignal(workerUsersLoader.value);
   const loading = useSignal(false);
+  const firstScrollLoading = useSignal(true);
   let keyword = 'Escorts';
   if (workerUsers.value.sex === 'trans') {
     keyword = 'Travestis';
@@ -75,18 +76,20 @@ export default component$(() => {
 
   useVisibleTask$(() => {
     const onScroll = async () => {
-      const search = (window.outerHeight * 3) <= window.scrollY;
+      const search = (window.scrollY * 5) >= document.getElementsByTagName('main')?.[0]?.clientHeight;
       if (search && !loading.value) {
         loading.value = true;
-        const newData = await getWorkerUsers(workerUsers.value.sex, workerUsers.value.province, workerUsers.value.skip + limit).catch().finally(() => loading.value = false);
+        const skip = firstScrollLoading.value ? 0 : workerUsers.value.skip + limit;
+        const newData = await getWorkerUsers(undefined, workerUsers.value.sex, workerUsers.value.province, skip, limit).catch().finally(() => loading.value = false);
         if (newData.results?.length) {
           workerUsers.value = {
             ...newData,
-            results: workerUsers.value.results.concat(newData.results)
+            results: firstScrollLoading.value ? newData.results : workerUsers.value.results.concat(newData.results)
           }
         } else {
           document.removeEventListener('scroll', onScroll);
         }
+        firstScrollLoading.value = false;
       }
     }
     document.addEventListener('scroll', onScroll);

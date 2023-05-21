@@ -18,14 +18,14 @@ export default component$(() => {
       <div class='flex justify-between items-center p-3'>
         <ul class='flex mx-4 items-center'>
           <li class={styles}>
-            <Link href="">
+            <Link href="/" aria-label='Open Menu'>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-8 h-8 ml-2 text-white">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
               </svg>
             </Link>
           </li>
           <li>
-            <Link href="/escorts/mujeres">
+            <Link href="/escorts/mujeres" >
               <img class={styles} src="/assets/icons/search-w.svg" alt='search' />
             </Link>
           </li>
@@ -36,7 +36,7 @@ export default component$(() => {
           </li>
 
           <li>
-            <Link href="/">
+            <Link href="https://auth.gula.com.uy/auth/login">
               <img class={styles} src="/assets/icons/bookmark_fill_w2.svg" alt='bookmark_fill_w2' />
             </Link>
           </li>
@@ -48,21 +48,21 @@ export default component$(() => {
           </li>
 
           <li>
-            <Link href="" >
+            <Link href="https://auth.gula.com.uy/auth/login" >
               <img class={styles} src="/assets/icons/alarm_w_2.svg" alt='alarm_w_2' />
             </Link>
           </li>
 
           <li>
-            <Link href="/auth/login" >
+            <Link href="https://auth.gula.com.uy/auth/login" >
               <img class={styles} src="/assets/icons/user_w.svg" alt='user_w' />
             </Link>
           </li>
         </ul>
         <div class={['pr-3', styles.logo]}>
-          <a href="/">
+          <Link href="/">
             <img class={styles.logo} src="/assets/logos/gula-logo-w.svg" alt="gula-logo" />
-          </a>
+          </Link>
         </div>
       </div>
       {/* <div class={styles.aligner}>

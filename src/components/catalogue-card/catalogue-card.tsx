@@ -15,9 +15,9 @@ export default component$((props: CatalogueCardProps) => {
   const cardType = (String(workeruser.billingType)?.toLocaleLowerCase() ?? 'elite') + '_card';
 
   useVisibleTask$(() => {
-    // const img = new Image()
-    // img.src = workeruser.profileImg;
-    // img.onload = () => imgSrc.value = workeruser.profileImg
+    const img = new Image()
+    img.src = workeruser.profileImg;
+    img.onload = () => imgSrc.value = workeruser.profileImg
   });
 
   const description = (workeruser.currentNeighborhood ? workeruser.currentNeighborhood : workeruser.currentProvince) +
