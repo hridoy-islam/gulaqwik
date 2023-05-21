@@ -74,7 +74,6 @@ export default component$(() => {
   const seoData: { [key: string]: any } = provinces.seoData;
 
   useVisibleTask$(() => {
-    // Only runs in the client
     const onScroll = async () => {
       const search = (window.outerHeight * 3) <= window.scrollY;
       if (search && !loading.value) {

@@ -1,7 +1,7 @@
-import { component$, useStyles$ } from '@builder.io/qwik';
+import { component$, useSignal, useStyles$, useVisibleTask$ } from '@builder.io/qwik';
 import { Link } from '@builder.io/qwik-city';
 import type { WorkerUser } from '~/api/workeruser';
-import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
+import { Capitalize, GetScheduleDescription, GetUrlPreview, GetWorkdaysDescription } from '~/utils';
 import styles from './catalogue-card.scss?inline';
 
 interface CatalogueCardProps {
@@ -11,14 +11,23 @@ interface CatalogueCardProps {
 export default component$((props: CatalogueCardProps) => {
   useStyles$(styles);
   const { workeruser } = props;
-  const cardType = (String(workeruser.billingType)?.toLocaleLowerCase() ?? 'elite') + '_card'; 
+  const imgSrc = useSignal(workeruser.billingType === 'Elite' ? GetUrlPreview(workeruser.profileImg) : '/assets/images/default_user_profile.png')
+  const cardType = (String(workeruser.billingType)?.toLocaleLowerCase() ?? 'elite') + '_card';
+
+  useVisibleTask$(() => {
+    if (workeruser.billingType !== 'Elite') {
+      const img = new Image()
+      img.src = GetUrlPreview(workeruser.profileImg);
+      img.onload = () => imgSrc.value = GetUrlPreview(workeruser.profileImg)
+    }
+  });
 
   const description = (workeruser.currentNeighborhood ? workeruser.currentNeighborhood : workeruser.currentProvince) +
-  (GetWorkdaysDescription(workeruser) ? ' - ' + GetWorkdaysDescription(workeruser) : '') +
-  (GetScheduleDescription(workeruser) ? (' - ' + GetScheduleDescription(workeruser)) : '') +
-  (workeruser.shortDescription && workeruser.billingType !== 'Premium' ? ' - ' + Capitalize(workeruser.shortDescription) : '');
+    (GetWorkdaysDescription(workeruser) ? ' - ' + GetWorkdaysDescription(workeruser) : '') +
+    (GetScheduleDescription(workeruser) ? (' - ' + GetScheduleDescription(workeruser)) : '') +
+    (workeruser.shortDescription && workeruser.billingType !== 'Premium' ? ' - ' + Capitalize(workeruser.shortDescription) : '');
 
-  return <div class={"card catalogue_card " + cardType} title={workeruser.name} style={"background: url(\"" + workeruser.profileImg + "\");"} >
+  return <div class={"card catalogue_card " + cardType} title={workeruser.name} style={"background: url(\"" + GetUrlPreview(imgSrc.value) + "\");"} >
     <Link class="card_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</Link>
     <Link class="right_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</Link>
     <div class="card_bottom">
