@@ -11,13 +11,19 @@ interface CatalogueCardProps {
 export default component$((props: CatalogueCardProps) => {
   useStyles$(styles);
   const { workeruser } = props;
-  const imgSrc = useSignal('/assets/images/default_user_profile.png')
+  const imgSrc = useSignal('/assets/images/default_user_profile.png');
   const cardType = (String(workeruser.billingType)?.toLocaleLowerCase() ?? 'elite') + '_card';
+  const outputRef = useSignal<Element>();
 
   useVisibleTask$(() => {
-    const img = new Image()
-    img.src = workeruser.profileImg;
-    img.onload = () => imgSrc.value = workeruser.profileImg
+    const observer = new IntersectionObserver(
+      () => {
+        const img = new Image()
+        img.src = workeruser.profileImg;
+        img.onload = () => imgSrc.value = workeruser.profileImg;
+      });
+    observer.observe(outputRef?.value as Element);
+    return () => observer.disconnect();
   });
 
   const description = (workeruser.currentNeighborhood ? workeruser.currentNeighborhood : workeruser.currentProvince) +
@@ -25,7 +31,7 @@ export default component$((props: CatalogueCardProps) => {
     (GetScheduleDescription(workeruser) ? (' - ' + GetScheduleDescription(workeruser)) : '') +
     (workeruser.shortDescription && workeruser.billingType !== 'Premium' ? ' - ' + Capitalize(workeruser.shortDescription) : '');
 
-  return <div class={"card catalogue_card " + cardType} title={workeruser.name} style={"background: url(\"" + GetUrlPreview(imgSrc.value) + "\");"} >
+  return <div ref={outputRef} class={"card catalogue_card " + cardType} title={workeruser.name} style={"background: url(\"" + GetUrlPreview(imgSrc.value) + "\");"} >
     <Link class="card_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</Link>
     <Link class="right_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</Link>
     <div class="card_bottom">
