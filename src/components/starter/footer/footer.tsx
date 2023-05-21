@@ -2,9 +2,7 @@ import { component$ } from '@builder.io/qwik';
 import styles from './footer.module.css';
 
 export default component$(() => {
-  // const state = useContext(GulaContext)
 
-  //const serverTime = useServerTimeLoader();
   return (
     <footer class={styles.main_footer}>
       <div class="w-28">
@@ -21,19 +19,11 @@ export default component$(() => {
         <a rel="nofollow" class={styles.anchor} href="/terms">Términos de uso</a>
       </div>
       <div class="social_networks_container transition ease-in-out delay-150 opacity-50 hover:opacity-100 w-8 mx-auto mt-6">
-<<<<<<< HEAD
-
-        <a href="https://twitter.com/gulaescortuy" target="_blank">
-          <img class="w-6" src="/assets/icons/twitter-w.svg" alt="twitter" />
-        </a>
-
-=======
-        <button class="w-6"> 
+        <button class="w-6">
           <a href="https://twitter.com/gulaescortuy" target="_blank">
-          <img class="w-6" src="/assets/icons/twitter-w.svg" alt="twitter"/>
+            <img class="w-6" src="/assets/icons/twitter-w.svg" alt="twitter" />
           </a>
         </button>
->>>>>>> 7c40127677b74f1a3621cbd9efd5ece0d3537a55
       </div>
     </footer>
   );
