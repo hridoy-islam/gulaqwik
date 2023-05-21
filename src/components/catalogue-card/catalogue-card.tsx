@@ -21,9 +21,10 @@ export default component$((props: CatalogueCardProps) => {
         const img = new Image()
         img.src = workeruser.profileImg;
         img.onload = () => imgSrc.value = workeruser.profileImg;
+        observer?.disconnect();
       });
     observer.observe(outputRef?.value as Element);
-    return () => observer.disconnect();
+    return () => observer?.disconnect();
   });
 
   const description = (workeruser.currentNeighborhood ? workeruser.currentNeighborhood : workeruser.currentProvince) +
