@@ -11,15 +11,13 @@ interface CatalogueCardProps {
 export default component$((props: CatalogueCardProps) => {
   useStyles$(styles);
   const { workeruser } = props;
-  const imgSrc = useSignal(workeruser.billingType === 'Elite' ? GetUrlPreview(workeruser.profileImg) : '/assets/images/default_user_profile.png')
+  const imgSrc = useSignal('/assets/images/default_user_profile.png')
   const cardType = (String(workeruser.billingType)?.toLocaleLowerCase() ?? 'elite') + '_card';
 
   useVisibleTask$(() => {
-    if (workeruser.billingType !== 'Elite') {
-      const img = new Image()
-      img.src = GetUrlPreview(workeruser.profileImg);
-      img.onload = () => imgSrc.value = GetUrlPreview(workeruser.profileImg)
-    }
+    const img = new Image()
+    img.src = GetUrlPreview(workeruser.profileImg);
+    img.onload = () => imgSrc.value = GetUrlPreview(workeruser.profileImg)
   });
 
   const description = (workeruser.currentNeighborhood ? workeruser.currentNeighborhood : workeruser.currentProvince) +
