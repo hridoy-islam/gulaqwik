@@ -13,7 +13,6 @@ $fav_button_size: 30;
   background-repeat: no-repeat !important;
   background-size: cover !important;
   background-position: center !important;
-  background-position: center;
   border-radius: getRelative(5);
   overflow: hidden;
   background: map-get($map: $overlay, $key: 400);

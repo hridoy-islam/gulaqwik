@@ -59,6 +59,7 @@ export interface WorkerUser extends User {
   alarm?: any;
   prevSlug: string;
   phonePrev: string;
+  priorization: number;
 }
 
 export interface WorkerUserPaginated {

@@ -15,7 +15,7 @@ $full_height: calc(100% - #{$search_width});
 $full_height-min: calc(100% - #{$search_width_min});
 
 .catalogue_section {
-  display: grid;
+  // display: grid;
   grid-template-columns: $search_width $full_height;
   padding: $content_padding_top $content_padding_lateral 0;
   box-sizing: border-box;
@@ -325,9 +325,6 @@ $full_height-min: calc(100% - #{$search_width_min});
       width: $search_width_min;
     }
   }
-  .subtitles_container {
-    margin-bottom: 50px;
-  }
 }
 
 @media screen and (max-width: $second_breakpoint) {
@@ -341,12 +338,6 @@ $full_height-min: calc(100% - #{$search_width_min});
     .catalogue_output {
       width: 100%;
       padding-left: 0;
-    }
-  }
-  .subtitles_container {
-    margin-bottom: 50px;
-    details:last-child {
-      margin-bottom: getRelative(155) !important;
     }
   }
 }

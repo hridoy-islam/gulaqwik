@@ -2,7 +2,8 @@ import { component$, useStyles$, Resource, useVisibleTask$, useSignal } from '@b
 // import { useLocation } from '@builder.io/qwik-city';
 import { searchWorkerUsers } from '~/api/workeruser';
 import CatalogueCard from '~/components/catalogue-card/catalogue-card';
-import { DocumentHead, routeLoader$, useLocation } from '@builder.io/qwik-city';
+import type { DocumentHead} from '@builder.io/qwik-city';
+import { routeLoader$, useLocation } from '@builder.io/qwik-city';
 import country from '~/uruguay';
 // import Search from '~/components/search/search';
 import { provinces_female } from '~/env/provinces_female';
@@ -11,7 +12,7 @@ import { provinces_trans } from '~/env/provinces_trans';
 
 import styles from './sex.scss?inline';
 import { Capitalize, RecursiveMerge } from '~/utils';
-const limit = 40;
+const limit = 400;
 
 const getWorkerUsers = async (sex: string, province: string, skip = 0) => {
   const pDelEste = "punta-del-este";
@@ -24,7 +25,9 @@ const getWorkerUsers = async (sex: string, province: string, skip = 0) => {
     skip,
     limit
   }
-  return { sex, province, skip, data: await searchWorkerUsers(search) };
+  const workerusers = await searchWorkerUsers(search);
+  workerusers.results = workerusers.results.sort((a, b) => a.billingType === b.billingType ? a.priorization - b.priorization : a.billingType === 'Elite' ? -1 : b.billingType === 'Elite' ? 1 : a.billingType === 'Vip' ? -1 : 0)
+  return { sex, province, skip, ...workerusers  };
 }
 
 export const useWorkerUsers = routeLoader$(async (requestEvent) => {
@@ -77,13 +80,10 @@ export default component$(() => {
       if (search && !loading.value) {
         loading.value = true;
         const newData = await getWorkerUsers(workerUsers.value.sex, workerUsers.value.province, workerUsers.value.skip + limit).catch().finally(() => loading.value = false);
-        if (newData.data?.results?.length) {
+        if (newData.results?.length) {
           workerUsers.value = {
             ...newData,
-            data: {
-              ...newData.data,
-              results: workerUsers.value.data.results.concat(newData.data.results)
-            }
+            results: workerUsers.value.results.concat(newData.results)
           }
         } else {
           document.removeEventListener('scroll', onScroll);
@@ -100,7 +100,7 @@ export default component$(() => {
 
   return <div class="catalogue_section">
     {/* <Search /> */}
-    <div>Search</div>
+    <div></div>
     <div class="catalogue_output">
       <div>
         <h1>Escort Uruguay: Chicas escorts, prostitutas y putas</h1>
@@ -109,7 +109,7 @@ export default component$(() => {
       <div class="card_output">
         <section class="card_output">
           <Resource value={workerUsers} onResolved={(response): any => {
-            return response?.data?.results?.map((workeruser, i: number) => {
+            return response?.results?.map((workeruser, i: number) => {
               return <CatalogueCard key={i} workeruser={workeruser} />;
             });
           }} />

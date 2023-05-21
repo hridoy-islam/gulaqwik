@@ -109,7 +109,7 @@ export default component$(() => {
     <><section class="profile_section">
       <div class="background_image" style={{ background: "url('" + backgroundImg.value + "')" }}></div>
       <div class="profile_content">
-        <EscortMainProfile workeruser={workerUser} />
+        <EscortMainProfile workeruser={workerUser} selectedTab={selectedTab} />
         <div id="tab_container" class="tab_container" style="padding-bottom: 65px;">
           <div class="escort_tab_output">
             <div class={"tab " + (selectedTab.value === 1 ? "active" : "")}>
