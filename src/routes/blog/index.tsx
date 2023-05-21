@@ -1,14 +1,14 @@
 import { component$ } from "@builder.io/qwik";
+import { routeLoader$ } from "@builder.io/qwik-city";
 import styles from './blog.module.css';
-import {  routeLoader$ } from "@builder.io/qwik-city";
 import Blogs from "./blogs";
 
-interface product{
+interface product {
     createdAt: String,
     updatedAt: String,
     deletedAt: String,
     id: String,
-    title:String,
+    title: String,
     slug: String,
     seoTitle: String,
     seoDescription: String,
@@ -17,23 +17,15 @@ interface product{
     previewImage: String,
 }
 
-// export const onGet: RequestHandler<BlogData[]> = async () => {
-//     console.log("fetching data")
-
-//     const res = await fetch('https://gula-api-test-2i55x.ondigitalocean.app/blog/')
-//     const data =await res.json()
-
-//     return data
-// }
 
 export const useProductDetails = routeLoader$(async () => {
     // This code runs only on the server, after every navigation
-    const res = await fetch(`https://gula-api-test-2i55x.ondigitalocean.app/blog`);
+    const res = await fetch(`https://gula-api-test-2i55x.ondigitalocean.app/blog?skip=0&limit=40&published=true&sort=createdAt%20DESC`);
     const product = (await res.json()) as product[];
-    return product ;
-  });
+    return product;
+});
 export default component$(() => {
-    const signal = useProductDetails(); 
+    const signal = useProductDetails();
     const blogs = signal?.value?.results;
 
     return (
@@ -67,18 +59,15 @@ export default component$(() => {
                     </div>
                 </div>
                 <div class={styles.blog_scroll}>
-                <div class="grid grid-cols-3">
-                    {
-                blogs?.map(blog =>
-                    <Blogs key={blog._id} blog={blog}></Blogs>)
-                }
-                    
+                    <div class="grid grid-cols-3">
+                        {
+                            blogs?.map(blog =>
+                                <Blogs key={blog._id} blog={blog}></Blogs>)
+                        }
+
+                    </div>
                 </div>
-            </div>
-                
-                    
-                
-            </div>
+            </div >
         </>
     )
 })

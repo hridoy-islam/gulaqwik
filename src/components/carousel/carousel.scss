@@ -1,0 +1,143 @@
+@import "../../main.scss";
+
+.card_output {
+  @include flexAlign(vertical);
+  justify-content: flex-start;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 60px;
+  padding-bottom: getRelative(5);
+  box-sizing: border-box;
+  overflow-x: auto;
+  scrollbar-width: thin !important;
+  scrollbar-color: map-get($map: $primary, $key: 200) map-get($map: $overlay, $key: 200);
+
+  &::-webkit-scrollbar {
+    height: getRelative(10);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: getRelative(5);
+    background: map-get($map: $overlay, $key: 200);
+
+    &:hover {
+      background: map-get($map: $overlay, $key: 300);
+    }
+  }
+
+}
+
+@media screen and (max-width: 650px) {
+  .card_output {
+    width: 85%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .featured_card {
+      margin-right: getRelative(15);
+    }
+  }
+}
+
+.featured_card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: getRelative(400);
+  height: getRelative(530);
+  padding: getRelative(30);
+  box-sizing: border-box;
+  border-radius: getRelative(5);
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  overflow: hidden;
+  cursor: pointer;
+  min-width: 220px;
+  margin-right: getRelative(20);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: map-get($map: $overlay, $key: 400);
+    z-index: 1;
+  }
+
+  .type_container {
+    margin-bottom: getRelative(20);
+    padding: getRelative(7) getRelative(14);
+    box-sizing: border-box;
+    border-radius: getRelative(8);
+    backdrop-filter: blur(getRelative(30));
+
+    .type_label {
+      font-size: getRelative(34);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: map-get($map: $primary, $key: 300);
+    }
+  }
+
+  .card_name {
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-left: getRelative(7);
+    margin-bottom: getRelative(5, 30);
+    font-size: getRelative(30);
+    font-weight: 700;
+    color: map-get($map: $primary, $key: 300);
+  }
+
+  .card_description {
+    font-size: getRelative(16);
+    font-weight: 300;
+    color: map-get($map: $primary, $key: 300);
+  }
+}
+
+.no_image_background {
+  background: map-get($map: $primary, $key: 100);
+}
+
+@media screen and (max-width: 1440px) {
+  .featured_card {
+    width: getRelative(350);
+    height: getRelative(400);
+
+    .type_container {
+      padding: getRelative(5) getRelative(10);
+
+      .type_label {
+        font-size: getRelative(25);
+      }
+    }
+
+    .card_name {
+      font-size: getRelative(22);
+      margin-bottom: getRelative(5, 22);
+    }
+
+    .card_description {
+      font-size: getRelative(13);
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .featured_card {
+    width: getRelative(280);
+    height: 50vh;
+  }
+}

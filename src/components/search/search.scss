@@ -1,0 +1,66 @@
+@import "../../main.scss";
+
+:host {
+  width: 100%;
+  height: fit-content;
+}
+
+.search_aside {
+  width: 100%;
+  height: auto;
+  background: black;
+
+  .title_container {
+    margin-bottom: getRelative(0);
+
+    .title {
+      $context: 18;
+      font-size: getRelative($context);
+      font-weight: 700;
+      color: map-get($map: $primary, $key: 100-contrast);
+    }
+  }
+
+  .form_container {
+    .input {
+      @include inputCommon(14);
+    }
+
+    .button_container {
+      margin-top: getRelative(30);
+
+      .button {
+        @include fillButton(16);
+        width: 100%;
+      }
+
+      .link {
+        @include deleteButtonStyles();
+        width: 100%;
+        margin-top: getRelative(15, 14);
+        font-size: getRelative(14);
+        font-weight: 500;
+        color: map-get($map: $primary, $key: 300);
+        text-align: center;
+        opacity: 0.5;
+        transition: all 200ms ease-in;
+
+        &:hover {
+          opacity: 1;
+          transition: all 200ms ease-in;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .search_aside {
+    padding: 0 getRelative(30);
+    box-sizing: border-box;
+
+    .title_container .title {
+      text-align: center;
+    }
+  }
+}
