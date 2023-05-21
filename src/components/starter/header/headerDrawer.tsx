@@ -61,7 +61,7 @@ export default component$(() => {
                     </div>
                     </div>
                     <div class='min-h-screen nav_side_container'>
-                        <h3>Lorem ipsum dolor sit amet.</h3>
+                        
                     </div>
                 </div>
             </div>
