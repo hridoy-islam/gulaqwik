@@ -8,16 +8,17 @@ import dayjsRelativeTime from 'dayjs/plugin/relativeTime';
 
 interface WallProps {
   state: IWallState;
+  useDefaultImg: boolean;
 }
 
 export default component$((props: WallProps) => {
   useStyles$(styles);
   const nav = useNavigate();
-  const { state } = props;
+  const { state, useDefaultImg } = props;
   const editionActive = false;
   const canDeleteState = false;
   const likeItAlreadySelected = false;
-  const imgSrc = useSignal('/assets/images/about-mobile.jpeg');
+  const imgSrc = useSignal(useDefaultImg ?  '/assets/images/about-mobile.jpeg' : GetUrlPreview(state?.media?.[0] as string));
   const outputRef = useSignal<Element>();
 
   dayjs.extend(dayjsRelativeTime);
@@ -30,7 +31,7 @@ export default component$((props: WallProps) => {
 
   useVisibleTask$(() => {
     let observer: IntersectionObserver;
-    if (!FileIsValidVideo(state?.media?.[0] as string)) {
+    if (useDefaultImg && !FileIsValidVideo(state?.media?.[0] as string)) {
       observer = new IntersectionObserver(
         () => {
           const img = new Image()
