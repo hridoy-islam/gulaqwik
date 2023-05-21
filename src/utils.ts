@@ -404,7 +404,7 @@ export const AddNoIndex = (document: Document) => {
 
 export const GetScheduleDescription = (user: WorkerUser) => {
     return user?.scheduleMin && user?.scheduleMax ?
-        user.scheduleMin.substr(0, 2) + 'hs a ' + user.scheduleMax.substr(0, 2) + 'hs' : ''
+       (user.scheduleMin.substring(0, 2) + 'hs a ' + user.scheduleMax.substring(0, 2) + 'hs') : 'Disp 24hs'
 }
 
 export const GetWorkdaysDescription = (user: WorkerUser) => {

@@ -72,7 +72,6 @@ export default component$((props: EscortMainProfileProps) => {
                     <p class="label">{GetWorkdaysDescription(workeruser)}</p>
                     <span class="separator"></span>
                     <p class="label">{GetScheduleDescription(workeruser)}</p>
-
                 </div>
 
                 <div class="buttons_grid">

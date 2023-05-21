@@ -1,0 +1,351 @@
+@import "../../main.scss";
+
+$profile_img_size: getRelative(35);
+$profile_img_margin: getRelative(20);
+
+.wall_state {
+  width: 100%;
+  background: black;
+  display: block;
+  width: 100%;
+  margin-bottom: getRelative(5);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .header {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    background: map-get($map: $overlay, $key: 300);
+    padding: getRelative(20) getRelative(20) 0;
+    box-sizing: border-box;
+
+    .profile_image {
+      cursor: pointer;
+      display: block;
+      width: $profile_img_size;
+      height: $profile_img_size;
+      margin-right: getRelative(10);
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      border-radius: calc(#{$profile_img_size} / 2);
+    }
+
+    .content {
+      width: 80vh;
+      overflow: hidden;
+
+      .username_container {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 50%;
+        margin-bottom: getRelative(15);
+        margin-left: 50px;
+
+        .username {
+          $context: 15;
+          font-size: em($context);
+          text-transform: uppercase;
+          margin-bottom: getRelative(4, $context);
+          cursor: pointer;
+          text-decoration: none;
+        }
+
+        .date {
+          $context: 12;
+          font-size: getRelative($context);
+          opacity: 0.75;
+          color: map-get($map: $primary, $key: 300);
+
+          .date_label {
+            font-size: 1em;
+          }
+        }
+      }
+
+      .username {
+        display: block;
+        font-size: getRelative(15);
+        font-weight: 700;
+        color: map-get($map: $primary, $key: 300);
+      }
+
+      .edition_container {
+        width: 100%;
+
+        .edit_comment_textarea {
+          $context: 14;
+          width: calc(100% - #{getRelative(1, $context)});
+          min-height: getRelative(100, $context);
+          margin: getRelative(15, $context) auto;
+          height: 100%;
+          padding: getRelative(14, $context);
+          box-sizing: border-box;
+          font-size: getRelative($context);
+          border: solid getRelative(1, $context) map-get($map: $primary, $key: A400);
+          background: map-get($map: $primary, $key: 100);
+          color: map-get($map: $primary, $key: A100-contrast);
+          outline: none;
+          resize: none;
+        }
+
+        .edition_actions {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+
+          .action {
+            $context: 12;
+            max-width: getRelative(200, $context);
+            width: 100%;
+            padding: getRelative(10) getRelative(20);
+            box-sizing: border-box;
+            margin: 0 auto getRelative(10, $context);
+            font-size: getRelative($context);
+            font-weight: 600;
+            border-radius: getRelative(8, $context);
+            color: map-get($map: $primary, $key: A100);
+            background: map-get($map: $primary, $key: A100-contrast);
+            border: none;
+            outline: none;
+            cursor: pointer;
+
+            &:last-child {
+              margin-bottom: 0;
+              color: map-get($map: $primary, $key: A100-contrast);
+              background: none;
+              border: none;
+              border-radius: none;
+            }
+          }
+        }
+      }
+    }
+
+    .actions {
+      position: absolute;
+      right: getRelative(20);
+      display: flex;
+      align-items: center;
+
+      .open_menu_button {
+        @include deleteButtonStyles();
+        @include flexAlign(center);
+        width: getRelative(20);
+        height: getRelative(20);
+        outline: none;
+        overflow: hidden;
+
+        .icon {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .description {
+    $context: 14;
+    width: calc(100% - #{getRelative(40, $context)});
+    max-width: 100%;
+    margin: 10px auto auto auto;
+    font-size: getRelative($context);
+    font-weight: 300;
+    color: map-get($map: $primary, $key: 300);
+    word-wrap: break-word;
+    line-break: anywhere;
+  }
+
+  .media_output {
+    width: 100%;
+    margin-top: getRelative(20);
+
+    .image_container {
+      @include flexAlign(center);
+      position: relative;
+      width: 100%;
+      height: 72vh;
+      overflow: hidden;
+
+      .image {
+        position: absolute;
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .video {
+        outline: none;
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  .reactions_container {
+    padding: getRelative(20);
+    box-sizing: border-box;
+    background: map-get($map: $overlay, $key: 300);
+
+    .reactions_aligner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .like_it_selected {
+        opacity: 1 !important;
+        transition: all 200ms ease-in;
+      }
+
+      .reaction_counter_no_logged_in_user {
+        margin-bottom: 0 !important;
+      }
+
+      .reactions_counter {
+        @include flexAlign(vertical);
+        opacity: 0.5;
+        cursor: pointer;
+
+        .icon {
+          height: getRelative(12);
+          margin-right: getRelative(5);
+        }
+
+        .number {
+          color: map-get($map: $primary, $key: 300);
+        }
+      }
+    }
+
+    .separator {
+      width: 100%;
+      height: getRelative(1);
+      margin: getRelative(25) auto;
+      border: none;
+      background: map-get($map: $primary, $key: A100-contrast);
+      opacity: 0.5;
+    }
+
+    .actions {
+      @include flexAlign(vertical);
+      justify-content: space-between;
+
+      .left {
+        @include flexAlign(vertical);
+
+        .action {
+          @include deleteButtonStyles();
+          @include flexAlign(vertical);
+          margin-right: getRelative(15);
+          font-weight: 400;
+          transition: all 200ms ease-in;
+          opacity: 0.5;
+          outline: none;
+
+          &:hover {
+            opacity: 1;
+            transition: all 200ms ease-in;
+          }
+
+          .icon {
+            margin-right: getRelative(5);
+          }
+
+          .label {
+            color: map-get($map: $primary, $key: 300);
+          }
+        }
+
+        .like_it_selected {
+          font-weight: 600;
+          opacity: 1 !important;
+          transition: all 200ms ease-in;
+
+          .icon,
+          .label {
+            transition: all 200ms ease-in;
+            animation-delay: 0;
+            animation-duration: 500ms;
+          }
+
+          .icon {
+            animation-name: likedAnimation;
+          }
+
+          .label {
+            animation-name: likedAnimationLabel;
+          }
+        }
+      }
+    }
+  }
+
+  .comments_container_closed {
+    padding-bottom: getRelative(20);
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .wall_state {
+    max-width: 100vh;
+  }
+
+  .wall_state .header,
+  .wall_state .reactions_container {
+    background: map-get($map: $primary, $key: A100);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wall_state {
+    .header {
+      padding: getRelative(15);
+      padding-bottom: 0;
+    }
+
+    .media_output .image_container {
+      height: 57vh;
+    }
+
+    .reactions_container {
+      padding: getRelative(15);
+    }
+  }
+}
+
+@keyframes likedAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  33% {
+    transform: rotate(50deg);
+  }
+
+  66% {
+    transform: rotate(-50deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes likedAnimationLabel {
+  0% {
+    font-size: 1em;
+  }
+
+  50% {
+    font-size: calc(1em + 2px);
+  }
+
+  100% {
+    font-size: 1em;
+  }
+}

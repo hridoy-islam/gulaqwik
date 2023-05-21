@@ -325,7 +325,6 @@ $full_height-min: calc(100% - #{$search_width_min});
   .main_wall {
     width: 100vw;
     margin: 0;
-    margin-top: 65px;
     flex-direction: column;
 
     .subtitle {

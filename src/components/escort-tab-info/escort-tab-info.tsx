@@ -107,7 +107,7 @@ export default component$((props: EscortTabInfoProps) => {
             <div class="info_data">
                 {
                     details.map((d, i) => <div key={i} class="data_item item_has_icon">
-                        <img alt="DataItem" class="icon" src={d?.icon} />
+                        <img alt="DataItem" height={12} width={12} class="icon" src={d?.icon} />
                         <div class="title_container"><p class="title">{d?.type}</p></div>
                         <div class="description_container"><p class="description">{d?.description}</p></div>
                     </div>)
