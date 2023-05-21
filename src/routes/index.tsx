@@ -24,11 +24,11 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: 'Welcome to Qwik',
+  title: 'Gula - El sitio de Chicas Escorts, Putas, Hombres y Trans en Uruguay',
   meta: [
     {
       name: 'description',
-      content: 'Qwik site description',
+      content: 'Somos la primera Red Social Erótica de Chicas Escorts. Gula un espacio de publicidad donde putas, mujeres trans y hombres, ofrecen sus diferentes servicios',
     },
   ],
 };

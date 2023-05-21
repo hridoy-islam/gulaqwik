@@ -176,20 +176,12 @@ export const provinces_trans = {
     }
   },
   seoData: {
-    trans: {
-      h1: ' Escorts Travestis Uruguay: Escort trans, transexuales',
-      h2a: 'Transexuales Uruguay',
-      h2b: 'Shemale Uruguay',
-      h3a: '',
-      h3b: '',
-      metaTags: [{name: 'long-description', content: 'En Gula podrás ver las travestis Uruguay más traviesas de la web con ganas de jugar, dotadas, morbosas, activas, amplias y pasivas, todas tus fantasías hechas realidad. Cuerpos espectaculares, sexo sin tabúes, todo lo que te imaginas y más con en un solo lugar. Trans con mucha libido dispuestas a complacerte, todo lo prohibido de salir con una mujer con pene, las mejores experiencias que te puedas imaginar, sexo oral, penetración, dildos, lubricantes y toda la estimulación anal, descubrí tu cuerpo jugando con estas golosas. Fotos sin censura, videos porno, travestis Uruguay de todas las edades a partir de 18 años, altas y bajas, rubias y morenas, tetonas y lolitas, todas las posiciones sexuales que te puedas imaginar, el Kama Sutra en su máxima expresión. Sexo salvaje, libres terminaciones, doble penetración, amigas y compañeras en la web, sexo lésbico trans, colas grandes y pequeñas, déjate llevar por deseo y disfruta de la mejor experiencia de tu vida, la mejor web con perfiles 100% verificados, te esperamos. '}]
-    },
-    whiskerias: {
-      h1: 'Whiskerias Montevideo',
-      h2a: 'Whiskeria Montevideo',
-      h2b: '',
-      h3a: '',
-      h3b: '',
-    }
+    title: 'Escorts Travestis Uruguay: Escort trans, transexuales ❤️ | Gula',
+    metaDescription: 'Escorts Travestis Uruguay dispuestos a darte  placer AHORA MISMO 🔥 Servicios 💯% COMPLETOS. Escorts trans esperando a que las pruebes 😈',
+    h1: ' Escorts Travestis Uruguay: Escort trans, transexuales',
+    h2a: 'Transexuales Uruguay',
+    h2b: 'Shemale Uruguay',
+    h3a: '',
+    h3b: '',
   }
 };

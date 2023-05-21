@@ -136,7 +136,7 @@
           }
 
           .content {
-            width: calc(100% - #{$profile_img_size} - #{$profile_img_margin});
+            width: 80vh;
             overflow: hidden;
 
             .username_container {
@@ -145,6 +145,7 @@
               flex-direction: column;
               width: 50%;
               margin-bottom: getRelative(15);
+              margin-left: 50px;
 
               .username {
                 $context: 15;
@@ -251,7 +252,7 @@
           $context: 14;
           width: calc(100% - #{getRelative(40, $context)});
           max-width: 100%;
-          margin: 0 auto;
+          margin: 10px auto auto auto;
           font-size: getRelative($context);
           font-weight: 300;
           color: map-get($map: $primary, $key: 300);

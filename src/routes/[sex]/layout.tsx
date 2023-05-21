@@ -35,20 +35,14 @@ export const useWorkerUsers = routeLoader$(async (requestEvent) => {
 });
 
 export const head: DocumentHead = ({params}) => {
-  const sex = params.sex;
-  const province = params.province;
+  const seo = params.sex === 'hombres' ? provinces_male : params.sex === 'trans-travestis' ? provinces_trans : provinces_female;
+  // const province = params.province;
   return {
-    title: `Joke "${sex}"`,
+    title: seo.seoData.title,
     meta: [
       {
         name: 'description',
-        content: province,
-      },
-    ],
-    link: [
-      {
-        rel: 'canonical',
-        href: 'https://example.com/about',
+        content: seo.seoData.metaDescription,
       },
     ],
   };
@@ -74,7 +68,7 @@ export default component$(() => {
   }
 
   const provinces = mergeProvinces(provinces_male, provinces_female, provinces_trans);
-  const seoData: { [key: string]: any } = provinces.seoData[workerUsers.value.sex];
+  const seoData: { [key: string]: any } = provinces.seoData;
 
   useVisibleTask$(() => {
     // Only runs in the client

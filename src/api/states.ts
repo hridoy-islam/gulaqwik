@@ -1,5 +1,18 @@
 import { WorkerUser } from "./workeruser";
 
+const base = 'https://gula-api-test-2i55x.ondigitalocean.app/state';
+
+export const searchStates = async (sex?: 'male' | 'female' | 'trans', skip: number = 0, limit: number = 40): Promise<StatePaginated> => {
+  // return (await axios.post<WorkerUserPaginated>(base + 'search', search)).data;
+  return await (await fetch(base + '?skip=' + skip + '&limit=' + limit + (sex ? ('&sex=' + sex) : ''))).json();
+}
+
+export interface StatePaginated {
+    totalCount: number;
+    results: StateWorkerUser[];
+    sex?: string;
+  }
+
 export interface StateWorkerUser {
     id?: string;
     text: string;
@@ -7,7 +20,7 @@ export interface StateWorkerUser {
     sex: string;
     createdAt?: string;
     location?: string;
-    statesOf: string | WorkerUser;
+    statesOf: WorkerUser[];
     mediaFromGallery: boolean;
     likeIt: ILikeIt[];
     comments: IStateComment[];

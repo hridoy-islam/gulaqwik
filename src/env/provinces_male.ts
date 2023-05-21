@@ -175,20 +175,12 @@ export const provinces_male = {
     }
   },
   seoData: {
-    male: {
-      h1: 'Escort masculino: hombres escort con un físico increíble',
-      h2a: 'Escorts hombres Uruguay',
-      h2b: 'Escort Gay Uruguay',
-      h3a: '',
-      h3b: '',
-      metaTags: [{name: 'long-description', content: 'Si buscas hombres escort acá están los mejores, gay, heterosexuales y bisexuales esperando por vos. Chicos dotados, morbosos, activos, versátiles y pasivos con ganas de divertirse, mucho sexo asegurado en un lugar 100% seguro. Fotos y videos originales, contenido erótico y sexual de hombres escort con cuerpos trabajados, los adonis del sexo. Maduros y jovenes amantes de la fiesta, lecheros, traviesos, juguetones, una lista amplia para que puedas encontrar lo que buscas. Fiestas gay, orgías, streapers cachondos con ganas de darte placer, sumisos y dominantes, lluvias, bondage, cambio de roles, fisting, besos mojados y las prácticas sexuales más calientes con los pibes más lindos. Una aventura erótica que guardarás siempre en tu memoria, tus mas bajos deseos hechos realidad, entrégate al extremo, al goce y a la lujuria en un lugar con los gigolo mas hermosos del planeta, la mejor oferta sexual al alcance de tu mano, solo déjate llevar, disfruta hoy y siempre que quieras volver.'}]
-    },
-    whiskerias: {
-      h1: 'Whiskerias Montevideo',
-      h2a: 'Whiskeria Montevideo',
-      h2b: '',
-      h3a: '',
-      h3b: '',
-    }
+    title: 'Escort masculino: hombres escort con un físico increíble 🔥 | Gula',
+    metaDescription: 'Encuentra el Escort Masculino que buscas AHORA MISMO 🔥 Servicios 💯% COMPLETOS. Escorts Hombres discretos, heteros, bis y gays en Uruguay',
+    h1: 'Escort masculino: hombres escort con un físico increíble',
+    h2a: 'Escorts hombres Uruguay',
+    h2b: 'Escort Gay Uruguay',
+    h3a: '',
+    h3b: '',
   }
 };

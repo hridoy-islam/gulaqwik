@@ -72,7 +72,7 @@ export default component$((props: WallProps) => {
 
   const routeToProfile = $((state: IWallState) => {
     // this._tabWallService.lastClickedStateId = this.data.id;
-    nav(`escort/${state.userSlug}`);
+    nav(`/escort/${state.userSlug}`);
   })
 
   return <>
@@ -103,11 +103,11 @@ export default component$((props: WallProps) => {
         }
         <div class="wall_output">
           {
-            !states.length &&
+            !states?.length &&
             <p class="emtpy">No hay estados para mostrar</p>
           }
           {
-            !!states.length &&
+            !!states?.length &&
             states.map((state, i) => {
               const createdAt = DateFrom(dayjs, state.createdAt);
               return <div key={i} class="wall_state" id={state.id}>
@@ -116,10 +116,12 @@ export default component$((props: WallProps) => {
                     style={{ background: state?.profileImg ? 'url(' + GetUrlPreview(state.profileImg) + ')' : 'url(assets/images/default_user_profile.png)' }}>
                     <div class="content">
                       <div class="username_container">
+
                         {
                           !!state?.username &&
-                          <Link class="username" href={"/escort/" + state.userSlug} onClick$={() => routeToProfile(state)}
-                          >{state.username}</Link>
+                          <span class="username">{state.username}</span>
+                          // <Link class="username" href={"/escort/" + state.userSlug} onClick$={() => routeToProfile(state)}
+                          // >{state.username}</Link>
                         }
                         {
                           !!createdAt &&
