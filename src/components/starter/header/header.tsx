@@ -13,7 +13,7 @@ export default component$(() => {
     scrolled: false
   })
   return (
-    <header class={"fixed top-0 left-0 w-full p-0 text-white text-xl sm:text-4xl sm:p-8 " + (store.scrolled ? 'bg-[#070707]' : 'bg-transparent')}
+    <header class={"fixed top-0 left-0 w-full p-0 text-white text-xl sm:text-4xl sm:p-2 " + (store.scrolled ? 'bg-[#070707]' : 'bg-transparent')}
       document:onScroll$={() => {
         if (window.scrollY > 0) {
           store.scrolled = true
@@ -35,13 +35,6 @@ export default component$(() => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
               </svg>
               }
-              {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-8 h-8 ml-2 text-white">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
-              </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 ml-2 text-white">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg> */}
-
             </button>
             
             {
@@ -74,7 +67,7 @@ export default component$(() => {
 
           <li>
               <button onClick$={notiToogle}>
-                <img class={styles} src="/assets/icons/alarm_w_2.svg" alt='alarm_w_2' />
+                <img class={[styles, 'w-5']} src="/assets/icons/alarm_w_2.svg" alt='alarm_w_2' />
               </button>
               {
               state?.noti && <Notification></Notification>

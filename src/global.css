@@ -107,8 +107,8 @@ body {
 .text_container{
   padding-bottom: 200px;
   position: absolute;
-  top: -65px;
-  left: -180%;
+  top: -85px;
+  left: -225%;
   z-index: 100;
   height: 100vh;
   z-index: -1;
@@ -119,7 +119,7 @@ body {
 .nav_item_container{
   background: rgba(0,0,0,.8117647059);
   backdrop-filter: blur(calc((30 / 14) * 1em));
-  width: 25%;
+  width: 30%;
   animation: navitem ;
   animation-duration: .7s;
 }
@@ -153,13 +153,13 @@ body {
 }
 .nav_side_container{
   background: rgba(0,0,0,.5019607843);
-  width: 75%;
+  width: 70%;
   animation: navside ;
   animation-duration: .5s;
 }
 @keyframes navitem {
   from {width: 0;}
-  to {width: 25%;}
+  to {width: 30%;}
 }
 @keyframes navside {
   from {right: 100%;}

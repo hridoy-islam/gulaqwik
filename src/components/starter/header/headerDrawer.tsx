@@ -7,7 +7,7 @@ export default component$(() => {
         <>
             <div class='main_container w-full fixed'>
                 <div class='text_container mx-auto w-screen flex justify-between'>
-                    <div class='min-h-screen pt-20 nav_item_container flex items-left justify-start flex-col'>
+                    <div class='min-h-screen pt-24 nav_item_container flex items-left justify-start flex-col'>
                     <Link class="link_text" href="/red-social-erotica/mujeres" >
                       <p>INICIO</p>
                     </Link>

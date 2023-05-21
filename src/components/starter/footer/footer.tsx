@@ -27,9 +27,6 @@ export default component$(() => {
           </a>
         </button>
       </div>
-      {/* {
-        state?.menu && <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, dolor facere, reprehenderit provident dolorem officia sunt consectetur magni harum dolorum ipsa atque alias tempora commodi cupiditate omnis obcaecati animi quas!</p>
-      } */}
     </footer>
   );
 });

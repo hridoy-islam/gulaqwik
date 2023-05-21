@@ -17,11 +17,11 @@ export default component$(() => {
                         <button onClick$={async () => {await buttonToogle(); nav('/auth/signin');}} class={styles.button}>
                             Cancelar
                         </button>
-                        <button onClick$={buttonToogle} class={styles.button}>
-                            <Link href="/auth/signin">¡Regístrate gratis!</Link>
+                        <button onClick$={async () => {await buttonToogle(); nav('/auth/signin');}} class={styles.button}>
+                            ¡Regístrate gratis!
                         </button>
-                        <button class={styles.isfill}>
-                            <Link href="/auth/login">Iniciar sesión</Link>
+                        <button onClick$={async () => {await buttonToogle(); nav('/auth/login');}} class={styles.isfill}>
+                            Iniciar sesión
                         </button>
                     </div>
                 </div>
