@@ -34,12 +34,12 @@ export default component$(() => {
         <p class="label" >¡Próximamente descargá la app!</p>
 
         <div class="buttons">
-          <button class="icon_button">
+          <div class="icon_button">
             <img class="icon" src="/assets/icons/ios-w.svg" alt="GulaIOS" />
-          </button>
-          <button class="icon_button">
+          </div>
+          <div class="icon_button">
             <img class="icon" src="/assets/icons/android-w.svg" alt="GulaAndroid" />
-          </button>
+          </div>
         </div>
       </div>
 

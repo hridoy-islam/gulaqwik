@@ -102,6 +102,7 @@ $menu_velocity: 300ms;
 
           .icon {
             height: getRelative(25);
+            min-height: 26px;
             opacity: 0.5;
             transition: all 200ms ease-in;
 
