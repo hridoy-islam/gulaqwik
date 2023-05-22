@@ -1,5 +1,4 @@
 import { component$, useContext, useStyles$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
 import { GulaContext } from "~/root";
 import styles from './header.scss?inline';
 
