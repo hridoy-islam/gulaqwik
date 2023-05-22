@@ -10,7 +10,7 @@ export const GulaContext = createContextId<Signal<string>>(
 );
 
 export default component$(() => {
-  const gula = useStore({ menu: false, noti: false });
+  const gula = useStore<any>({ menu: false, noti: false });
   useContextProvider(GulaContext, gula);
   /**
    * The root of a QwikCity site always start with the <QwikCityProvider> component,
