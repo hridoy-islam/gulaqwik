@@ -11,7 +11,7 @@ interface CatalogueCardProps {
 export default component$((props: CatalogueCardProps) => {
   useStyles$(styles);
   const { workeruser } = props;
-  const imgSrc = useSignal('/assets/images/default_user_profile.png');
+  const defaultImage = useSignal(true);
   const cardType = (String(workeruser.billingType)?.toLocaleLowerCase() ?? 'elite') + '_card';
   const outputRef = useSignal<Element>();
 
@@ -20,7 +20,7 @@ export default component$((props: CatalogueCardProps) => {
       () => {
         const img = new Image()
         img.src = workeruser.profileImg;
-        img.onload = () => imgSrc.value = workeruser.profileImg;
+        img.onload = () => defaultImage.value = false;
         observer?.disconnect();
       });
     observer.observe(outputRef?.value as Element);
@@ -32,7 +32,7 @@ export default component$((props: CatalogueCardProps) => {
     (GetScheduleDescription(workeruser) ? (' - ' + GetScheduleDescription(workeruser)) : '') +
     (workeruser.shortDescription && workeruser.billingType !== 'Premium' ? ' - ' + Capitalize(workeruser.shortDescription) : '');
 
-  return <div ref={outputRef} class={"card catalogue_card " + cardType} title={workeruser.name} style={"background: url(\"" + GetUrlPreview(imgSrc.value) + "\");"} >
+  return <div ref={outputRef} class={"card catalogue_card " + cardType} title={workeruser.name} style={{background: defaultImage.value ? undefined : "url(\"" + GetUrlPreview(workeruser.profileImg) + "\");"}} >
     <Link class="card_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</Link>
     <Link class="right_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</Link>
     <div class="card_bottom">

@@ -57,7 +57,7 @@ export default component$(() => {
             <div class="description" dangerouslySetInnerHTML={post?.value?.description}></div>
         </div>
 
-        <a class="postBanner" href="/escorts">
+        <a class="postBanner" href="/mujeres">
             <img class="postBannerImg" src={postBanner} alt="PostBanner" />
         </a>
 

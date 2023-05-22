@@ -50,7 +50,7 @@ export default component$(() => {
   const serverData = useWorkerUser();
   const workerUser = serverData.value.workerUser;
   const defaultBackgroundImg = '/assets/images/profile_default.png';
-  const backgroundImg = useSignal(GetUrlPreview(workerUser?.coverPageMobile) ?? defaultBackgroundImg);
+  const backgroundImg = useSignal<string>();
   const selectedTab = useSignal(1);
   const relatedWorkerUsers: ICarouselCard[] = serverData.value.relatedWorkerUsers.map((w) => ({
     id: w.id,
@@ -94,20 +94,19 @@ export default component$(() => {
     } as IWallState;
   });
 
-  useVisibleTask$(() => {
-    backgroundImg.value = (workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(workerUser?.coverPageMobile) : workerUser?.coverPagePC ?? defaultBackgroundImg;
+  useVisibleTask$((taskContext) => {
+    taskContext.track(() => serverData.value);
     const onResize = () => {
-      backgroundImg.value = (workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(workerUser?.coverPageMobile) : workerUser?.coverPagePC ?? defaultBackgroundImg;
+      backgroundImg.value = (serverData.value.workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(serverData.value.workerUser?.coverPageMobile) : serverData.value.workerUser?.coverPagePC ?? defaultBackgroundImg;
     }
+    onResize();
     window.addEventListener('resize', onResize, true);
-    return () => {
-      window.removeEventListener('resize', onResize, true);
-    }
+    taskContext.cleanup(() => window.removeEventListener('resize', onResize, true));
   });
 
   return (
     <><section class="profile_section">
-      <div class="background_image" style={{ background: "url('" + backgroundImg.value + "')" }}></div>
+      <div class="background_image" style={{ background: backgroundImg.value ? "url('" + backgroundImg.value + "')" : undefined }}></div>
       <div class="profile_content">
         <EscortMainProfile workeruser={workerUser} selectedTab={selectedTab} />
         <div id="tab_container" class="tab_container" style="padding-bottom: 65px;">
@@ -163,3 +162,4 @@ export default component$(() => {
     </>
   );
 });
+
