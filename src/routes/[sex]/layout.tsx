@@ -31,8 +31,9 @@ const getWorkerUsers = async (billingType: string | undefined, sex: string, prov
 }
 
 export const useWorkerUsers = routeLoader$(async (requestEvent) => {
-  let sex = requestEvent.params.sex;
-  const province = requestEvent.params.province;
+  const redirection = requestEvent.params.redirection;
+  let sex = redirection ? requestEvent.params.province : requestEvent.params.sex;
+  const province = redirection ? redirection : requestEvent.params.province;
   sex = sex === 'hombres' ? 'male' : sex === 'trans-travestis' ? 'trans' : 'female';
   return getWorkerUsers('Elite', sex, province);
 });
