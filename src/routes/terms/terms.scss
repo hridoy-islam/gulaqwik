@@ -1,0 +1,93 @@
+@import "../../main.scss";
+
+.terms_section {
+    @include flexAlign(center);
+    flex-direction: column;
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
+    padding: getRelative(80);
+    box-sizing: border-box;
+    z-index: 0;
+
+    .background {
+        @include fullScreen();
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: url("/assets/slides/01.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: -1;
+
+        &::before {
+            @include fullScreen();
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            backdrop-filter: brightness(45%) blur(getRelative(40));
+            z-index: -1;
+        }
+    }
+
+    .logo_container {
+        margin-bottom: getRelative(25);
+
+        .logo {
+            width: getRelative(190);
+        }
+    }
+
+    .title_container {
+        margin-bottom: getRelative(50);
+
+        .title {
+            font-size: getRelative(20);
+            font-weight: 500;
+            color: map-get($map: $primary, $key: 300);
+        }
+    }
+
+    .terms_container {
+        .term-item {
+            display: block;
+            margin-bottom: getRelative(25);
+
+            .title,
+            .subtitle,
+            .terms {
+                font-size: getRelative(14);
+                font-weight: 300;
+                color: map-get($map: $primary, $key: 300);
+
+                .term_index {
+                    margin-right: getRelative(5, 16);
+                    font-size: getRelative(16, 14);
+                    font-weight: 600;
+                }
+            }
+
+            .title,
+            .subtitle {
+                margin-bottom: getRelative(10, 16);
+                font-size: getRelative(16);
+                font-weight: 700;
+            }
+
+            .subtitle {
+                font-size: getRelative(14);
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 590px) {
+    .terms_section {
+        padding: getRelative(80) getRelative(40);
+    }
+}
