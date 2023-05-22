@@ -6,7 +6,7 @@ import styles from './header.module.css';
 import HeaderDrawer from './headerDrawer';
 
 export default component$(() => {
-  const state = useContext(GulaContext)
+  const state = useContext<any>(GulaContext)
   const menuToogle = $(() => state.menu = !state.menu);
   const notiToogle = $(() => state.noti = !state.noti);
   const store = useStore({
