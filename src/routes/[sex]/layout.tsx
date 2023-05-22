@@ -2,7 +2,7 @@ import { component$, useStyles$, Resource, useVisibleTask$, useSignal } from '@b
 // import { useLocation } from '@builder.io/qwik-city';
 import { searchWorkerUsers } from '~/api/workeruser';
 import CatalogueCard from '~/components/catalogue-card/catalogue-card';
-import type { DocumentHead} from '@builder.io/qwik-city';
+import type { DocumentHead } from '@builder.io/qwik-city';
 import { routeLoader$, useLocation } from '@builder.io/qwik-city';
 import country from '~/uruguay';
 // import Search from '~/components/search/search';
@@ -11,7 +11,7 @@ import { provinces_male } from '~/env/provinces_male';
 import { provinces_trans } from '~/env/provinces_trans';
 
 import styles from './sex.scss?inline';
-import { Capitalize, RecursiveMerge } from '~/utils';
+import { Capitalize } from '~/utils';
 const limit = 500;
 
 const getWorkerUsers = async (billingType: string | undefined, sex: string, province: string, skip = 0, limit = 50) => {
@@ -27,7 +27,7 @@ const getWorkerUsers = async (billingType: string | undefined, sex: string, prov
   }
   const workerusers = await searchWorkerUsers(search);
   workerusers.results = workerusers.results.sort((a, b) => a.billingType === b.billingType ? a.priorization - b.priorization : a.billingType === 'Elite' ? -1 : b.billingType === 'Elite' ? 1 : a.billingType === 'Vip' ? -1 : 0)
-  return { sex, province, skip, ...workerusers  };
+  return { sex, province, skip, ...workerusers };
 }
 
 export const useWorkerUsers = routeLoader$(async (requestEvent) => {
@@ -37,7 +37,7 @@ export const useWorkerUsers = routeLoader$(async (requestEvent) => {
   return getWorkerUsers('Elite', sex, province);
 });
 
-export const head: DocumentHead = ({params}) => {
+export const head: DocumentHead = ({ params }) => {
   const seo = params.sex === 'hombres' ? provinces_male : params.sex === 'trans-travestis' ? provinces_trans : provinces_female;
   const province = params.province;
   return {
@@ -58,21 +58,23 @@ export default component$(() => {
   const workerUsers = useSignal(workerUsersLoader.value);
   const loading = useSignal(false);
   const firstScrollLoading = useSignal(true);
-  let keyword = 'Escorts';
+  let keyword = 'Chicas Escort';
+  let seo: any = provinces_female;
+
   if (workerUsers.value.sex === 'trans') {
     keyword = 'Travestis';
-  } else if (workerUsers.value.sex === 'female') {
-    keyword = 'Chicas Escort';
+    seo = provinces_trans;
+  } else if (workerUsers.value.sex === 'male') {
+    keyword = 'Escorts';
+    seo = provinces_male;
   }
-
-  const mergeProvinces = (obj1: any, obj2: any, obj3: any) => {
-    let result = RecursiveMerge(obj1, obj2);
-    result = RecursiveMerge(result, obj3);
-    return result;
+  
+  const seoDataProvinces = seo?.provinces?.[Capitalize(workerUsers.value.province) as keyof {}] as any;
+  if (seoDataProvinces) {
+    seo = seoDataProvinces.seoData;
+  } else {
+    seo = seo.seoData;
   }
-
-  const provinces = mergeProvinces(provinces_male, provinces_female, provinces_trans);
-  const seoData: { [key: string]: any } = provinces.seoData;
 
   useVisibleTask$(() => {
     const onScroll = async () => {
@@ -105,7 +107,7 @@ export default component$(() => {
     <div></div>
     <div class="catalogue_output">
       <div>
-        <h1>{seoData?.h1}</h1>
+        <h1>{seo?.h1}</h1>
       </div>
 
       <div class="card_output">
@@ -118,12 +120,12 @@ export default component$(() => {
 
         </section>
         <div class="subtitles_container">
-          {!!seoData?.h2a && <h2>{seoData.h2a}</h2>}
-          {(!!seoData?.pa || !!seoData?.metaTags?.[0]?.content) && <p>{seoData.pa ? seoData.pa : seoData?.metaTags?.[0]?.content}</p>}
-          {!!seoData?.h2b && <h2>{seoData.h2b}</h2>}
-          {!!seoData?.pb && <p>{seoData.pb}</p>}
-          {!!seoData?.h2c && <h2>{seoData.h2c}</h2>}
-          {!!seoData?.pc && <p>{seoData.pc}</p>}
+          {!!seo?.h2a && <h2>{seo.h2a}</h2>}
+          {(!!seo?.pa || !!seo?.metaTags?.[0]?.content) && <p>{seo.pa ? seo.pa : seo?.metaTags?.[0]?.content}</p>}
+          {!!seo?.h2b && <h2>{seo.h2b}</h2>}
+          {!!seo?.pb && <p>{seo.pb}</p>}
+          {!!seo?.h2c && <h2>{seo.h2c}</h2>}
+          {!!seo?.pc && <p>{seo.pc}</p>}
 
           <h2>Escorts en Uruguay cerca de ti</h2>
           <div class="links_container">
