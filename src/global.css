@@ -40,6 +40,7 @@ body {
   padding: 0;
   margin: 0;
   line-height: inherit;
+  background: transparent;
 }
 
 /**
@@ -50,6 +51,8 @@ body {
  *
  */
 html {
+  background: black !important;
+  background-color: black !important;
   -webkit-text-size-adjust: 100%;
   -moz-tab-size: 4;
   -o-tab-size: 4;

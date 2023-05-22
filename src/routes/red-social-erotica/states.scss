@@ -22,7 +22,7 @@ $full_height-min: calc(100% - #{$search_width_min});
   display: flex;
   width: fit-content;
   min-height: 100vh;
-  padding: $content_padding_top $content_padding_lateral 0;
+  // padding: $content_padding_top $content_padding_lateral 0;
   box-sizing: border-box;
   margin: 55px auto auto auto;
 
@@ -57,12 +57,15 @@ $full_height-min: calc(100% - #{$search_width_min});
           background: black;
           cursor: pointer;
           border-bottom: solid getRelative(1) map-get($map: $primary, $key: A200-contrast);
+          min-height: 50px;
       
           .label {
             text-decoration: none;
             font-size: getRelative(16);
             font-weight: 500;
             color: map-get($map: $primary, $key: 300);
+            padding-top: 0;
+            padding-bottom: 0;
           }
         }
       
@@ -131,11 +134,12 @@ $full_height-min: calc(100% - #{$search_width_min});
       
         .tab {
           @include flexAlign(center);
-          height: getRelative(30);
-          padding: getRelative(10) getRelative(40);
+          min-height: 55px;
+          // padding: 0 getRelative(40);
           text-align: center;
           background: black;
           cursor: pointer;
+
       
           .label {
             text-decoration: none;
@@ -158,7 +162,7 @@ $full_height-min: calc(100% - #{$search_width_min});
       
       @media screen and (max-width: 650px) {
         .tab_outlet .tab {
-          padding: getRelative(10) getRelative(25);
+          // padding: getRelative(10) getRelative(25);
         }
       }
       
@@ -298,7 +302,7 @@ $full_height-min: calc(100% - #{$search_width_min});
 @media screen and (max-width: 920px) {
   .main_wall {
     width: 80vw;
-    padding: $content_padding_top 0 0 0;
+    // padding: $content_padding_top 0 0 0;
 
     .aside_container {
       display: none;
@@ -307,10 +311,6 @@ $full_height-min: calc(100% - #{$search_width_min});
     .states_output {
       width: 100%;
       padding-left: 0;
-
-      gula-wall-tab-outlet {
-        display: block;
-      }
     }
   }
 }
@@ -324,7 +324,6 @@ $full_height-min: calc(100% - #{$search_width_min});
 @media screen and (max-width: 500px) {
   .main_wall {
     width: 100vw;
-    margin: 0;
     flex-direction: column;
 
     .subtitle {

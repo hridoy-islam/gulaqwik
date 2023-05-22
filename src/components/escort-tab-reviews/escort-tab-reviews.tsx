@@ -21,7 +21,7 @@ export default component$((props: EscortTabReviewsProps) => {
         <div class="aligner">
             <div class="form_container">
                 <textarea maxLength={500} class="textarea ng-untouched ng-pristine ng-valid" placeholder="Escribe aquí..."></textarea>
-                <a class="button" href='https://auth.gula.com.uy/auth/login'><img height={16} width={16} alt="Right" src="/assets/icons/right_arrow_w.svg" class="icon" /></a>
+                <a class="button" href='/auth/login'><img height={16} width={16} alt="Right" src="/assets/icons/right_arrow_w.svg" class="icon" /></a>
             </div>
 
             <div class="stars_container">

@@ -112,13 +112,13 @@ export default component$(() => {
         <EscortMainProfile workeruser={workerUser} selectedTab={selectedTab} />
         <div id="tab_container" class="tab_container" style="padding-bottom: 65px;">
           <div class="escort_tab_output">
-            <div class={"tab " + (selectedTab.value === 1 ? "active" : "")}>
+            <div class={"tab_profile " + (selectedTab.value === 1 ? "active" : "")}>
               <img height={16} width={45} alt="TabIcon" class="icon" src="/assets/icons/gallery_w.svg" onClick$={() => selectedTab.value = 1} />
             </div>
-            <div class={"tab " + (selectedTab.value === 2 ? "active" : "")}>
+            <div class={"tab_profile " + (selectedTab.value === 2 ? "active" : "")}>
               <img height={16} width={45} alt="TabIcon" class="icon" src="/assets/icons/wall_w2.svg" onClick$={() => selectedTab.value = 2} />
             </div>
-            <div class={"tab " + (selectedTab.value === 3 ? "active" : "")}>
+            <div class={"tab_profile " + (selectedTab.value === 3 ? "active" : "")}>
               <img height={16} width={45} alt="TabIcon" class="icon" src="/assets/icons/reviews_w.svg" onClick$={() => selectedTab.value = 3} />
             </div>
             <span class="underline" style={{ width: "calc(33.3333%)", transform: "translateX(calc(" + (selectedTab.value === 1 ? 0 : selectedTab.value === 2 ? 100 : 200) + "%))" }}>

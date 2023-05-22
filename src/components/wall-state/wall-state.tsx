@@ -108,10 +108,10 @@ export default component$((props: WallProps) => {
       <hr class="separator" />
       <div class="actions">
         <div class="left">
-          <a class={"action " + + (likeItAlreadySelected ? "like_it_selected" : "")} href='https://auth.gula.com.uy/auth/login'>
+          <a class={"action " + + (likeItAlreadySelected ? "like_it_selected" : "")} href='/auth/login'>
             <p class="label">Me Gusta</p>
           </a>
-          <a class="action" href='https://auth.gula.com.uy/auth/login'>
+          <a class="action" href='/auth/login'>
             {
               state?.commentsData.comments.length === 0 &&
               <p class="label" >Comentar</p>

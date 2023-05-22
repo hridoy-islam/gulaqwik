@@ -36,7 +36,7 @@ export default component$(() => {
           }
         }}>
         <div class='flex justify-between items-center p-3'>
-          <ul class='flex mx-4 items-center'>
+          <ul class='flex mx-4 items-center p-0'>
             <li class="w-6">
               <span onClick$={menuToogle} class="cursor-pointer">
                 {gulaContext?.openMenu ?
