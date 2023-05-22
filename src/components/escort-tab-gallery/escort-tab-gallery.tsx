@@ -26,16 +26,18 @@ export default component$((props: EscortTabInfoProps) => {
     const selectedMediaItem = useSignal<IViewerMediaItem>();
 
 
-    useTask$(() => {
-        if (workeruser.media?.length) {
-            for (const m of workeruser.media) {
-                if (!FileIsValidVideo(m) && !media.value.includes({ image: m })) {
-                    media.value.push({ image: GetUrlPreview(m) });
-                } else if (!media.value.includes({ video: m })) {
-                    media.value.push({ video: m });
+    useTask$(({ track }) => {
+        track(() => {
+            if (workeruser.media?.length) {
+                for (const m of workeruser.media) {
+                    if (!FileIsValidVideo(m) && !media.value.includes({ image: m })) {
+                        media.value.push({ image: GetUrlPreview(m) });
+                    } else if (!media.value.includes({ video: m })) {
+                        media.value.push({ video: m });
+                    }
                 }
             }
-        }
+        });
     })
 
     const onMediaContentSelected = $((content: IViewerMediaItem): void => {
@@ -85,7 +87,8 @@ export default component$((props: EscortTabInfoProps) => {
                     {
                         url: m.image ?? m.video,
                         type: m.image ? 'photo' : 'video',
-                        poster: GetUrlPreview(m.video as string)
+                        poster: GetUrlPreview(m.video as string),
+                        // autoPlay: true,
                     }
                 ))}
                 startIndex={media.value.findIndex(m => m === selectedMediaItem.value)}

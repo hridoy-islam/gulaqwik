@@ -1,9 +1,10 @@
 import { component$, useStyles$ } from '@builder.io/qwik';
 // import { Link } from '@builder.io/qwik-city';
 import type { WorkerUser } from '~/api/workeruser';
-import { GetAgeFromDateStr, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
+import { Capitalize, GetAgeFromDateStr, GetScheduleDescription, GetWorkdaysDescription, WorkkerUserServices } from '~/utils';
 // import { Capitalize, GetScheduleDescription, GetWorkdaysDescription } from '~/utils';
 import styles from './escort-tab-info.scss?inline';
+import translates from '~/env/translates';
 
 interface EscortTabInfoProps {
     workeruser: WorkerUser;
@@ -85,17 +86,20 @@ export default component$((props: EscortTabInfoProps) => {
         },
         {
             type: 'Piel',
-            description: `Profile.Info.Skins.${workeruser.skin}`,
+            description: translates.Skins[workeruser.skin as keyof {}],
         },
         {
             type: 'Pelo',
-            description: `Profile.Info.Hairs.${workeruser.hairColor}`,
+            description: translates.Hairs[workeruser.hairColor as keyof {}],
         },
         {
             type: 'Ojos',
-            description: `Profile.Info.Eyes.${workeruser.eyeColor}`,
+            description: translates.Eyes[workeruser.eyeColor as keyof {}],
         },
     ].filter(d => d)
+
+    const servicesCheckBoxes = WorkkerUserServices();
+    const services = Object.keys(servicesCheckBoxes).filter(s => workeruser[s as keyof {}]).map(s => translates.Attributes[Capitalize(s, false) as keyof {}]);
 
     return <div class="tab_info">
         <div class="info_container">
@@ -116,11 +120,15 @@ export default component$((props: EscortTabInfoProps) => {
                     </div>)
                 }
             </div>
-
-            <div class="services_container">
-                <p class="title">Mis servicios</p>
-                <span class="description">Atiendo hombres, </span><span class="description">Acompañante, </span><span class="description">Lluvias, </span><span class="description">Pies, </span><span class="description">Vaginal, </span><span class="description">Terminación libre, </span><span class="description">Cambio de roles</span>
-            </div>
+            {
+                !!services.length &&
+                <div class="services_container">
+                    <p class="title">Mis servicios</p>
+                    {
+                        services.map((s, i) => <span key={i} class="description">{s}{services.length !== i + 1 ? ', ' : ''} </span>)
+                    }
+                </div>
+            }
         </div>
     </div>
 });

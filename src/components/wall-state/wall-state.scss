@@ -37,7 +37,8 @@ $profile_img_margin: getRelative(20);
     }
 
     .content {
-      width: 80vh;
+      position: absolute;
+      width: 80%;
       overflow: hidden;
 
       .username_container {

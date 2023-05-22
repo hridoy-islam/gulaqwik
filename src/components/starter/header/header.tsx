@@ -16,7 +16,7 @@ export default component$(() => {
         }
       }}>
       <div class='flex justify-between items-center p-3'>
-        <ul class='flex mx-4 items-center'>
+        <ul class='flex items-center'>
           <li class={styles}>
             <Link href="/" aria-label='Open Menu'>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-8 h-8 ml-2 text-white">
@@ -25,7 +25,7 @@ export default component$(() => {
             </Link>
           </li>
           <li>
-            <Link href="/escorts/mujeres" >
+            <Link href="/mujeres" >
               <img class={styles} src="/assets/icons/search-w.svg" alt='search' />
             </Link>
           </li>
