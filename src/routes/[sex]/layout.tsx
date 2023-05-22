@@ -39,13 +39,13 @@ export const useWorkerUsers = routeLoader$(async (requestEvent) => {
 
 export const head: DocumentHead = ({params}) => {
   const seo = params.sex === 'hombres' ? provinces_male : params.sex === 'trans-travestis' ? provinces_trans : provinces_female;
-  // const province = params.province;
+  const province = params.province;
   return {
-    title: seo.seoData.title,
+    title: province ? (seo.provinces[Capitalize(province) as keyof {}] as any)?.seoData.title ?? seo.seoData.title : seo.seoData.title,
     meta: [
       {
         name: 'description',
-        content: seo.seoData.metaDescription,
+        content: province ? (seo.provinces[Capitalize(province) as keyof {}] as any)?.seoData.metaDescription ?? seo.seoData.metametaDescription : seo.seoData.metametaDescription,
       },
     ],
   };
@@ -105,7 +105,7 @@ export default component$(() => {
     <div></div>
     <div class="catalogue_output">
       <div>
-        <h1>Escort Uruguay: Chicas escorts, prostitutas y putas</h1>
+        <h1>{seoData?.h1}</h1>
       </div>
 
       <div class="card_output">
