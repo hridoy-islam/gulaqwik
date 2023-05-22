@@ -1,0 +1,377 @@
+@import "../../main.scss";
+
+$search_width: getRelative(260);
+$search_width_min: getRelative(230);
+$header_height: getRelative(40);
+$line_height: getRelative(5);
+$tab_output_header: calc(calc(#{$header_height} + #{$line_height}));
+$content_padding_top: getRelative(80);
+$content_padding_lateral: 5%;
+
+$first_breakpoint: 1300px;
+$second_breakpoint: 860px;
+$full_height: calc(100% - #{$search_width});
+$full_height-min: calc(100% - #{$search_width_min});
+
+.main_wall {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: $content_padding_top $content_padding_lateral 0;
+  box-sizing: border-box;
+
+  .subtitle {
+    $context: 18;
+    margin: 0 auto getRelative(20, $context);
+    font-size: getRelative($context);
+    font-weight: 500;
+    color: map-get($map: $primary, $key: A100-contrast);
+  }
+
+  .aside_container,
+  .states_output {
+    overflow-y: auto;
+
+    .aside_fixed {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: calc(#{$content_padding_top} / 2);
+      box-sizing: border-box;
+    }
+  }
+
+  .aside_container {
+    overflow-x: hidden;
+    position: fixed;
+    margin-left: -250px;
+
+    &::-webkit-scrollbar {
+      width: getRelative(8);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: getRelative(5);
+      background: map-get($map: $overlay, $key: 200);
+
+      &:hover {
+        background: map-get($map: $overlay, $key: 300);
+      }
+    }
+  }
+
+  .states_output {
+    grid-template-rows: auto auto;
+    width: getRelative(1300);
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &::-webkit-scrollbar {
+      width: getRelative(8);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: getRelative(5);
+      background: map-get($map: $overlay, $key: 200);
+
+      &:hover {
+        background: map-get($map: $overlay, $key: 300);
+      }
+    }
+
+    .post_form {
+      width: 100%;
+      margin-bottom: getRelative(5);
+      padding: getRelative(20);
+      box-sizing: border-box;
+      background: map-get($map: $overlay, $key: 300);
+
+      .top_container,
+      .bottom_container {
+        @include flexAlign(vertical);
+        justify-content: space-between;
+
+        .textarea {
+          width: 95%;
+          height: getRelative(50, 14);
+          padding: getRelative(10, 14);
+          box-sizing: border-box;
+          font-size: getRelative(14);
+          border: none;
+          background: none;
+          color: map-get($map: $primary, $key: 300);
+          resize: none;
+          outline: none;
+
+          &::placeholder {
+            font-size: getRelative(14);
+            color: map-get($map: $primary, $key: 300);
+          }
+        }
+
+        .button {
+          @include deleteButtonStyles();
+          border: 1px solid #7e7e7e !important;
+          padding: 5px;
+          border-radius: 5px;
+          background: #e6e6e6;
+          color: black;
+          font-weight: 700;
+
+          &:hover {
+            background: #e6e6e6e3;
+          }
+        }
+      }
+
+      .separation {
+        width: 100%;
+        height: getRelative(1);
+        margin: getRelative(15) 0;
+        background: map-get($map: $primary, $key: 300);
+        border: none;
+        opacity: 0.5;
+      }
+
+      .bottom_container {
+        justify-content: start;
+
+        .files_name_container {
+          color: map-get($map: $primary, $key: 300);
+          margin-left: getRelative(10);
+
+          >span {
+            margin-left: getRelative(5);
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+
+    .blog_scroll {
+      overflow-y: auto;
+      //margin: 0 20px;
+      background: white;
+      border-radius: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin: 15px;
+
+      .empty_gallery {
+        @include flexAlign(center);
+        width: 100%;
+        padding: 5% 0;
+        box-sizing: border-box;
+
+        .label {
+          font-size: getRelative(18);
+          color: black;
+          text-align: center;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: getRelative(8);
+      }
+
+      &::-webkit-scrollbar-track {
+        background: none;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: getRelative(5);
+        background: map-get($map: $overlay, $key: 200);
+
+        &:hover {
+          background: map-get($map: $overlay, $key: 300);
+        }
+      }
+
+      .preview {
+        background: black;
+        margin-bottom: 30px;
+        padding: 10px;
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+        border-radius: 50px;
+        margin: 10px;
+        transition: all ease 0.2s;
+        
+        justify-content: flex-start;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+        text-decoration: none;
+      }
+      .preview:hover {
+        box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.5);
+        transform: translateY(-5px);
+      }
+      
+      .postPreviewImage {
+        width: 100%;
+        position: static;
+        border-color: transparent;
+        border-radius: 50px;
+      }
+      
+      .postPreviewHeaderContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 15px;
+        margin-top: 15px;
+      }
+      
+      .previewDate {
+        color: white;
+        height: auto;
+        position: static;
+        font-size: 12px;
+        align-self: auto;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) ;
+        font-style: Light;
+        text-align: left;
+        font-family: Raleway;
+        font-weight: 700;
+        line-height: normal;
+        font-stretch: normal;
+        text-decoration: none;
+      }
+      
+      .title {
+        display: inline-block;
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: underline;
+        align-self: auto;
+        font-family: Raleway;
+        line-height: normal;
+        font-stretch: normal;
+        font-style: Bold;
+      }
+      
+      .description {
+        padding-top: 5px;
+        padding-bottom: 20px;
+        text-indent: 5%;
+        color: white;
+        font-size: 14px;
+        
+      }
+      
+      
+      @media screen and (min-width: 400px) {
+        .preview {
+          width: 350px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $first_breakpoint) {
+  .main_wall {
+    .aside_container {
+      width: $search_width_min;
+    }
+  }
+}
+
+@media screen and (max-width: 920px) {
+  :host ::ng-deep gula-select {
+    > div.select {
+      margin: 20px;
+    }
+  }
+
+  .main_wall {
+    //width: 80vw;
+    padding: $content_padding_top 0 0 0;
+
+    .aside_container {
+      display: none;
+    }
+
+    .states_output {
+      width: 100%;
+      padding-left: 0;
+
+      gula-wall-tab-outlet {
+        display: block;
+      }
+    }
+  }
+}
+
+// @media screen and (max-width: 690px) {
+//   .main_wall {
+//     width: 90vw;
+//   }
+// }
+
+@media screen and (max-width: 500px) {
+  .main_wall {
+    width: 100vw;
+    margin: 0;
+    flex-direction: column;
+
+    .subtitle {
+      display: block;
+    }
+
+    .states_output .post_form {
+      padding: getRelative(15);
+      margin-bottom: getRelative(1);
+
+      .blog_scroll {
+        &::-webkit-scrollbar {
+          width: getRelative(28);
+        }
+      }
+
+      .separation {
+        margin: getRelative(10) 0;
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width: 450px) {
+  .blog_scroll {
+   width: 420px;
+  }
+
+  div.states_output>gula-select {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .blog_scroll {
+   width: 780px;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .blog_scroll {
+    width: 1180px;
+  }
+}
