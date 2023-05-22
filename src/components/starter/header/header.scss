@@ -76,6 +76,7 @@ $menu_velocity: 300ms;
       margin-top: getRelative(40);
 
       .label {
+        display: block;
         margin-bottom: getRelative(10, 12);
         font-size: getRelative(12);
         font-weight: 500;
@@ -191,7 +192,7 @@ $menu_velocity: 300ms;
         justify-content: space-between;
         // width: getRelative(140);
       
-        .button {
+        .social-button {
           @include deleteButtonStyles();
           width: getRelative(25);
           height: getRelative(25);

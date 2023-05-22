@@ -46,9 +46,9 @@ export default component$(() => {
       <div class="bottom_container">
         <a class="terms_button" href="/terms" rel="nofollow" >Términos y condiciones</a>
         <div class="social_media_output">
-          <button class="button">
+          <div class="social-button">
             <a rel="noreferrer" target="_blank" href="https://twitter.com/gulaescortuy"><img height={25} width={25} alt="SocialMedia" class="icon" src="/assets/icons/twitter-w.svg" /></a>
-          </button>
+          </div>
         </div>
       </div >
     </div >
