@@ -54,6 +54,7 @@
     "wrangler": "^2.20.0"
   },
   "dependencies": {
+    "daisyui": "^2.51.6",
     "dayjs": "^1.11.7",
     "react-image-video-viewer": "^3.0.13"
   }

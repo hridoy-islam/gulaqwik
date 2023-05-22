@@ -22,6 +22,23 @@
     outline: none;
     cursor: pointer;
 }
+.select_icon{
+    position: relative;
+    width: 100%;
+}
+.icon{
+    position: absolute;
+    content: "";
+    bottom: 18px;
+    right: 7px;
+    width: 75%;
+    background: url(/assets/icons/dropdown_w.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none;
+    height: 8px;
+}
 .blog_scroll{
     overflow-y: auto;
     background: white;
