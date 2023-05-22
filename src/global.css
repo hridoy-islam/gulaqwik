@@ -123,12 +123,6 @@ body {
   animation: navitem ;
   animation-duration: .7s;
 }
-.link_text{
-  width: 30%;
-  margin: 0 auto;
-  font-size: 16px;
-  font-weight: 600;
-}
 
 .download_button_lebel{
   margin: 0 auto;

@@ -1,0 +1,312 @@
+@import "../../../main.scss";
+
+li {
+ margin: 0 8px;
+}
+/* img{
+  width: 16px;
+} */
+/* .noti_img{
+  width: 26px !important;
+} */
+.logo {
+  width: 120px;
+}
+
+.header-blur {
+  background: rgba(0,0,0,.5019607843);
+  -webkit-backdrop-filter: blur(calc((30 / 14) * 1em));
+  backdrop-filter: blur(calc((30 / 14) * 1em));
+  transition: all .2s ease-in;
+}
+
+.link_text {
+  width: 30%;
+  margin: 3px auto;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media (max-width: 650px) {
+  .nav {
+    padding: 10px;
+  }
+}
+
+
+
+$menu_width: 20%;
+$menu_velocity: 300ms;
+
+.display_none {
+  display: none !important;
+  z-index: -1 !important;
+  transition: all .2s ease-in;
+}
+
+.side_menu_overlay {
+  @include flexAlign(vertical);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 9;
+  transition: all .2s ease-in;
+
+  .side_menu {
+    @include flexAlign(center);
+    position: relative;
+    flex-direction: column;
+    width: $menu_width;
+    min-width: getRelative(390);
+    height: 100vh;
+    z-index: 9;
+    padding: 0 calc(#{getRelative(8)} + 5%);
+    box-sizing: border-box;
+    background: map-get($map: $overlay, $key: 300);
+    backdrop-filter: blur(getRelative(30));
+    transform: translateX(-100%);
+    transition: all $menu_velocity ease-in;
+
+    // Comming soon ownload button
+
+    .download_buttons {
+      margin-top: getRelative(40);
+
+      .label {
+        margin-bottom: getRelative(10, 12);
+        font-size: getRelative(12);
+        font-weight: 500;
+        text-align: center;
+        color: map-get($map: $primary, $key: 300);
+        opacity: 0.5;
+      }
+
+      .comming_soon {
+        opacity: .5;
+        text-align: center;
+        font-size: 1.25em;
+        font-weight: 600;
+        color: map-get($map: $primary, $key: 300);
+      }
+
+      .buttons {
+        @include flexAlign(vertical);
+
+        .icon_button {
+          @include deleteButtonStyles();
+          margin-right: getRelative(50);
+
+          .icon {
+            height: getRelative(25);
+            opacity: 0.5;
+            transition: all 200ms ease-in;
+
+            &:hover {
+              opacity: 1;
+              transition: all 200ms ease-in;
+            }
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    // End
+
+    .navigation {
+      .nav_item {
+        @include deleteButtonStyles();
+        display: block;
+        margin-bottom: getRelative(30, 20);
+        font-size: getRelative(20);
+        text-transform: uppercase;
+        color: map-get($map: $primary, $key: 300);
+        outline: none;
+        text-decoration: none;
+        min-height: 20px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .download_app {
+      @include flexAlign(center);
+      padding-top: 20%;
+      box-sizing: border-box;
+      // Todo: Delete this style after delete comming soon label.
+      flex-direction: column;
+
+      .comming_soon_title,
+      .comming_soon_text {
+        margin-bottom: getRelative(10);
+        color: map-get($map: $primary, $key: 300);
+        text-align: center;
+        opacity: .5;
+      }
+
+      .comming_soon_text {
+        margin: 0;
+        font-weight: 600;
+        font-size: 1.25em;
+      }
+
+      .image {
+        height: getRelative(300);
+      }
+    }
+
+    .bottom_container {
+      @include flexAlign(horizontal);
+      position: absolute;
+      bottom: getRelative(35);
+      right: 0;
+      flex-direction: column;
+      width: 100%;
+
+      .terms_button {
+        @include deleteButtonStyles();
+        margin: 0 auto getRelative(30, 12);
+        font-size: getRelative(12);
+        color: map-get($map: $primary, $key: 300);
+        text-decoration: underline;
+        opacity: 0.5;
+        transition: all 200ms ease-in;
+
+        &:hover {
+          opacity: 1;
+          transition: all 200ms ease-in;
+        }
+      }
+
+      .social_media_output {
+        @include flexAlign(vertical);
+        justify-content: space-between;
+        // width: getRelative(140);
+      
+        .button {
+          @include deleteButtonStyles();
+          width: getRelative(25);
+          height: getRelative(25);
+          opacity: 0.5;
+          transition: all 200ms ease-in;
+          margin: 0 auto;
+      
+          &:hover {
+            opacity: 1;
+            transition: all 200ms ease-in;
+          }
+      
+          .icon {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .toggle_menu {
+    transform: translateX(0);
+    transition: all $menu_velocity ease-in;
+  }
+
+  .handle_side_menu {
+    width: calc(100% - #{$menu_width});
+    height: 100vh;
+    background: map-get($map: $overlay, $key: 100);
+    z-index: 11;
+    transform: translateX(100%);
+    transition: all $menu_velocity ease-in;
+  }
+
+  .toggle_overlay {
+    transform: translateX(0);
+    transition: all $menu_velocity ease-in;
+  }
+}
+
+.firefox_background {
+  background: map-get($map: $overlay, $key: 700) !important;
+}
+
+@media screen and (max-height: 795px) {
+  .side_menu_overlay .side_menu {
+    .navigation .nav_item {
+      font-size: getRelative(17);
+      margin-bottom: getRelative(16, 17);
+    }
+
+    .download_app {
+      padding-top: 5%;
+      .image {
+        height: 90%;
+      }
+    }
+
+    .bottom_container .terms_button {
+      margin-bottom: getRelative(20);
+    }
+  }
+}
+
+@media screen and (max-height: 660px) {
+  .side_menu_overlay .side_menu .download_app {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .side_menu_overlay {
+    .side_menu {
+      width: 100%;
+      min-width: initial;
+
+      .navigation {
+        width: 90%;
+
+        .nav_item {
+          font-size: getRelative(15);
+          margin-bottom: getRelative(11, 16);
+        }
+      }
+    }
+
+    .download_app {
+      display: none !important;
+    }
+
+    .handle_side_menu {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-height: 420px) {
+  .side_menu_overlay {
+    .side_menu {
+      width: 100%;
+      min-width: initial;
+
+      .navigation .nav_item {
+        font-size: getRelative(15);
+        margin-bottom: getRelative(11, 16);
+      }
+
+      .bottom_container {
+        display: none;
+      }
+    }
+
+    .handle_side_menu {
+      display: none;
+    }
+  }
+}

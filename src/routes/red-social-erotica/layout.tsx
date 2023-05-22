@@ -1,4 +1,4 @@
-import { component$, useStyles$, useVisibleTask$, useSignal } from '@builder.io/qwik';
+import { component$, useStyles$, useVisibleTask$, useSignal, useContext } from '@builder.io/qwik';
 import type { DocumentHead} from '@builder.io/qwik-city';
 import { routeLoader$ } from '@builder.io/qwik-city';
 import styles from './states.scss?inline';
@@ -6,6 +6,7 @@ import Wall from '~/components/wall/wall';
 import type { IWallState} from '~/api/states';
 import { searchStates } from '~/api/states';
 import seoWall from '~/env/wall';
+import { GulaContext } from '~/root';
 const limit = 200;
 
 export const useStates = routeLoader$(async (requestEvent) => {
@@ -30,9 +31,9 @@ export const head: DocumentHead = ({ params }) => {
 export default component$(() => {
     useStyles$(styles);
     const statesPaginated = useStates();
+    const gulaContext = useContext(GulaContext);
     const states = useSignal(statesPaginated.value);
     const loading = useSignal(false);
-    const isMobile = useSignal(true);
     const skip = useSignal(0);
 
     useVisibleTask$(() => {
@@ -54,15 +55,8 @@ export default component$(() => {
         }
         document.addEventListener('scroll', onScroll);
 
-        isMobile.value = window?.innerHeight > window?.innerWidth;
-        const onResize = () => {
-            isMobile.value = window?.innerHeight > window?.innerWidth;
-        }
-        window.addEventListener('resize', onResize, true);
-
         return () => {
             document.removeEventListener('scroll', onScroll);
-            window.removeEventListener('resize', onResize, true);
         };
     });
 
@@ -101,7 +95,7 @@ export default component$(() => {
 
     return <section class="main_wall">
         {
-            !isMobile.value &&
+            !gulaContext.isMobile &&
             <div class="aside_container">
                 <div class="aside_fixed">
                     <div class="tab_pc_container">
@@ -119,7 +113,7 @@ export default component$(() => {
 
         <div class="states_output" >
             {
-                isMobile.value &&
+                gulaContext.isMobile &&
                 <div class="tab_outlet">
                     <div class={"tab " + (states.value.sex === 'female' ? "active_tab" : "")} style="width: calc(33.3333%);">
                         <a class="label" href="/red-social-erotica/mujeres">Mujeres</a>
