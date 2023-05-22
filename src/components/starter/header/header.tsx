@@ -25,16 +25,16 @@ export default component$(() => {
         <div class='flex justify-between items-center p-3'>
           <ul class='flex mx-4 items-center'>
             <li class="w-6">
-            <button onClick$={menuToogle}>
-            { state?.menu ?
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width={1.5} stroke="currentColor" class="w-8 h-8 mr-8 text-white">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg> 
-              :
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-8 h-8 mr-8 text-white">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
-              </svg>}
-            </button>
+              <span onClick$={menuToogle}>
+                {state?.menu ?
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width={1.5} stroke="currentColor" class="w-8 h-8 mr-8 text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  :
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-8 h-8 mr-8 text-white">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+                  </svg>}
+              </span>
               {
                 state?.menu && <HeaderDrawer></HeaderDrawer>
               }
@@ -63,9 +63,9 @@ export default component$(() => {
             </li>
 
             <li>
-              <button onClick$={notiToogle}>
-                <img class="w-6" src="/assets/icons/alarm_w_2.svg" alt='alarm_w_2' />
-              </button>
+
+              <img onClick$={notiToogle} class="w-6" src="/assets/icons/alarm_w_2.svg" alt='alarm_w_2' />
+
               {
                 state?.noti && <Notification></Notification>
               }

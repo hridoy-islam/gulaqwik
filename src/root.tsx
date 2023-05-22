@@ -1,4 +1,5 @@
-import { Signal, component$, createContextId, useContextProvider, useStore } from '@builder.io/qwik';
+import type { Signal } from '@builder.io/qwik';
+import { component$, createContextId, useContextProvider, useStore } from '@builder.io/qwik';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/router-head/router-head';
 
@@ -9,7 +10,7 @@ export const GulaContext = createContextId<Signal<string>>(
 );
 
 export default component$(() => {
-  const gula = useStore({menu: false, noti: false});
+  const gula = useStore({ menu: false, noti: false });
   useContextProvider(GulaContext, gula);
   /**
    * The root of a QwikCity site always start with the <QwikCityProvider> component,
