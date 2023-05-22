@@ -88,7 +88,6 @@ export default component$((props: EscortTabInfoProps) => {
                         url: m.image ?? m.video,
                         type: m.image ? 'photo' : 'video',
                         poster: GetUrlPreview(m.video as string),
-                        // autoPlay: true,
                     }
                 ))}
                 startIndex={media.value.findIndex(m => m === selectedMediaItem.value)}
