@@ -1,4 +1,4 @@
-const base = 'https://gula-api-test-2i55x.ondigitalocean.app/blog';
+const base = import.meta.env.PUBLIC_API_URL + 'blog';
 
 export const getPosts = async (): Promise<PostPaginated> => {
   return await (await fetch(base + '?skip=0&limit=100&published=true&sort=createdAt%20DESC')).json();

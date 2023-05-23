@@ -1,6 +1,6 @@
 import type { WorkerUser } from "./workeruser";
 
-const base = 'https://gula-api-test-2i55x.ondigitalocean.app/state';
+const base = import.meta.env.PUBLIC_API_URL + 'state';
 
 export const searchStates = async (sex?: 'male' | 'female' | 'trans', skip: number = 0, limit: number = 40): Promise<StatePaginated> => {
   return await (await fetch(base + '?skip=' + skip + '&limit=' + limit + (sex ? ('&sex=' + sex) : ''))).json();
