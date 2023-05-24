@@ -40,7 +40,6 @@ lerna-debug.log*
 
 # Cloudflare
 functions/**/*.js
-!functions/_middleware.js
 
 # Netlify
 .netlify
