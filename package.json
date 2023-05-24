@@ -21,7 +21,7 @@
     "serve": "wrangler pages dev ./dist",
     "start": "vite --open --mode ssr",
     "qwik": "qwik",
-    "sitemap": "node sitemap.js"
+    "sitemap-uy": "node sitemap.js uy"
   },
   "devDependencies": {
     "@builder.io/qwik": "1.1.2",
