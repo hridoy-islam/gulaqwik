@@ -23,5 +23,8 @@ export default defineConfig(() => {
     server: {
       port: 4213,
     },
+    ssr: {
+      trailingSlash: false
+    }
   };
 });
