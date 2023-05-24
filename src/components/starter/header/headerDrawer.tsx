@@ -10,9 +10,9 @@ export default component$(() => {
     <div class={"side_menu " + (gulaContext.openMenu ? 'toggle_menu ' : '') + (firefoxBackground ? 'firefox_background ' : '')}>
       <div class="navigation">
         <a href="/" class="nav_item" >Inicio</a>
-        <a href="/mujeres" class="nav_item" >Mujeres</a>
-        <a href="/trans-travestis" class="nav_item" >Trans</a>
-        <a href="/hombres" class="nav_item" >Hombres</a>
+        <a href="/escorts/mujeres" class="nav_item" >Mujeres</a>
+        <a href="/escorts/trans-travestis" class="nav_item" >Trans</a>
+        <a href="/escorts/hombres" class="nav_item" >Hombres</a>
         <a href="/red-social-erotica/mujeres" class="nav_item"  > Estados</a >
         <a href="/blog" class="nav_item" > Blog</a >
         <a href="/auth/login" rel="nofollow" class="nav_item"  > Login</a >

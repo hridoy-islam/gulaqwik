@@ -50,7 +50,7 @@ export default component$(() => {
               </span>
             </li>
             <li style={{ display: gulaContext.isMobile ? 'none' : undefined }}>
-              <Link href="/mujeres">
+              <Link href="/escorts/mujeres">
                 <img class="w-5" src="/assets/icons/search-w.svg" alt='search' />
               </Link>
             </li>

@@ -31,18 +31,16 @@ const getWorkerUsers = async (billingType: string | undefined, sex: string, prov
 }
 
 export const useWorkerUsers = routeLoader$(async (requestEvent) => {
-  const redirection = requestEvent.params.redirection;
-  let sex = redirection ? requestEvent.params.province : requestEvent.params.sex;
-  const province = redirection ? redirection : requestEvent.params.province;
+  let sex = requestEvent.params.sex;
+  const province = requestEvent.params.province;
   sex = sex === 'hombres' ? 'male' : sex === 'trans-travestis' ? 'trans' : 'female';
   return getWorkerUsers('Elite', sex, province);
 });
 
-const getSeoData = (params: { sex: string; province: string; redirection?: string; }) => {
-  const redirection = params.redirection;
-  const sex = redirection ? params.province : params.sex;
-  const province = redirection ? redirection.replaceAll('-', ' ') : params.province?.replaceAll('-', ' ');
-  const seo = sex === 'hombres' ? provinces_male : sex === 'trans-travestis' ? provinces_trans : provinces_female;
+const getSeoData = (params: { sex: string; province: string;}) => {
+  const sex = params.sex;
+  const province = params.province?.replaceAll('-', ' ');
+  const seo = sex === 'male' || sex === 'hombres' ? provinces_male : sex === 'trans' || sex === 'trans-travestis' ? provinces_trans : provinces_female;
   let seoData: any;
   if (province) {
     seoData = (seo.provinces[CapitalizeAllWords(province) as keyof {}] as any)?.seoData;
@@ -53,7 +51,6 @@ const getSeoData = (params: { sex: string; province: string; redirection?: strin
   if (!seoData) {
     seoData = seo.seoData;
   }
-
   return seoData;
 }
 
@@ -110,7 +107,8 @@ export default component$(() => {
     };
   });
 
-  const catalogueSexPath = '/' + loc?.url?.pathname?.split('/')?.filter(u => u)?.[0];
+  const pathnames = loc?.url?.pathname?.split('/');
+  const catalogueSexPath = '/' + pathnames[1] + '/' + pathnames[2];
 
   return <div class="catalogue_section">
     {/* <Search /> */}

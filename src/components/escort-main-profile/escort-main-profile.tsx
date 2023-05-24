@@ -26,7 +26,7 @@ export default component$((props: EscortMainProfileProps) => {
 
     return <div class="main_profile">
         <div class="go_back_arrow_container">
-            <Link class="button_icon" href={location.prevUrl?.pathname.includes('/escort/') ? '/mujeres' : location.prevUrl?.pathname }>
+            <Link class="button_icon" href={location.prevUrl?.pathname.includes('/escort/') ? '/escorts/mujeres' : location.prevUrl?.pathname }>
                 <img alt="Back" height={80} width={80} src="/assets/icons/left-arrow-w-shadow.svg" class="icon" />
             </Link>
         </div>

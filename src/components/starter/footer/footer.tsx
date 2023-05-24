@@ -11,9 +11,9 @@ export default component$(() => {
       </div>
       <p class={styles.copyright_label}>© 2023 Gula Escorts Uruguay. Todos los derechos reservados. V1.0.22-dev</p>
       <div class={styles.navigation}>
-        <a class={styles.anchor} href="/mujeres">Mujeres</a>
-        <a class={styles.anchor} href="/trans-travestis">Trans</a>
-        <a class={styles.anchor} href="/hombres">Hombres</a>
+        <a class={styles.anchor} href="/escorts/mujeres">Mujeres</a>
+        <a class={styles.anchor} href="/escorts/trans-travestis">Trans</a>
+        <a class={styles.anchor} href="/escorts/hombres">Hombres</a>
         <a rel="nofollow" class={styles.anchor} href="/contact">Contacto</a>
         <a rel="nofollow" class={styles.anchor} href="/terms">Términos de uso</a>
       </div>

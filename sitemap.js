@@ -22,9 +22,9 @@ const postsEndpoint = api + 'blog?skip=0&limit=999999&published=true';
 fetch(workeruserEndpoint).then(res => res.json()).then(async (workerUserResponse) => {
   const postsResponse = await (await fetch(postsEndpoint)).json();
   console.log('postsResponse', postsResponse.results.length);
-  const urls = ['', '/mujeres', '/mujeres/montevideo', '/mujeres/canelones', '/mujeres/punta-del-este', '/mujeres/maldonado',
-  '/trans-travestis', '/trans-travestis/montevideo', '/trans-travestis/canelones', '/trans-travestis/punta-del-este', '/trans-travestis/maldonado',
-  '/hombres', '/hombres/montevideo', '/hombres/canelones', '/hombres/punta-del-este', '/hombres/maldonado',
+  const urls = ['', '/escorts', '/escorts/mujeres', '/escorts/mujeres/montevideo', '/escorts/mujeres/canelones', '/escorts/mujeres/punta-del-este', '/escorts/mujeres/maldonado',
+  '/escorts/trans-travestis', '/escorts/trans-travestis/montevideo', '/escorts/trans-travestis/canelones', '/escorts/trans-travestis/punta-del-este', '/escorts/trans-travestis/maldonado',
+  '/escorts/hombres', '/escorts/hombres/montevideo', '/escorts/hombres/canelones', '/escorts/hombres/punta-del-este', '/escorts/hombres/maldonado',
   '/contact', '/red-social-erotica/mujeres', '/red-social-erotica/hombres', '/red-social-erotica/trans-travestis', '/blog'];
   const workerusers = workerUserResponse.results;
   console.log('workerUserResponse', workeruserEndpoint, workerusers.length);

@@ -61,7 +61,7 @@ export default component$(() => {
     type: w.billingType,
     route: '/escort/' + w.slug
   }));
-  const cataloguePath = workerUser?.sex === 'male' ? '/hombres/' : workerUser?.sex === 'trans' ? '/trans-travestis/' : '/mujeres/';
+  const cataloguePath = workerUser?.sex === 'male' ? '/escorts/hombres/' : workerUser?.sex === 'trans' ? '/escorts/trans-travestis/' : '/escorts/mujeres/';
   const states = workerUser?.states.map((s) => {
     return {
       id: s.id,
