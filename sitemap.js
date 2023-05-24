@@ -10,7 +10,7 @@ let sitemapPath = '';
 let api = '';
 let urlWebBase = '';
 if (env === 'uy') {
-  sitemapPath = 'public/';
+  sitemapPath = 'dist/';
   api = 'https://gula-api-yg7yn.ondigitalocean.app/';
   urlWebBase = 'https://gula.com.uy';
 } else {
