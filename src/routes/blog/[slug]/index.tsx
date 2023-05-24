@@ -22,12 +22,6 @@ export const head: DocumentHead = ({ resolveValue }) => {
                 content: serverData?.seoDescription,
             },
         ],
-        link: [
-            {
-                rel: 'canonical',
-                href: 'https:/gula.com.uy/blog/' + serverData?.slug
-            },
-        ],
     };
 };
 

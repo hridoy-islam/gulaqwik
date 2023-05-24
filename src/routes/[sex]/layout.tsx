@@ -38,21 +38,15 @@ export const useWorkerUsers = routeLoader$(async (requestEvent) => {
   return getWorkerUsers('Elite', sex, province);
 });
 
-export const head: DocumentHead = ({ params, url }) => {
+export const head: DocumentHead = ({ params }) => {
   const seo = params.sex === 'hombres' ? provinces_male : params.sex === 'trans-travestis' ? provinces_trans : provinces_female;
   const province = params.province;
   return {
     title: province ? (seo.provinces[Capitalize(province) as keyof {}] as any)?.seoData.title ?? seo.seoData.title : seo.seoData.title,
-    meta: [
+    meata: [
       {
         name: 'description',
         content: province ? (seo.provinces[Capitalize(province) as keyof {}] as any)?.seoData.metaDescription ?? seo.seoData.metametaDescription : seo.seoData.metametaDescription,
-      },
-    ],
-    link: [
-      {
-        rel: 'canonical',
-        href: 'https:/gula.com.uy' + url.pathname.slice(0, -1)
       },
     ],
   };

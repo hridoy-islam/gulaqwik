@@ -20,12 +20,6 @@ export const head: DocumentHead = () => {
           content: 'Ingresa al Blog de Escorts mas picante. Gula un espacio de publicidad donde putas, mujeres trans y hombres, ofrecen sus diferentes servicios.',
         },
       ],
-      link: [
-        {
-          rel: 'canonical',
-          href: 'https:/gula.com.uy/blog'
-        },
-      ],
     };
   };
 

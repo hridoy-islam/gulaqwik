@@ -15,7 +15,7 @@ export const useStates = routeLoader$(async (requestEvent) => {
     return { ... await searchStates(sex as any), sex };
 });
 
-export const head: DocumentHead = ({ params, url }) => {
+export const head: DocumentHead = ({ params }) => {
     const sex = params.sex === 'hombres'? 'male' : params.sex === 'trans-travestis' ? 'trans' : 'female';
     return {
         title: seoWall[sex].title,
@@ -23,12 +23,6 @@ export const head: DocumentHead = ({ params, url }) => {
             {
                 name: 'description',
                 content: seoWall[sex].description,
-            },
-        ],
-        link: [
-            {
-                rel: 'canonical',
-                href: 'https:/gula.com.uy' + url.pathname.slice(0, -1)
             },
         ],
     };
