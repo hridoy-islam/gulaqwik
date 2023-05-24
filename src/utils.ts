@@ -363,6 +363,12 @@ export const DateFromShort = (dayjs: any, date: string): string => {
     }
 }
 
+export const CapitalizeAllWords = (s: string, restInLowerCase = true): string => {
+    if (!s || typeof s !== 'string') return ''
+    const exclude = ['de', 'del', 'y']
+    return s.split(' ').map(m => exclude.includes(m.toLocaleLowerCase()) ? m : Capitalize(m, restInLowerCase)).join(' ');
+}
+
 export const Capitalize = (s: string, restInLowerCase = true): string => {
     if (!s || typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + (restInLowerCase ? s.slice(1).toLowerCase() : s.slice(1));
