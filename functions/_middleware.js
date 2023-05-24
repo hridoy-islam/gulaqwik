@@ -1,4 +1,3 @@
-// @ts-ignore
 
 export async function onRequest(context) {
     try {
