@@ -42,6 +42,12 @@ export const head: DocumentHead = ({ resolveValue }) => {
         content: description,
       },
     ],
+    link: [
+      {
+        rel: 'canonical',
+        href: 'https:/gula.com.uy/escort/' + (serverData?.workerUser?.slug ?? 'not-found'),
+      },
+    ],
   };
 };
 

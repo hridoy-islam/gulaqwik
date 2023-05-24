@@ -11,7 +11,7 @@ export default component$(() => {
                 <h2 class="text-lg">El mejor sitio de Escorts de Uruguay</h2>
                 <p class="text-sm text-[#f5f5f5] my-9">Puedes contactarte con nosotros completando el siguiente formulario o vía whatsapp haciendo click en el botón</p>
                 <button class={styles.wp_button}>
-                    <a href="">
+                    <a href="https://wa.me/+59898783172?text=Hola Gula, me gustaría contactarme contigo" target="_blank">
                         <img class="w-5" src="/assets/icons/whatsapp_w.svg" alt="" />
                     </a>
                 </button>
@@ -22,9 +22,9 @@ export default component$(() => {
                             <input type="text" class={styles.form_input} placeholder="Correo electrónico*" required name="emailOrPhone" />
                         </div>
                         <textarea name="" id="" placeholder="Escribe aquí...*" class={styles.form_textarea}></textarea>
-                        <div class={styles.buttons_output}>
+                        {/* <div class={styles.buttons_output}>
                             <button class={styles.button}>Enviar</button>
-                        </div>
+                        </div> */}
                     </form>
                 </div>
             </div>
