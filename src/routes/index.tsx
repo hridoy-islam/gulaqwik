@@ -5,7 +5,7 @@ export default component$(() => {
   return (
     <>
       <div class="slider_section">
-        <h2 class="title mb-6 text-center">GULA, el mejor sitio de Escorts en Uruguay</h2>
+        <h1 class="title mb-6 text-center">GULA, el mejor sitio de Escorts en Uruguay</h1>
         <div class="mt-12 slider_button">
           <a href="/escorts/mujeres" class="px-8 py-4 mx-3 font-sm font-bold border rounded uppercase " >Mujeres</a>
           <a href="/escorts/trans-travestis" class="px-8 py-4 mx-3 font-sm font-bold border rounded uppercase " >Mujeres trans</a>
