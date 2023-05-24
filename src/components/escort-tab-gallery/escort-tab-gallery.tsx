@@ -57,10 +57,10 @@ export default component$((props: EscortTabInfoProps) => {
                         <>
                             <img alt="Play" class='video-play' src="/assets/images/play.png" />
                             <video class="video" preload="metadata" poster={GetUrlPreview(m.video)}>
-                                <source src="media.video + '#t=0.1'" type="video/webm" />
-                                <source src="media.video + '#t=0.1'" type="video/ogg" />
-                                <source src="media.video + '#t=0.1'" type="video/mp4" />
-                                <source src="media.video + '#t=0.1'" type="video/3gp" />
+                                <source src={m.video + "#t=0.1"} type="video/webm" />
+                                <source src={m.video + "#t=0.1"} type="video/ogg" />
+                                <source src={m.video + "#t=0.1"} type="video/mp4" />
+                                <source src={m.video + "#t=0.1"} type="video/3gp" />
                             </video>
                         </>
                     }
