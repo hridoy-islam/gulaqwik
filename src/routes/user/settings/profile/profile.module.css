@@ -1,11 +1,12 @@
-.main_section{
+.main_section {
     width: 100vw;
     height: auto;
-    background: linear-gradient(195deg,#161616 0%,#161616 42%,#292929 42%,#292929 100%);
+    background: linear-gradient(195deg, #161616 0%, #161616 42%, #292929 42%, #292929 100%);
     padding-top: 120px;
     padding-bottom: 40px;
 }
-.banner{
+
+.banner {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,20 +14,22 @@
     width: 100%;
     height: calc((165 / 14) * 1em);
     background: url(/assets/images/profile_default.png);
-    background-position: center!important;
-    background-repeat: no-repeat!important;
-    background-size: cover!important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
 }
-.profile_image{
+
+.profile_image {
     width: 5em;
     height: 5em;
     border-radius: 2.5em;
     background: url(/assets/images/default_user_profile.png);
-    background-position: center!important;
-    background-repeat: no-repeat!important;
-    background-size: cover!important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
 }
-.go_profile{
+
+.go_profile {
     background: none;
     border: none;
     cursor: pointer;
@@ -44,24 +47,29 @@
     text-transform: initial;
     outline: none;
 }
-.content{
+
+.content {
     padding: calc((30 / 14) * 1em) 0;
     box-sizing: border-box;
     width: 90%;
     margin: 0 auto;
 }
+
 .option {
     display: grid;
     grid-template-columns: calc((100 / 14) * 1em) auto;
     margin-bottom: calc((20 / 14) * 1em);
+    margin-left: 15px;
 }
-.label_container{
+
+.label_container {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     height: calc((50 / 14) * 1em);
 }
-.option_content{
+
+.option_content {
     position: relative;
     /* display: flex;
     align-items: center;
@@ -69,20 +77,23 @@
     padding-left: calc((25 / 14) * 1em);
     box-sizing: border-box;
 }
-.label{
+
+.label {
     font-size: calc((16 / 14) * 1em);
     font-weight: 300;
     text-align: right;
     color: #f5f5f5;
 }
-.placeholder{
+
+.placeholder {
     margin-top: 0.5em;
     font-size: calc((10 / 14) * 1em);
     font-weight: 300;
     opacity: .5;
     color: #f5f5f5;
 }
-.input{
+
+.input {
     width: 100%;
     height: calc((50 / 14) * 1em);
     padding-left: calc((15 / 14) * 1em);
@@ -91,7 +102,8 @@
     border: solid 1px #292929;
     color: #f5f5f5;
 }
-.textarea{
+
+.textarea {
     height: calc((110 / 14) * 1em);
     padding: calc((10 / 14) * 1em);
     resize: none;
@@ -101,41 +113,48 @@
     border: solid 1px #292929;
     color: #f5f5f5;
 }
-.checkbox_slot{
+
+.checkbox_slot {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     margin-top: calc((10 / 14) * 1em);
 }
+
 .checkbox_container {
     display: flex;
     align-items: center;
     margin-right: 0;
 }
-.select{
+
+.select {
     width: 90%;
     margin-left: auto;
     margin-top: calc((25 / 14) * 1em);
     margin-bottom: calc((25 / 14) * 1em);
     border-bottom: solid 1px #f5f5f5;
 }
-.select_label{
+
+.select_label {
     display: flex;
     align-items: center;
     opacity: .5;
 }
-.select_label_text{
+
+.select_label_text {
     font-size: calc((12 / 14) * 1em);
     font-weight: 700;
     color: #f5f5f5;
 }
+
 .select_container {
     display: flex;
     align-items: center;
     margin-top: calc((5 / 14) * 1em);
     position: relative;
 }
-.select_element{
+
+.select_element {
     width: 100%;
     margin-bottom: calc((10 / 14) * 1em);
     color: #f5f5f5;
@@ -146,10 +165,12 @@
     outline: none;
     cursor: pointer;
 }
-.select_element option{
+
+.select_element option {
     background: #161616;
 }
-.select_icon{
+
+.select_icon {
     position: absolute;
     content: "";
     bottom: 9px;
@@ -162,44 +183,50 @@
     background-size: contain;
     pointer-events: none;
 }
-.separator{
+
+.separator {
     display: block;
     width: calc((3 / 14) * 1em);
     height: calc((15 / 14) * 1em);
     margin: 7px 9px;
     background: #f5f5f5;
 }
-.checkbox_option_content{
+
+.checkbox_option_content {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-left: calc((25 / 14) * 1em);
     box-sizing: border-box;
 }
-.checkbox_option_slot{
+
+.checkbox_option_slot {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     margin-top: calc((10 / 14) * 1em);
 }
-.checkbox_option_container{
+
+.checkbox_option_container {
     display: flex;
     align-items: center;
     margin-right: 20px;
     margin-bottom: calc((10 / 14) * 1em);
 }
-.button_container{
+
+.button_container {
     display: flex;
     justify-content: center;
     width: 100%;
     margin-top: calc((50 / 14) * 1em);
 }
-.button_save{
+
+.button_save {
     cursor: pointer;
     border-radius: calc((5 / 12) * 1em);
     padding: 1.25em calc((40 / 12) * 1em);
     font-size: calc((12 / 14) * 1em);
-    background: rgba(0,0,0,.2784313725);
+    background: rgba(0, 0, 0, .2784313725);
     border: solid 1px #f5f5f5;
     color: #f5f5f5;
     transition: all .2s ease-in;
@@ -207,20 +234,23 @@
     text-transform: none;
     font-weight: 300;
 }
-.button_save:active{
+
+.button_save:active {
     background: #f5f5f5;
     border: solid 1px #f5f5f5;
     color: #161616;
     transition: all .2s ease-in;
     font-weight: 500;
 }
-.link_container{
+
+.link_container {
     display: flex;
     justify-content: center;
     width: 100%;
     margin-top: calc((15 / 14) * 1em);
 }
-.link{
+
+.link {
     background: none;
     border: none;
     cursor: pointer;
@@ -230,7 +260,8 @@
     opacity: .85;
     transition: all .2s ease-in;
 }
-.disable_account{
+
+.disable_account {
     background: none;
     border: none;
     cursor: pointer;
@@ -240,24 +271,30 @@
     opacity: .85;
     transition: all .2s ease-in;
 }
-@media screen and (max-width: 960px){
+
+@media screen and (max-width: 960px) {
     .option {
         display: flex;
         flex-direction: column;
     }
-    .option_content{
+
+    .option_content {
         padding-left: 0;
     }
-    .label_container{
+
+    .label_container {
         justify-content: flex-start;
     }
-    .select{
+
+    .select {
         width: 100%
     }
-    .checkbox_option_content{
+
+    .checkbox_option_content {
         padding-left: 0;
     }
-    .checkbox_option_container{
+
+    .checkbox_option_container {
         margin-right: 35px;
     }
 }
