@@ -10,7 +10,7 @@ export default component$(() => {
                     <Sidenav></Sidenav>
                 </div>
                 <div class="lg:w-8/12">
-                    <div class="w-full">
+                    <div class="lg:w-full w-11/12 mx-auto">
                         <div  class={styles.banner}>
                             <div class={styles.profile_image}>
                                 <button class={styles.go_profile}>Ir al perfil</button>

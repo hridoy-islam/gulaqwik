@@ -240,3 +240,24 @@
     opacity: .85;
     transition: all .2s ease-in;
 }
+@media screen and (max-width: 960px){
+    .option {
+        display: flex;
+        flex-direction: column;
+    }
+    .option_content{
+        padding-left: 0;
+    }
+    .label_container{
+        justify-content: flex-start;
+    }
+    .select{
+        width: 100%
+    }
+    .checkbox_option_content{
+        padding-left: 0;
+    }
+    .checkbox_option_container{
+        margin-right: 35px;
+    }
+}
