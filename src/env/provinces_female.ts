@@ -131,7 +131,7 @@ export const provinces_female = {
   },
   seoData: {
     title: 'Escort Uruguay: Chicas escorts, prostitutas y putas ❤️ | Gula',
-    metametaDescription: 'Si buscas Escorts en Uruguay, en Gula encontrarás chicas estorts 100% reales 🔥 hermosas prostitutas esperando a que les des placer 🥵',
+    metaDescription: 'Si buscas Escorts en Uruguay, en Gula encontrarás chicas estorts 100% reales 🔥 hermosas prostitutas esperando a que les des placer 🥵',
     h1: 'Escort Uruguay: Chicas escorts, prostitutas y putas',
     h2a: 'Encuentre las mejores Chicas Escort de Uruguay',
     pa: '¿Estás buscando una experiencia única y excitante con chicas en Uruguay? ¿Quieres disfrutar de la compañía de una hermosa mujer que satisfaga todas tus fantasías sexuales? ¡Tenemos la solución perfecta para ti! En nuestra agencia de chicas escort, encontrarás las mejores mujeres para ti. Nuestras chicas ofrecen servicios sexuales de alta calidad y te brindarán una experiencia inolvidable. Desde las más dulces y tiernas hasta las más ardientes y atrevidas, nuestras escorts están dispuestas a cumplir todas tus fantasías. No te arrepentirás de elegir a nuestras chicas escort como tus compañeras de placer en Uruguay. ¡Ven y experimenta lo mejor de lo mejor!',

@@ -132,7 +132,7 @@ export const provinces_trans = {
   },
   seoData: {
     title: 'Escorts Travestis Uruguay: Escort trans, transexuales ❤️ | Gula',
-    metametaDescription: 'Escorts Travestis Uruguay dispuestos a darte  placer AHORA MISMO 🔥 Servicios 💯% COMPLETOS. Escorts trans esperando a que las pruebes 😈',
+    metaDescription: 'Escorts Travestis Uruguay dispuestos a darte  placer AHORA MISMO 🔥 Servicios 💯% COMPLETOS. Escorts trans esperando a que las pruebes 😈',
     h1: ' Escorts Travestis Uruguay: Escort trans, transexuales',
     h2a: 'Transexuales Uruguay',
     h2b: 'Shemale Uruguay',

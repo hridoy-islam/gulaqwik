@@ -61,7 +61,7 @@ export const head: DocumentHead = ({ params }) => {
     meata: [
       {
         name: 'description',
-        content: seoData?.metametaDescription,
+        content: seoData?.metaDescription,
       },
     ],
   };

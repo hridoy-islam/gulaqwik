@@ -132,7 +132,7 @@ export const provinces_male = {
   },
   seoData: {
     title: 'Escort masculino: hombres escort con un físico increíble 🔥 | Gula',
-    metametaDescription: 'Encuentra el Escort Masculino que buscas AHORA MISMO 🔥 Servicios 💯% COMPLETOS. Escorts Hombres discretos, heteros, bis y gays en Uruguay',
+    metaDescription: 'Encuentra el Escort Masculino que buscas AHORA MISMO 🔥 Servicios 💯% COMPLETOS. Escorts Hombres discretos, heteros, bis y gays en Uruguay',
     h1: 'Escort masculino: hombres escort con un físico increíble',
     h2a: 'Escorts hombres Uruguay',
     h2b: 'Escort Gay Uruguay',
