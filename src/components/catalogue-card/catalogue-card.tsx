@@ -19,7 +19,7 @@ export default component$((props: CatalogueCardProps) => {
     const observer = new IntersectionObserver(
       () => {
         const img = new Image()
-        img.src = workeruser.profileImg;
+        img.src = GetUrlPreview(workeruser.profileImg);
         img.onload = () => defaultImage.value = false;
         observer?.disconnect();
       });
@@ -33,6 +33,7 @@ export default component$((props: CatalogueCardProps) => {
     (workeruser.shortDescription && workeruser.billingType !== 'Premium' ? ' - ' + Capitalize(workeruser.shortDescription) : '');
 
   return <div ref={outputRef} class={"card catalogue_card " + cardType} title={workeruser.name} style={{background: defaultImage.value ? undefined : "url(\"" + GetUrlPreview(workeruser.profileImg) + "\");"}} >
+    <img width={1} src={defaultImage.value ? '/assets/images/about-mobile.jpeg' : GetUrlPreview(workeruser.profileImg)} />
     <Link class="card_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</Link>
     <Link class="right_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</Link>
     <div class="card_bottom">

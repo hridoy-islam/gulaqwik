@@ -6,15 +6,13 @@ export const provinces_trans = {
     'Canelones': {
       neighborhoods: ['Canelones'],
       seoData: {
-        trans: {
-          title: 'Travesis Canelones: Trans xxx | Gula',
-          h1: 'Travesis Canelones: Trans xxx | Gula',
-          metaDescription: 'Travestis en Canelones. Trans xxx con ganas de divertirse, chicas desnudas, fotos hot y videos xxx gratis y sin censura. Regístrate hoy para conocerlas',
-          h2a: 'Transexuales Canelones',
-          h2b: 'Shemale Canelones',
-          h3a: '',
-          h3b: '',
-        }
+        title: 'Travesis Canelones: Trans xxx | Gula',
+        h1: 'Travesis Canelones: Trans xxx | Gula',
+        metaDescription: 'Travestis en Canelones. Trans xxx con ganas de divertirse, chicas desnudas, fotos hot y videos xxx gratis y sin censura. Regístrate hoy para conocerlas',
+        h2a: 'Transexuales Canelones',
+        h2b: 'Shemale Canelones',
+        h3a: '',
+        h3b: '',
       },
       whiskerias: {
         title: 'Whiskerias Canelones en Gula',

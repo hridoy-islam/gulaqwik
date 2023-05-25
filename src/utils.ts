@@ -75,13 +75,10 @@ export const RemoveFileExtension = (str: string) => {
 }
 
 export const GetUrlPreview = (fileName: string) => {
-    if (!fileName || fileName === '/assets/images/default_user_profile.png' || fileName === '/assets/images/profile_default.png') {
+    if (!fileName || fileName === '/assets/images/default_user_profile.png' || fileName === '/assets/images/profile_default.png' || fileName.endsWith('-preview.png')) {
         return fileName;
     }
-    if (fileName.endsWith('-preview.png')) {
-        return fileName;
-    }
-    return fileName && RemoveFileExtension(fileName) + '-preview.png';
+    return (RemoveFileExtension(fileName) + '-preview.png');
 }
 
 export const GetStringDateFromAge = (age: number, getShortStr: boolean = true) => {
@@ -410,7 +407,7 @@ export const AddNoIndex = (document: Document) => {
 
 export const GetScheduleDescription = (user: WorkerUser) => {
     return user?.scheduleMin && user?.scheduleMax ?
-       (user.scheduleMin.substring(0, 2) + 'hs a ' + user.scheduleMax.substring(0, 2) + 'hs') : 'Disp 24hs'
+        (user.scheduleMin.substring(0, 2) + 'hs a ' + user.scheduleMax.substring(0, 2) + 'hs') : 'Disp 24hs'
 }
 
 export const GetWorkdaysDescription = (user: WorkerUser) => {
