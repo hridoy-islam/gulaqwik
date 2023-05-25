@@ -168,3 +168,9 @@
     transition: all .2s ease-in;
     font-weight: 500;
 }
+@media (max-width: 650px) {
+    .modify_images{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}

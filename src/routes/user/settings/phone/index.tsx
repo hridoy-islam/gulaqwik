@@ -6,10 +6,10 @@ export default component$(() => {
     return (
         <div class={styles.main_section}>
             <div class="content_sidenav">
-                <div class="w-4/12">
+                <div class="lg:w-4/12">
                     <Sidenav></Sidenav>
                 </div>
-                <div class="w-8/12">
+                <div class="lg:w-8/12">
                 <div class={styles.tab_change_password}>
                         <div class={styles.title_container}>
                             <p class={styles.title}>Cambiar teléfono</p>

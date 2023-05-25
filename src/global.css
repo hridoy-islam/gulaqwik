@@ -198,4 +198,9 @@ body {
     width: 100%;
     text-align: center;
   }
+  .content_sidenav{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }
