@@ -39,9 +39,6 @@
     display: block;
 }
 
-.activeBorder {
-    border-left: 6px solid white;
-}
 
 .aside_container {
     width: 100%;
