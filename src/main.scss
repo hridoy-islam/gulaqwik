@@ -218,7 +218,7 @@ $delay: 100ms;
 body {
   overflow-x: hidden;
   font-size: 14px;
-  background: black;
+  background: transparent;
 
   &::-webkit-scrollbar {
     width: getRelative(8);

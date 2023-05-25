@@ -7,12 +7,6 @@ html {
       'Segoe UI Symbol', 'Noto Color Emoji';
   }
   
-  body {
-    background: var(--qwik-dark-background);
-    color: var(--qwik-dark-text);
-    overflow-x: hidden;
-  }
-  
   /* TAGS ----------------------------------------- */
   a {
     text-decoration: none;
@@ -88,14 +82,7 @@ html {
   button.button-small {
     padding: 15px 25px;
   }
-  
-  @media screen and (min-width: 768px) {
-    a.button,
-    button {
-      font-size: 1rem;
-      padding: 23px 35px;
-    }
-  }
+
   
   /* DESIGN --------------------------------------- */
   .ellipsis {

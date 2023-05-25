@@ -1,0 +1,127 @@
+@import "../../main.scss";
+
+.wall_container {
+  width: 100%;
+  padding: getRelative(10);
+  box-sizing: border-box;
+  background: map-get($map: $overlay, $key: 300);
+
+  .aligner {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+
+    .post_form {
+      width: 100%;
+      margin-bottom: getRelative(10);
+      padding: getRelative(20);
+      box-sizing: border-box;
+      backdrop-filter: blur(getRelative(30));
+      background: black;
+
+      .top_container,
+      .bottom_container {
+        @include flexAlign(vertical);
+        justify-content: space-between;
+
+        .textarea {
+          width: 95%;
+          height: getRelative(50, 14);
+          padding: getRelative(10, 14);
+          box-sizing: border-box;
+          font-size: getRelative(14);
+          border: none;
+          background: none;
+          color: map-get($map: $primary, $key: 300);
+          resize: none;
+          outline: none;
+
+          &::placeholder {
+            font-size: getRelative(14);
+            color: map-get($map: $primary, $key: 300);
+          }
+        }
+
+        .button {
+          @include deleteButtonStyles();
+          border: 1px solid #7e7e7e !important;
+          padding: 5px;
+          border-radius: 5px;
+          background: #e6e6e6;
+          color: black;
+          font-weight: 700;
+
+          &:hover {
+            background: #e6e6e6e3;
+          }
+        }
+      }
+
+      .separation {
+        width: 100%;
+        height: getRelative(1);
+        margin: getRelative(15) 0;
+        background: map-get($map: $primary, $key: 300);
+        border: none;
+        opacity: 0.5;
+      }
+
+      .bottom_container {
+        justify-content: start;
+
+        .files_name_container {
+          color: map-get($map: $primary, $key: 300);
+          margin-left: getRelative(10);
+
+          >span {
+            margin-left: getRelative(5);
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+
+    .button_more {
+      @include borderButton(14);
+      font-weight: 300;
+      border: solid 1px;
+      width: 50%;
+      display: block;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .wall_output {
+      padding-bottom: getRelative(1);
+      box-sizing: border-box;
+
+      .emtpy {
+        margin: getRelative(20);
+        font-size: getRelative(14);
+        text-align: center;
+        color: map-get($map: $primary, $key: 300);
+      }
+
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .wall_container {
+    padding: 0;
+
+    .aligner {
+      width: 100%;
+
+      .post_form {
+        margin-bottom: 0;
+        backdrop-filter: blur(0);
+        background: black;
+      }
+    }
+  }
+
+  .bottom_container {
+    max-width: 90vw;
+  }
+}

@@ -30,6 +30,7 @@ $profile_padding: getRelative(15);
       .icon {
         height: getRelative(80);
         margin-left: getRelative(-25);
+        min-width: 80px;
       }
     }
   }
@@ -251,12 +252,13 @@ $profile_padding: getRelative(15);
 
     .go_back_arrow_container {
       top: -10%;
-      left: 0;
+      left: 10%;
       bottom: initial;
 
       .button_icon .icon {
         height: getRelative(65);
         margin-left: getRelative(-20);
+        min-width: 80px;
       }
     }
 

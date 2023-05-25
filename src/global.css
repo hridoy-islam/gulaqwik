@@ -40,6 +40,7 @@ body {
   padding: 0;
   margin: 0;
   line-height: inherit;
+  background: transparent;
 }
 
 /**
@@ -50,6 +51,8 @@ body {
  *
  */
 html {
+  background: black !important;
+  background-color: black !important;
   -webkit-text-size-adjust: 100%;
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -146,13 +149,6 @@ body {
   width: 30%;
   animation: navitem;
   animation-duration: .7s;
-}
-
-.link_text {
-  width: 30%;
-  margin: 0 auto;
-  font-size: 16px;
-  font-weight: 600;
 }
 
 .download_button_lebel {

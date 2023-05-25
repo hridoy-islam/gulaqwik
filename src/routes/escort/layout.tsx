@@ -1,12 +1,16 @@
 import { component$, useSignal, useStyles$, useVisibleTask$ } from '@builder.io/qwik';
-import { DocumentHead, Link } from '@builder.io/qwik-city';
+import type { DocumentHead } from '@builder.io/qwik-city';
+import { Link } from '@builder.io/qwik-city';
 import { routeLoader$ } from '@builder.io/qwik-city';
+import type { IWallState } from '~/api/states';
 import { gethWorkerUserByIdOrSlug, searchWorkerUsers } from '~/api/workeruser';
 import type { ICarouselCard } from '~/components/carousel/carousel';
 import Carousel from '~/components/carousel/carousel';
 import EscortMainProfile from '~/components/escort-main-profile/escort-main-profile';
 import EscortTabGallery from '~/components/escort-tab-gallery/escort-tab-gallery';
 import EscortTabInfo from '~/components/escort-tab-info/escort-tab-info';
+import EscortTabReviews from '~/components/escort-tab-reviews/escort-tab-reviews';
+import Wall from '~/components/wall/wall';
 import { GetUrlPreview } from '~/utils';
 import styles from './escort.scss?inline';
 
@@ -46,7 +50,8 @@ export default component$(() => {
   const serverData = useWorkerUser();
   const workerUser = serverData.value.workerUser;
   const defaultBackgroundImg = '/assets/images/profile_default.png';
-  const backgroundImg = useSignal(GetUrlPreview(workerUser?.coverPageMobile) ?? defaultBackgroundImg);
+  const backgroundImg = useSignal<string>();
+  const selectedTab = useSignal(1);
   const relatedWorkerUsers: ICarouselCard[] = serverData.value.relatedWorkerUsers.map((w) => ({
     id: w.id,
     name: w.name,
@@ -56,121 +61,84 @@ export default component$(() => {
     type: w.billingType,
     route: '/escort/' + w.slug
   }));
-  const cataloguePath = workerUser?.sex === 'male' ? '/hombres/' : workerUser?.sex === 'trans' ? '/trans-travestis/' : '/mujeres/';
+  const cataloguePath = workerUser?.sex === 'male' ? '/escorts/hombres/' : workerUser?.sex === 'trans' ? '/escorts/trans-travestis/' : '/escorts/mujeres/';
+  const states = workerUser?.states.map((s) => {
+    return {
+      id: s.id,
+      userId: workerUser.id,
+      userType: workerUser.type,
+      userSlug: workerUser.slug,
+      userSex: workerUser.sex,
+      profileImg: workerUser.profileImg,
+      username: workerUser.name,
+      description: s.text,
+      createdAt: s.createdAt,
+      media: s.media,
+      likes: s.likeIt,
+      commentsData: {
+        idState: s.id,
+        cretedById: s.id,
+        customerLogged: false,
+        comments: s.comments.map((c: any) => {
+          return {
+            id: c.id,
+            userId: c.userId,
+            message: c.text,
+            username: c.username,
+            profileImg: c.profileImg,
+            createdAt: c.createdAt,
+            responses: c.responses,
+          };
+        }),
+      },
+    } as IWallState;
+  });
 
-  useVisibleTask$(() => {
-    backgroundImg.value = (workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(workerUser?.coverPageMobile) : workerUser?.coverPagePC ?? defaultBackgroundImg;
+  useVisibleTask$((taskContext) => {
+    taskContext.track(() => serverData.value);
     const onResize = () => {
-      backgroundImg.value = (workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(workerUser?.coverPageMobile) : workerUser?.coverPagePC ?? defaultBackgroundImg;
+      backgroundImg.value = (serverData.value.workerUser?.coverPageMobile && window?.innerHeight > window?.innerWidth) ? GetUrlPreview(serverData.value.workerUser?.coverPageMobile) : serverData.value.workerUser?.coverPagePC ?? defaultBackgroundImg;
     }
+    onResize();
     window.addEventListener('resize', onResize, true);
-    return () => {
-      window.removeEventListener('resize', onResize, true);
-    }
+    taskContext.cleanup(() => window.removeEventListener('resize', onResize, true));
   });
 
   return (
     <><section class="profile_section">
-      <div class="background_image" style={{ background: "url('" + backgroundImg.value + "')" }}></div>
+      <div class="background_image" style={{ background: backgroundImg.value ? "url('" + backgroundImg.value + "')" : undefined }}></div>
       <div class="profile_content">
-        <EscortMainProfile workeruser={workerUser} />
+        <EscortMainProfile workeruser={workerUser} selectedTab={selectedTab} />
         <div id="tab_container" class="tab_container" style="padding-bottom: 65px;">
           <div class="escort_tab_output">
-            <div class="tab active">
-              <img alt="TabIcon" class="icon" src="/assets/icons/gallery_w.svg" />
+            <div class={"tab_profile " + (selectedTab.value === 1 ? "active" : "")}>
+              <img height={16} width={45} alt="TabIcon" class="icon" src="/assets/icons/gallery_w.svg" onClick$={() => selectedTab.value = 1} />
             </div>
-            <div class="tab">
-              <img alt="TabIcon" class="icon" src="/assets/icons/wall_w2.svg" />
+            <div class={"tab_profile " + (selectedTab.value === 2 ? "active" : "")}>
+              <img height={16} width={45} alt="TabIcon" class="icon" src="/assets/icons/wall_w2.svg" onClick$={() => selectedTab.value = 2} />
             </div>
-            <div class="tab">
-              <img alt="TabIcon" class="icon" src="/assets/icons/reviews_w.svg" />
+            <div class={"tab_profile " + (selectedTab.value === 3 ? "active" : "")}>
+              <img height={16} width={45} alt="TabIcon" class="icon" src="/assets/icons/reviews_w.svg" onClick$={() => selectedTab.value = 3} />
             </div>
-            <span class="underline" style="width: calc(33.3333%); transform: translateX(calc(0%));">
+            <span class="underline" style={{ width: "calc(33.3333%)", transform: "translateX(calc(" + (selectedTab.value === 1 ? 0 : selectedTab.value === 2 ? 100 : 200) + "%))" }}>
             </span>
           </div>
           <div class="tab_content">
-            <EscortTabInfo workeruser={workerUser} />
-            <EscortTabGallery workeruser={workerUser} />
-            <gula-tab-reviews style="display: none;"><div class="reviews_container">
-              <div class="aligner">
-                <div class="form_container">
-                  <textarea maxLength={500} class="textarea ng-untouched ng-pristine ng-valid" placeholder="Escribe aquí..."></textarea>
-                  <button class="button"><img alt="Right" src="/assets/icons/right_arrow_w.svg" class="icon" /></button>
-                </div>
-
-                <div class="stars_container">
-                  <p class="stars_label">Puntaje:</p>
-                  <gula-rating-stars  ><div class="stars_container">
-                    <div class="star_button">
-                      <span >☆</span>
-                      <span >☆</span>
-                      <span >☆</span>
-                      <span >☆</span>
-                      <span >☆</span>
-                    </div>
-                  </div>
-                  </gula-rating-stars>
-                </div>
-
-                <div class="reviews_output">
-                  <gula-review id="641b7626f6ad8119418d89fa"><div class="review_container">
-
-                    <div class="score_container">
-                      <img alt="Bookmark" src="/assets/icons/bookmark_fill_w2.svg" class="icon" />
-                      <p class="score">5.0</p>
-                    </div>
-
-                    <div class="data_container">
-                      <img alt="ProfileImage" class="profile_img" src="/assets/images/default_user_profile.png" />
-                      <div class="text_container">
-                        <div class="username_container">
-                          <p class="username">Timonero128</p>
-                          <p class="date">2 meses</p>
-                        </div>
-                        <p class="description">Tamara es una escort uruguaya que te cautivará al instante con su belleza y su dulce sonrisa. Con su delicadeza y sensualidad, te llevará a un mundo de placer absoluto. Su habilidad para hacerte sentir cómodo y relajado es impresionante, dejándote sin preocupaciones. No te arrepentirás de su servicio completo y su disposición a cumplir todas tus fantasías más íntimas. Definitivamente la recomiendo.</p>
-
-                      </div>
-                    </div>
-
-                    <div class="actions">
-
-
-
-                    </div>
-                  </div>
-
-                  </gula-review><gula-review id="63d4d6caba9e4b1dee72682a"><div class="review_container alternate">
-
-                    <div class="score_container">
-                      <img alt="Bookmark" src="/assets/icons/bookmark_fill_w2.svg" class="icon" />
-                      <p class="score">5.0</p>
-                    </div>
-
-                    <div class="data_container">
-                      <img alt="ProfileImage" class="profile_img" src="/assets/images/default_user_profile.png" />
-                      <div class="text_container">
-                        <div class="username_container">
-                          <p class="username">Cerati siempre</p>
-                          <p class="date">4 meses</p>
-                        </div>
-                        <p class="description">Muy todo, súper en todo lo que sabe hacer, increíble hasta tragos te hace,me,gusta destacar cuando se nota que sabe lo que hace y no escatima en qué quedes siempre de conforme para arriba. Confirmo</p>
-
-                      </div>
-                    </div>
-
-                    <div class="actions">
-
-
-
-                    </div>
-                  </div>
-
-                  </gula-review>
-                </div>
-
-              </div>
-            </div>
-            </gula-tab-reviews>
+            {
+              selectedTab.value === 1 &&
+              <>
+                <EscortTabInfo workeruser={workerUser} />
+                <EscortTabGallery workeruser={workerUser} />
+              </>
+            }
+            {
+              selectedTab.value === 2 &&
+              <Wall states={states} sex={workerUser?.sex} showSeeMoreStatesBtn={true} />
+            }
+            {
+              selectedTab.value === 3 &&
+              <EscortTabReviews workeruser={workerUser} />
+            }
           </div>
         </div>
       </div>
@@ -194,3 +162,4 @@ export default component$(() => {
     </>
   );
 });
+

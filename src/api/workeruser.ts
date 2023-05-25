@@ -1,15 +1,16 @@
 // import axios from 'axios';
 import type { User, BillingType } from './authentication';
+import type { StateWorkerUser } from './states';
 
-const base = 'https://gula-api-test-2i55x.ondigitalocean.app/workeruser/';
+const base = import.meta.env.PUBLIC_API_URL + 'workeruser';
 
 export const searchWorkerUsers = async (search: any): Promise<WorkerUserPaginated> => {
   // return (await axios.post<WorkerUserPaginated>(base + 'search', search)).data;
-  return await (await fetch(base + 'search', { method: 'POST', body: JSON.stringify(search), headers: { 'Content-type': 'application/json; charset=UTF-8' } })).json();
+  return await (await fetch(base + '/search', { method: 'POST', body: JSON.stringify(search), headers: { 'Content-type': 'application/json; charset=UTF-8' } })).json();
 }
 
 export const gethWorkerUserByIdOrSlug = async (idOrSlug: string): Promise<WorkerUser> => {
-  return await (await fetch(base + idOrSlug)).json();
+  return await (await fetch(base + '/' + idOrSlug)).json();
 }
 
 
@@ -46,7 +47,7 @@ export interface WorkerUser extends User {
   media?: string[];
   mediaVIP?: string[];
   instagram?: string;
-  // states: StateWorkerUser[];
+  states: StateWorkerUser[];
   verifiedProfile: boolean;
   price: number;
   acceptCard: boolean;
@@ -58,6 +59,7 @@ export interface WorkerUser extends User {
   alarm?: any;
   prevSlug: string;
   phonePrev: string;
+  priorization: number;
 }
 
 export interface WorkerUserPaginated {

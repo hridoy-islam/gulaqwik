@@ -37,9 +37,9 @@ $tab_underline_size: 5;
             margin: getRelative(45) auto 0;
             box-sizing: border-box;
 
-            .tab {
+            .tab_profile {
                 @include flexAlign(center);
-                display: block;
+                display: flex;
                 width: 100%;
                 height: $tab_height;
                 width: 100%;
@@ -50,9 +50,10 @@ $tab_underline_size: 5;
                 box-shadow: -9px 0 0px -8px #7b7272, 9px 0 0px -8px #7b7272;
 
                 .icon {
-                    height: getRelative(12);
+                    height: 16px;
                     opacity: 0.5;
                     transition: all 200ms ease-in;
+                    margin: auto;
                 }
             }
 
@@ -67,7 +68,7 @@ $tab_underline_size: 5;
             }
 
             @media screen and (max-width: 650px) {
-                .tab {
+                .tab_profile {
                     background-color: map-get($map: $primary, $key: A100);
                 }
 

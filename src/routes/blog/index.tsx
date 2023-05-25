@@ -1,73 +1,57 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useStyles$ } from "@builder.io/qwik";
+import type { DocumentHead} from "@builder.io/qwik-city";
 import { routeLoader$ } from "@builder.io/qwik-city";
-import styles from './blog.module.css';
-import Blogs from "./blogs";
-
-interface product {
-    createdAt: String,
-    updatedAt: String,
-    deletedAt: String,
-    id: String,
-    title: String,
-    slug: String,
-    seoTitle: String,
-    seoDescription: String,
-    published: Boolean,
-    shortDescription: String,
-    previewImage: String,
-}
+import { GetUrlPreview } from "~/utils";
+import styles from './blog.scss?inline';
+import dayjs from 'dayjs';
+import { getPosts } from "~/api/posts";
 
 
-export const useProductDetails = routeLoader$(async () => {
-    // This code runs only on the server, after every navigation
-    const res = await fetch(`https://gula-api-test-2i55x.ondigitalocean.app/blog?skip=0&limit=40&published=true&sort=createdAt%20DESC`);
-    const product = (await res.json()) as product[];
-    return product;
+export const usePosts = routeLoader$(async () => {
+    return (await getPosts()).results
 });
+
+export const head: DocumentHead = () => {
+    return {
+      title: 'El blog de escorts mas picante de Uruguay 🔥 | Gula',
+      meta: [
+        {
+          name: 'description',
+          content: 'Ingresa al Blog de Escorts mas picante. Gula un espacio de publicidad donde putas, mujeres trans y hombres, ofrecen sus diferentes servicios.',
+        },
+      ],
+    };
+  };
+
 export default component$(() => {
-    const signal = useProductDetails();
-    const blogs = signal?.value?.results;
+    useStyles$(styles);
+    const signal = usePosts();
+    const posts = signal?.value;
 
-    return (
-        <>
-            <div class={styles.states_output}>
-                {/* <p>Count - {blogs.title}</p> */}
-                <div class="flex items-center flex-col justify-left">
-                    <span class={styles.text}>Categoria</span>
-                    <div class={styles.select_icon}>
-                    <select class={["select w-1/4", styles.select_element]}>
-                        {/* <option selected disabled>
-                            Categoria
-                        </option> */}
-                        <option >
-                            Todos
-                        </option>
-                        <option >
-                            Mujeres
-                        </option>
-                        <option >
-                            Hombres
-                        </option>
-                        <option >
-                            Trans
-                        </option>
-                        <option >
-                            Sexo
-                        </option>
-                    </select>
-                    <span class={styles.icon}></span>
-                    </div>
-                </div>
-                <div class={styles.blog_scroll}>
-                    <div class="grid grid-cols-3">
-                        {
-                            blogs?.map(blog =>
-                                <Blogs key={blog._id} blog={blog}></Blogs>)
-                        }
+    return <section class="main_wall">
+        <h1 class="subtitle">El mejor sitio de Escorts de Uruguay</h1>
+        <div class="states_output">
+            <div class="blog_scroll">
+                {
+                    posts.map((post, i) => {
+                        const createdAt = dayjs(post.createdAt);
+                        return <a key={i} class="preview" href={"/blog/" + post.slug}>
+                            <img class="postPreviewImage" src={post.previewImage ? GetUrlPreview(post.previewImage) : '/assets/images/profile_default.png'} />
+                            <span class="postPreviewHeaderContainer">
+                                <span class="previewDate">{createdAt.format('DD/MM/YYYY')}</span>
+                                <span ></span>
+                            </span>
 
-                    </div>
-                </div>
-            </div >
-        </>
-    )
+                            <span class="title">
+                                {post.title}
+                            </span>
+                            <div class="description">
+                                {post.shortDescription}
+                            </div>
+                        </a>
+                    })
+                }
+            </div>
+        </div>
+    </section>
 })
