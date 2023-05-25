@@ -32,8 +32,8 @@ export default component$((props: CatalogueCardProps) => {
     (GetScheduleDescription(workeruser) ? (' - ' + GetScheduleDescription(workeruser)) : '') +
     (workeruser.shortDescription && workeruser.billingType !== 'Premium' ? ' - ' + Capitalize(workeruser.shortDescription) : '');
 
-  return <div ref={outputRef} class={"card catalogue_card " + cardType} title={workeruser.name} style={{background: defaultImage.value ? undefined : "url(\"" + GetUrlPreview(workeruser.profileImg) + "\");"}} >
-    <img width={1} src={defaultImage.value ? '/assets/images/about-mobile.jpeg' : GetUrlPreview(workeruser.profileImg)} />
+  return <div ref={outputRef} class={"card catalogue_card " + cardType} title={workeruser.name} style={{ background: defaultImage.value ? undefined : "url(\"" + GetUrlPreview(workeruser.profileImg) + "\");" }} >
+    <img width={1} alt={"Escort " + workeruser.name + " " + description} src={defaultImage.value ? '/assets/images/about-mobile.jpeg' : GetUrlPreview(workeruser.profileImg)} />
     <Link class="card_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</Link>
     <Link class="right_clickable" href={"/escort/" + workeruser.slug} target="_self" aria-label={"Escort " + workeruser.name}>Escort {workeruser.name}</Link>
     <div class="card_bottom">
