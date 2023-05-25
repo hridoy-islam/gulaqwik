@@ -61,7 +61,6 @@ export default component$(() => {
                 <img class="w-5" src="/assets/icons/wall_w2.svg" alt='wall_w2' />
               </Link>
             </li>
-
             <li>
 
               <img onClick$={notiToogle} class="w-6" src="/assets/icons/alarm_w_2.svg" alt='alarm_w_2' />
