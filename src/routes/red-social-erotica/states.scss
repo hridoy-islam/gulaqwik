@@ -1,0 +1,348 @@
+@import "../../main.scss";
+
+$search_width: getRelative(260);
+$search_width_min: getRelative(230);
+$header_height: getRelative(40);
+$line_height: getRelative(5);
+$tab_output_header: calc(calc(#{$header_height} + #{$line_height}));
+$content_padding_top: getRelative(80);
+$content_padding_lateral: 5%;
+
+$first_breakpoint: 1300px;
+$second_breakpoint: 860px;
+$full_height: calc(100% - #{$search_width});
+$full_height-min: calc(100% - #{$search_width_min});
+
+:host {
+  display: block;
+  background: black;
+}
+
+.main_wall {
+  display: flex;
+  width: fit-content;
+  min-height: 100vh;
+  // padding: $content_padding_top $content_padding_lateral 0;
+  box-sizing: border-box;
+  margin: 55px auto auto auto;
+
+  .subtitle {
+    $context: 16;
+    display: none;
+    margin: 0 auto getRelative(20, $context);
+    font-size: getRelative($context);
+    font-weight: 500;
+    color: map-get($map: $primary, $key: A100-contrast);
+  }
+
+  .aside_container,
+  .states_output {
+    width: $search_width;
+    height: calc(100vh - #{$content_padding_top});
+    overflow-y: auto;
+
+    .aside_fixed {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: calc(#{$content_padding_top} / 2);
+      box-sizing: border-box;
+
+      .tab_pc_container {
+        width: 100%;
+      
+        .tab {
+          width: 100%;
+          padding: getRelative(25);
+          box-sizing: border-box;
+          background: black;
+          cursor: pointer;
+          border-bottom: solid getRelative(1) map-get($map: $primary, $key: A200-contrast);
+          min-height: 50px;
+      
+          .label {
+            text-decoration: none;
+            font-size: getRelative(16);
+            font-weight: 500;
+            color: map-get($map: $primary, $key: 300);
+            padding-top: 0;
+            padding-bottom: 0;
+          }
+        }
+      
+        .active_tab {
+          border-bottom: solid getRelative(4) map-get($map: $primary, $key: A200-contrast);
+          .label {
+            font-weight: 700;
+          }
+        }
+      }
+
+    }
+  }
+
+  .aside_container {
+    overflow-x: hidden;
+    position: fixed;
+    margin-left: -250px;
+
+    &::-webkit-scrollbar {
+      width: getRelative(8);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: getRelative(5);
+      background: map-get($map: $overlay, $key: 200);
+
+      &:hover {
+        background: map-get($map: $overlay, $key: 300);
+      }
+    }
+  }
+
+  .states_output {
+    grid-template-rows: auto auto;
+    width: getRelative(800);
+    height: 100%;
+    padding-left: getRelative(15);
+    margin: 0 auto;
+
+    &::-webkit-scrollbar {
+      width: getRelative(8);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: getRelative(5);
+      background: map-get($map: $overlay, $key: 200);
+
+      &:hover {
+        background: map-get($map: $overlay, $key: 300);
+      }
+    }
+
+    .tab_outlet {
+        @include flexAlign(vertical);
+        width: 100%;
+        height: auto;
+      
+        .tab {
+          @include flexAlign(center);
+          min-height: 55px;
+          // padding: 0 getRelative(40);
+          text-align: center;
+          background: black;
+          cursor: pointer;
+
+      
+          .label {
+            text-decoration: none;
+            font-size: getRelative(14);
+            font-weight: 300;
+            text-transform: uppercase;
+            color: map-get($map: $primary, $key: 300);
+          }
+        }
+      
+        .active_tab {
+          background: black;
+          border-bottom: solid getRelative(5) map-get($map: $primary, $key: A100-contrast);
+      
+          .label {
+            font-weight: 600;
+          }
+        }
+      }
+      
+      @media screen and (max-width: 650px) {
+        .tab_outlet .tab {
+          // padding: getRelative(10) getRelative(25);
+        }
+      }
+      
+    .post_form {
+      width: 100%;
+      margin-bottom: getRelative(5);
+      padding: getRelative(20);
+      box-sizing: border-box;
+      background: map-get($map: $overlay, $key: 300);
+
+      .top_container,
+      .bottom_container {
+        @include flexAlign(vertical);
+        justify-content: space-between;
+
+        .textarea {
+          width: 95%;
+          height: getRelative(50, 14);
+          padding: getRelative(10, 14);
+          box-sizing: border-box;
+          font-size: getRelative(14);
+          border: none;
+          background: none;
+          color: map-get($map: $primary, $key: 300);
+          resize: none;
+          outline: none;
+
+          &::placeholder {
+            font-size: getRelative(14);
+            color: map-get($map: $primary, $key: 300);
+          }
+        }
+
+        .button {
+          @include deleteButtonStyles();
+          border: 1px solid #7e7e7e !important;
+          padding: 5px;
+          border-radius: 5px;
+          background: #e6e6e6;
+          color: black;
+          font-weight: 700;
+
+          &:hover {
+            background: #e6e6e6e3;
+          }
+        }
+      }
+
+      .separation {
+        width: 100%;
+        height: getRelative(1);
+        margin: getRelative(15) 0;
+        background: map-get($map: $primary, $key: 300);
+        border: none;
+        opacity: 0.5;
+      }
+
+      .bottom_container {
+        justify-content: start;
+
+        .files_name_container {
+          color: map-get($map: $primary, $key: 300);
+          margin-left: getRelative(10);
+
+          >span {
+            margin-left: getRelative(5);
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+
+    .states_scroll {
+      overflow-y: auto;
+
+      .empty_gallery {
+        @include flexAlign(center);
+        width: 100%;
+        padding: 5% 0;
+        box-sizing: border-box;
+
+        .label {
+          font-size: getRelative(18);
+          color: map-get($map: $primary, $key: 300);
+          text-align: center;
+        }
+      }
+
+      .loader {
+        display: flex;
+        margin-top: 100px;
+
+        img {
+          width: 50%;
+          height: 100%;
+          margin: auto;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: getRelative(8);
+      }
+
+      &::-webkit-scrollbar-track {
+        background: none;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: getRelative(5);
+        background: map-get($map: $overlay, $key: 200);
+
+        &:hover {
+          background: map-get($map: $overlay, $key: 300);
+        }
+      }
+
+      gula-wall-state {
+        display: block;
+        margin-bottom: getRelative(5);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $first_breakpoint) {
+  .main_wall {
+    .aside_container {
+      width: $search_width_min;
+    }
+
+    .states_output {
+      width: getRelative(600);
+    }
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .main_wall {
+    width: 80vw;
+    // padding: $content_padding_top 0 0 0;
+
+    .aside_container {
+      display: none;
+    }
+
+    .states_output {
+      width: 100%;
+      padding-left: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .main_wall {
+    width: 90vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .main_wall {
+    width: 100vw;
+    flex-direction: column;
+
+    .subtitle {
+      display: block;
+    }
+
+    .states_output .post_form {
+      padding: getRelative(15);
+      margin-bottom: getRelative(1);
+
+      .states_scroll {
+        &::-webkit-scrollbar {
+          width: getRelative(28);
+        }
+      }
+
+      .separation {
+        margin: getRelative(10) 0;
+      }
+    }
+  }
+}

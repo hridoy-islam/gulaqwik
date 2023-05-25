@@ -1,0 +1,316 @@
+@import "../../main.scss";
+
+.reviews_container {
+  width: 100%;
+  padding: getRelative(10);
+  padding-bottom: getRelative(20);
+  box-sizing: border-box;
+  background: black;
+
+  .aligner {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+
+    .reviews_output {
+      width: 100%;
+
+      .review_container {
+        @include flexAlign(center);
+        position: relative;
+        flex-direction: column;
+        padding: getRelative(15) 0;
+        box-sizing: border-box;
+        background: black;
+
+        .profile_img {
+          $profile_img_size: getRelative(50);
+          width: $profile_img_size;
+          height: $profile_img_size;
+          border-radius: calc(#{$profile_img_size} / 2);
+        }
+
+        .data_container {
+          display: flex;
+          width: 90%;
+
+          .text_container {
+            width: 100%;
+            margin-left: 5%;
+          }
+
+          .edit_comment_container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding-top: getRelative(15);
+            box-sizing: border-box;
+            overflow: hidden;
+
+            .edit_comment_textarea {
+              $context: 14;
+              width: calc(100% - #{getRelative(1, $context)});
+              min-height: getRelative(100, $context);
+              height: 100%;
+              padding: getRelative(14, $context);
+              box-sizing: border-box;
+              font-size: getRelative($context);
+              border: solid getRelative(1, $context) map-get($map: $primary, $key: A400);
+              background: map-get($map: $primary, $key: 100);
+              color: map-get($map: $primary, $key: A100-contrast);
+              outline: none;
+              resize: none;
+            }
+
+            .stars_container {
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+              margin: getRelative(10) 0 getRelative(20);
+
+              .stars_label {
+                $context: 14;
+                margin-right: getRelative(10, $context);
+                font-size: getRelative($context);
+                color: map-get($map: $primary, $key: A100-contrast);
+              }
+            }
+
+            .edit_comment_button {
+              $context: 14;
+              max-width: getRelative(200, $context);
+              width: 100%;
+              padding: getRelative(10) getRelative(20);
+              box-sizing: border-box;
+              margin: 0 auto getRelative(10, $context);
+              font-size: getRelative($context);
+              font-weight: 600;
+              border-radius: getRelative(8, $context);
+              color: map-get($map: $primary, $key: A100);
+              background: map-get($map: $primary, $key: A100-contrast);
+              border: none;
+              outline: none;
+              cursor: pointer;
+
+              &:last-child {
+                margin-bottom: 0;
+                color: map-get($map: $primary, $key: A100-contrast);
+                background: none;
+                border: none;
+                border-radius: none;
+              }
+            }
+          }
+        }
+
+        .score_container {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          top: getRelative(-3);
+          right: getRelative(15);
+          outline: none;
+
+          img.icon {
+            width: getRelative(30);
+          }
+
+          .score {
+            margin-bottom: getRelative(5, 14);
+            font-size: getRelative(14);
+            font-weight: 700;
+            color: map-get($map: $secondary, $key: 100);
+            position: absolute;
+          }
+        }
+
+        .username,
+        .description {
+          font-size: getRelative(14);
+          font-weight: 600;
+          color: map-get($map: $primary, $key: 300);
+        }
+
+        .username_container {
+          @include flexAlign(vertical);
+          margin-bottom: getRelative(15, 14);
+
+          .username {
+            text-transform: uppercase;
+            margin-right: getRelative(10);
+          }
+
+          .date {
+            font-size: .9em;
+            opacity: .75;
+            color: map-get($map: $primary, $key: 300);
+
+            .date_label {
+              font-size: 1em;
+            }
+          }
+        }
+
+        .description {
+          margin-bottom: 0;
+          font-weight: 300;
+
+          .icon {
+            height: 1em;
+          }
+        }
+
+        .actions {
+          @include flexAlign(vertical);
+          justify-content: flex-end;
+          width: 100%;
+          box-sizing: border-box;
+          margin-top: getRelative(5);
+
+          .action {
+            $context: 14;
+            @include flexAlign(center);
+            @include deleteButtonStyles();
+            font-size: getRelative($context);
+            color: map-get($map: $primary, $key: A100-contrast);
+            outline: none;
+            transition: all 200ms ease-in;
+            opacity: 0.5;
+            margin-right: getRelative(22, $context);
+
+            &:hover {
+              transition: all 200ms ease-in;
+              opacity: 1;
+            }
+
+            .icon {
+              height: getRelative(14, $context);
+              margin-right: getRelative(5, $context);
+            }
+
+            .label {
+              font-size: 1em;
+              color: map-get($map: $primary, $key: A100-contrast);
+            }
+          }
+        }
+      }
+
+      .alternate {
+        background: map-get($map: $primary, $key: A200) !important;
+      }
+
+      .active {
+        opacity: 1 !important;
+      }
+
+      @media screen and (max-width: 650px) {
+        .review_container {
+          .data_container .text_container .edit_comment_container .stars_container {
+            justify-content: center;
+          }
+
+          .actions {
+            margin-top: getRelative(20);
+          }
+        }
+      }
+
+    }
+
+    .empty {
+      @include flexAlign(center);
+      width: 100%;
+      padding: 5% 0;
+      box-sizing: border-box;
+
+      .label {
+        font-size: getRelative(18);
+        color: map-get($map: $primary, $key: 300);
+        text-align: center;
+      }
+    }
+
+    .form_container {
+      @include flexAlign(vertical);
+      justify-content: space-between;
+      width: 100%;
+      margin-top: getRelative(20);
+      margin-bottom: getRelative(20);
+      padding: getRelative(20);
+      box-sizing: border-box;
+      background: black;
+      border-bottom: solid getRelative(1) map-get($map: $primary, $key: A200-contrast);
+
+      .textarea {
+        width: 95%;
+        height: getRelative(50, 14);
+        padding: getRelative(10, 14);
+        box-sizing: border-box;
+        font-size: getRelative(14);
+        border: none;
+        background: none;
+        color: map-get($map: $primary, $key: 300);
+        resize: none;
+        outline: none;
+
+        &::placeholder {
+          font-size: getRelative(14);
+          color: map-get($map: $primary, $key: 300);
+        }
+      }
+
+      .button {
+        @include deleteButtonStyles();
+        @include flexAlign(center);
+
+        .icon {
+          width: getRelative(16);
+        }
+      }
+    }
+
+    .stars_container {
+      @include flexAlign(vertical);
+      justify-content: flex-end;
+      width: 100%;
+      margin-bottom: getRelative(40);
+
+      .stars_label {
+        margin-right: getRelative(10, 16);
+        font-size: getRelative(16);
+        font-weight: 600;
+        color: map-get($map: $primary, $key: A100-contrast);
+      }
+
+      gula-rating-stars {
+        display: block;
+        margin-bottom: getRelative(5);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .reviews_container {
+    padding: 0;
+    padding-bottom: getRelative(20);
+    background: black;
+
+    .aligner {
+      width: 100%;
+      box-sizing: border-box;
+
+      .form_container {
+        width: 90%;
+        margin: 0 auto;
+        background: black;
+      }
+
+      .stars_container {
+        justify-content: center;
+      }
+    }
+  }
+}

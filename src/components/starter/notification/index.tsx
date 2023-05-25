@@ -1,9 +1,10 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useContext } from "@builder.io/qwik";
+import { GulaContext } from "~/root";
 import styles from "./notification.module.css";
 
 
 export default component$(() => {
-
+    const gulaContext = useContext(GulaContext);
     return (
         <>
             <div class={styles.dialog_overlay}>
@@ -11,15 +12,15 @@ export default component$(() => {
                     <p class={styles.title_container}>Debes ser un usuario registrado</p>
                     <p class={styles.message_container}>Para hacer uso de estas funcionalidades, debes registrar o iniciar sesión.</p>
                     <div class={styles.actions}>
-                        <button class={styles.button}>
+                        <button class={styles.button} onClick$={() => gulaContext.openNotificationsModal = false}>
                             Cancelar
                         </button>
-                        <button class={styles.button}>
+                        <a href="/auth/signin" class={styles.button}>
                             ¡Regístrate gratis!
-                        </button>
-                        <button class={styles.isfill}>
+                        </a>
+                        <a href="/auth/login" class={styles.isfill}>
                             Iniciar sesión
-                        </button>
+                        </a>
                     </div>
                 </div>
 

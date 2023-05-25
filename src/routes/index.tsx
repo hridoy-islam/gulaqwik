@@ -5,11 +5,11 @@ export default component$(() => {
   return (
     <>
       <div class="slider_section">
-        <h2 class="title mb-6">GULA, el mejor sitio de Escorts en Uruguay</h2>
+        <h1 class="title mb-6 text-center">GULA, el mejor sitio de Escorts en Uruguay</h1>
         <div class="mt-12 slider_button">
-          <a href="/trans-travestis" class="px-8 py-4 mx-3 font-sm font-bold border rounded uppercase " >Mujeres trans</a>
-          <a href="/mujeres" class="px-8 py-4 mx-3 font-sm font-bold border rounded uppercase " >Mujeres</a>
-          <a href="/hombres" class="px-8 py-4 mx-3 font-sm font-bold border rounded uppercase " >Hombres</a>
+          <a href="/escorts/mujeres" class="px-8 py-4 mx-3 font-sm font-bold border rounded uppercase " >Mujeres</a>
+          <a href="/escorts/trans-travestis" class="px-8 py-4 mx-3 font-sm font-bold border rounded uppercase " >Mujeres trans</a>
+          <a href="/escorts/hombres" class="px-8 py-4 mx-3 font-sm font-bold border rounded uppercase " >Hombres</a>
         </div>
       </div>
       <div class="about_section mt-20">
@@ -24,11 +24,11 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: 'Welcome to Qwik',
+  title: 'Gula - El sitio de Chicas Escorts, Putas, Hombres y Trans en Uruguay',
   meta: [
     {
       name: 'description',
-      content: 'Qwik site description',
+      content: 'Somos la primera Red Social Erótica de Chicas Escorts. Gula un espacio de publicidad donde putas, mujeres trans y hombres, ofrecen sus diferentes servicios',
     },
   ],
 };

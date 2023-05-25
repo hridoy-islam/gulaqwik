@@ -21,7 +21,7 @@ export default component$(() => {
                                 </div>
                             </div>
                             <input id="img" style={'display:none'} type="file" accept="image/*, video/*" /> 
-                            <label htmlFor="img">
+                            <label for="img">
                             <div class={styles.button}>
                                 <img src="/assets/icons/add_image_w.svg" alt="" />
                             </div>
@@ -32,21 +32,21 @@ export default component$(() => {
                             <div class={styles.profile_image_container}>
                                 <div class={styles.profile_image}></div>
                                 <input id="img" style={'display:none'} type="file" accept="image/*, video/*" />
-                                <label htmlFor="img">
+                                <label for="img">
                                 <div class={styles.profile_button}>Cambiar Foto Perfil</div>
                                 </label>
                             </div>
                             <div class={styles.profile_image_container}>
                                 <div class={styles.cover_image_mobile}></div>
                                 <input id="img" style={'display:none'} type="file" accept="image/*, video/*" />
-                                <label htmlFor="img">
+                                <label for="img">
                                 <div class={styles.profile_button}>Foto Portada para Cel</div>
                                 </label>
                             </div>
                             <div class={styles.profile_image_container}>
                                 <div class={styles.cover_image_pc}></div>
                                 <input id="img" style={'display:none'} type="file" accept="image/*, video/*" />
-                                <label htmlFor="img">
+                                <label for="img">
                                 <div class={styles.profile_button}>Foto Portada para PC</div>
                                 </label>
                             </div>

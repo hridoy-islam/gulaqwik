@@ -20,9 +20,11 @@
     "preview": "qwik build preview && vite preview --open",
     "serve": "wrangler pages dev ./dist",
     "start": "vite --open --mode ssr",
+    "sitemap-uy": "node sitemap.js uy",
     "qwik": "qwik"
   },
   "devDependencies": {
+    "@builder.io/partytown": "^0.8.0",
     "@builder.io/qwik": "1.1.2",
     "@builder.io/qwik-city": "^1.1.2",
     "@builder.io/qwik-react": "0.5.0",
@@ -41,6 +43,7 @@
     "eslint": "8.39.0",
     "eslint-plugin-qwik": "1.1.2",
     "netlify-cli": "^14.2.1",
+    "node-fetch": "2.6.1",
     "postcss": "^8.4.23",
     "prettier": "2.8.8",
     "react": "18.2.0",
@@ -55,6 +58,7 @@
   },
   "dependencies": {
     "daisyui": "^2.51.6",
-    "react-image-video-viewer": "^3.0.6"
+    "dayjs": "^1.11.7",
+    "react-image-video-viewer": "^3.0.15"
   }
 }
